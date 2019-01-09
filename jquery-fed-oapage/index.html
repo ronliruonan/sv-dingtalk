@@ -1,0 +1,1913 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JTOA</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="icon" id="favicon" href="//g.alicdn.com/dingding/web/0.2.6/img/oldIcon.ico" type="image/x-icon">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js" charset="utf-8"></script>
+    <!-- <script src="https://g.alicdn.com/dingding/open-develop/1.0.0/dingtalk.js" charset="utf-8"></script> -->
+    <script src="//g.alicdn.com/dingding/dingtalk-jsapi/2.3.0/dingtalk.open.js" charset="utf-8"></script>
+    <!-- dingding -->
+    <style type="text/css">
+        * {
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        html {
+            font-size: 62.5% !important;
+            -webkit-text-size-adjust: none;
+        }
+
+        body {
+            font-size: 1rem;
+            color: #333333;
+            font-family: "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif !important;
+            /*火狐*/
+            -webkit-user-select: none;
+            /*webkit浏览器*/
+            /*IE10*/
+            /*早期浏览器*/
+            user-select: none;
+        }
+
+        ul,
+        li {
+            list-style: none
+        }
+
+        @media screen and (min-width: 48em) {
+            .pure-u-md-1-8 {
+                width: 12.5%;
+            }
+
+            .pure-u-md-1-4 {
+                width: 25%;
+            }
+        }
+
+        @media screen and (min-width: 64em) {
+            .pure-u-lg-1-8 {
+                width: 12.5%;
+            }
+        }
+    </style>
+    <!-- 管理员问候 -->
+    <style type="text/css">
+        body {
+            background-color: #FFF;
+            overflow-x: hidden;
+        }
+
+        #dingapp {
+            overflow-x: hidden;
+        }
+
+        /* 管理员按钮和问候管理员样式 */
+        .admin-container {
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .admin-container .admin-center {
+            text-align: right;
+            font-weight: 500;
+            position: relative;
+            background: #FFF;
+            height: 4.4rem;
+            font-size: 1.4rem;
+            padding: 0 1rem;
+        }
+
+        .admin-container .pure-u-1-2 {
+            line-height: 4.4rem;
+        }
+
+        .admin-container .pure-u-1-2:first-child {
+            text-align: left;
+        }
+
+        .admin-container .pure-u-1-2:first-child img {
+            width: 1.8rem;
+            height: 1.8rem;
+            vertical-align: middle;
+            margin-right: 0.5rem;
+        }
+
+        .admin-container .pure-u-1-2:first-child span {
+            vertical-align: middle;
+            font-size: 1.7rem;
+            color: #999;
+        }
+
+        .admin-container:after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: -1px;
+            height: 1px;
+            border-top: 1px solid #e4e4e4;
+            -webkit-transform: scaleY(0.5);
+            transform: scaleY(0.5);
+            -webkit-transform-origin: 0 0;
+            transform-origin: 0 0;
+            overflow: hidden;
+        }
+
+        .pure-u-1-2:last-child {
+            text-align: right;
+        }
+
+        .pure-u-1-2:last-child .adminBtn {
+            color: #38adff;
+            font-size: 1.7rem;
+        }
+
+        /* banner图下面任务状态入口*/
+        .taskStateItem {
+            position: relative;
+            margin: 0 auto;
+            background-color: #e0ebf7;
+        }
+
+        .titleWords {
+            display: inline-block;
+            font-size: 13px;
+            color: #196ea9;
+            letter-spacing: 0;
+            line-height: 17px;
+            margin: 12px 0 12px 12px;
+            text-align: left;
+        }
+
+        .goTaskBtn {
+            position: absolute;
+            left: 78%;
+            top: 5px;
+            display: inline-block;
+            font-size: 13px;
+            opacity: 0.7;
+            width: 63px;
+            height: 29px;
+            background-color: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(25, 119, 169, 0.6);
+            border-radius: 4px;
+            color: #196ea9;
+            letter-spacing: 0;
+            line-height: 29px;
+            text-align: center;
+        }
+
+        /* 管理员任务引导层 */
+        .coverFloorContainer {
+            position: relative;
+            width: 100%;
+            z-index: 99999;
+        }
+
+        .coverFloor {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 471px;
+            opacity: 0.4;
+            background: #000000;
+        }
+
+        .coverFloorImg {
+            width: 100%;
+        }
+
+        /* banner 样式 */
+        .banner {
+            display: block;
+            min-height: 90px;
+            overflow: hidden;
+        }
+
+        #bannerSlide ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        #bannerSlide ul li {
+            float: left;
+            position: relative;
+            display: block;
+        }
+
+        #bannerSlide ul li .item {
+            display: block;
+            position: relative;
+            width: 100%;
+        }
+
+        #bannerSlide ul .item img {
+            width: 100%;
+            min-height: 130px;
+        }
+
+        #bannerSlide .btn {
+            position: absolute;
+            width: 100%;
+            height: 10px;
+            right: 0;
+            bottom: 0.8rem;
+            text-align: center;
+            z-index: 999;
+        }
+
+        #bannerSlide .btn span {
+            display: inline-block;
+            zoom: 1;
+            width: 0.4rem;
+            height: 0.4rem;
+            margin: 0 5px;
+            cursor: pointer;
+            border-radius: 50%;
+            background: #000;
+        }
+
+        #bannerSlide .btn span.on {
+            background: #FFF;
+        }
+
+        #bannerSlide .preNext {
+            width: 4rem;
+            height: 5rem;
+            position: absolute;
+            top: 50%;
+            margin-top: -2.5rem;
+            cursor: pointer;
+            z-index: 999;
+        }
+
+        #bannerSlide .pre {
+            left: 1.25rem;
+            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAMAAAAPdrEwAAAAeFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAACAgICAgIBAQEAAADr6+v///93d3fJycn////8/Pz+/v7x8fHHx8f+/v7+/v7+/v729vbv7+/u7u7s7Ozp6enQ0NDJycm9vb2VlZWJiYlAQEApKSmnp6fLy8uFhYU/Pz+k92/cAAAAKHRSTlPMAQYKFhIOGyA4Nh6HyTJnvqa3gmi4tLCMf3h2cldRSTo2KCVFZk9B3cUQpAAAAu9JREFUWMPc09ly2zAMhWF0kQkXFaul3rfYSfP+j1hzSRDriKEZTW7y3/HmGwwGpG+f1hemv0MTaGSxKbS6PwaBXkoDO5sBX0orHElXFfOPN3oxrfCr+tP36mdxSsvB9SgU+Be8gFY4uiYkYkJez+GUkCMcXRFmTSTqHlc7T8eRAxxYe9iv22VT182yXe8PNvABj4MnaJQVZj71Kxq06k/Mio8PTgCr7GC762i0bmc9nrYJZbdlP7Lwua8pWd2fWfzgsxnYSKtsDF+2Axjw7YWNURtokP0yhI8LyrY4soSloE0p+XFDd7V5TNk0LrNt6c5ay2ArDXvmh47urntg2DfQ7uq8/NRQQc2Ts/0NAq1Dx5lBzthh7sHYhLLYjgrrrKBNN+uoKncbLRXXujupqpuVEK5jQx9oM1yJ0iof6UMd1Vb67dBGLtk/+Hv+3BC0uIi5HZuGQ2/z8nz+TNhWxx6jjZzrrOxqCKrPYkZoHbq/S/5LI/U6NtJGbJ2RfyVlqq0YoK+bDzfNuwIZ2nG47SsXad2HcDdBpo4lbARpI6cSGTuJSdHc5+U/lK7nAe1WHe9jNUmmVbiRuGy6uY8yGdMbGdKHiTIdUjTv35GvgQztOUWv07ILZGiNdPww7USZWkdXA9ofyHKiTEt3IqN08478j+6oQTp+83qiTHX46hka5EI6v5D2f3XmksIgDEXRcUKLCllCwf3vsHbUwUGOCVyMLuAgxrx3P7Uc5I9C+UH8GNsPXV9K5TH6z7eA3fHzyZVZKthyZeSiG9svOseTs308yVB1tg9VrgI/S18FvsD+7OMBWxaYrF1h69qlWHC2iwVKHGe7xDFh5mwXZpSTznY5SRGs7AI2RPCIdG9gu3Sn4XC2Gw7aJGevYpPOzJ2z97eYu0FL2sq+iSUdNtLbKkY6Zf9zoUUwaskFRLlYKxfG5SLEYPCZi2tjITNAeOvRaDwX6N9fQ3SXJ7NUPh1F1Vz12pVScM4q8xT/hNp4OvQXSjVOMglY0hoAAAAASUVORK5CYII=) no-repeat center center;
+            background-size: 3rem 3rem;
+        }
+
+        #bannerSlide .next {
+            right: 1.25rem;
+            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAMAAAAPdrEwAAAAdVBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAABAQEAAAAAAADd3d2wsLAXFxf////8/Pz+/v7z8/Pw8PB4eHj+/v729vb+/v7+/v7x8fHu7u7s7Ozp6enQ0NDIyMi9vb2VlZWJiYl1dXVAQEApKSmqqqp0dHRbW1vUuyS4AAAAJ3RSTlPMAAUJDRURGSA3HHdbOb6mt5WAM7SMuLCEeHZyV1JJOjYyKCVCS0ZycgkYAAACu0lEQVRYw8TTCXKDMBQDULVNqUkTYCD7Hsj9z1hqFuEfOyyeTnWANxp9G29/ln+n30U8acmO5jGeZabTND5EhD6WFuysjeBH041LNajT8V/j6IMb9bNN4xMfSFOu3Eb9atP4le7G0QfX6ryT2jfwEXQLV6wyUvE1zuJ9NCtXsGbvp+M6XkVAtIrXx9Nd8xXuLg6rTLhELukWItv08qsTt9lwyA2cHRJYkxyyGnfZcMvlFLcdXmR3K2dx27DLunK+R0/2uS5O20nXchDoyucNerM56+JBoG0HTVmPoYoUg5IWSo/ybMMhZzEGJs4cNmnuXMrXBIOTXEube1tpyo8IIxI9aAuapZvOlIfZTW+jNsTQeucEI5PovTm3SfOERYzRiQuekvTTHCkmJJWTkOYcZ0zKmZOQNkvnG8uZFsvv3n+Zy9qQpfd4ziIMw157z9qS1qXVDZYswyH2TenapEXpHSz5DofYO6O2pFUGTLczZaXr0gd42IeqNmljjwQedtJZRNLqAvjYF2WjZzN+xCk2v2T7RmBMvYWXvTXGRnfqO+Bn3zm2SasTPO2TstNzdYSnfVRzg+YV1/C01907onvFGJ52zDsKegVPe+WkI3jakZMGfG037W1PHIRZaPunOXNHgRCIgiAYLyuCHkHvf0TFpDBqC2mYiaUCdd7rz2ZeyPqOvNxb56c+4yzJ+efjykhyvjJc9G9kLrofT5DFeGKoCnIYqmIVQA6rQC8wyG6BsXYz2a1dxIIgB7EQJI4gI3GcMIPshFmWk5CFnAwiWJARwUK6Q3bSPRsOyN5wZJsEWdqkbO52yM7cZUu6HpCdJc1G+j8bI92z/73Qohi19AKiXqzVC+OKEWI9+OzHtf2QmVOLxn2gDzihr2c+1BCV8iTUEBxX+TSLqmmQeq1QCqous1nATsPWxs8zRo9+ApJWT4vBa4exAAAAAElFTkSuQmCC) no-repeat center center;
+            background-size: 3rem 3rem;
+        }
+
+        /* 底部添加管理样式 */
+
+        .addAppContainer {
+            line-height: 4.4rem;
+            height: 4.4rem;
+            background-color: #fff;
+            padding-left: 0.6em;
+            margin-bottom: 2rem;
+            position: relative;
+            font-size: 1.8rem;
+        }
+
+        .addAppContainer:after,
+        .addAppContainer:before {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            height: 1px;
+            background-color: rgba(228, 228, 228, 1);
+            -webkit-transform: scaleY(0.5);
+            transform: scaleY(0.5);
+            overflow: hidden;
+        }
+
+        .addAppContainer:after {
+            bottom: 0;
+        }
+
+        .addAppContainer:before {
+            top: 0;
+        }
+
+        .addAppContainer i.addIcon {
+            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAqAgMAAAC4rSHIAAAADFBMVEUAAACZmZmampqZmZk3ZM1eAAAAA3RSTlMAgMBakZ4lAAAAJklEQVQY02MAAcYvYGrYskOBIOwniAxg+A8HH5DZyGoGhZtpzAYAs9dCuWmrl8UAAAAASUVORK5CYII=) center center no-repeat;
+            display: inline-block;
+            background-size: 55% 55%;
+            width: 2.8rem;
+            height: 2.8rem;
+            margin-right: 0.2rem;
+        }
+
+        .addAppContainer i,
+        span {
+            vertical-align: middle;
+            display: inline-block
+        }
+
+        .addAppContainer i {
+            font-style: normal;
+        }
+
+        .addAppContainer .pure-u-1-12 {
+            text-align: center;
+        }
+
+        .addAppContainer .pure-u-1-12 i {
+            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAqBAMAAABb64ZtAAAAFVBMVEUAAADl5eXk5OTl5eXn5+fl5eXk5ORRxtYjAAAABnRSTlMAgI5qIOCiCP4nAAAANklEQVQoz2NABU4GCDZLWCKCw5SWJgDnMKelIUmJIUsxDhspKAehbIhKwCMLEY2ICMaIekwAACm0KHfPoCnKAAAAAElFTkSuQmCC) center center no-repeat;
+            background-size: 70% 70%;
+            width: 1.2rem;
+            height: 2.4rem;
+            display: inline-block;
+        }
+
+
+        /* 加载模块 */
+        .indexblank {
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            opacity: 1;
+        }
+
+        .indexblank .indexBlank-banner,
+        .indexBlank-admin,
+        .indexblank .indexBlank-app-item,
+        .indexBlank-group-title {
+            background: #F8F8F7;
+        }
+
+        .indexblank .indexBlank-banner {
+            width: 100%;
+            height: 15rem;
+            margin-bottom: 1.6rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .indexblank .indexBlank-admin {
+            height: 4.4rem;
+            width: 95%;
+            margin: 0 auto 1.6rem;
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .indexblank .indexBlank-group {
+            padding: 1rem;
+        }
+
+        .indexblank .indexBlank-group-title {
+            height: 2rem;
+            width: 30%;
+            margin-bottom: 1.6rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .indexblank .indexBlank-group-title .pure-u-1-4 {
+            margin-bottom: 1.6rem;
+        }
+
+        .indexblank .indexBlank-app-item {
+            width: 4.5rem;
+            height: 4.5rem;
+            border-radius: 10px;
+            margin: 0 auto 0.6rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .indexblank .indexBlank-app-item-title {
+            width: 4.5rem;
+            height: 1.2rem;
+            background: #F8F8F7;
+            margin: 0 auto;
+        }
+
+        .indexBlank-group-title:before {
+            -webkit-animation: loader4 1.5s 0.5s linear infinite;
+            animation: loader4 1.5s 0.5s linear infinite;
+        }
+
+        .indexBlank-admin:before {
+            -webkit-animation: loader4 1.5s 0.5s linear infinite;
+            animation: loader4 1.5s 0.5s linear infinite;
+        }
+
+        .indexBlank-admin:before,
+        .indexBlank-group-title:before {
+            width: 50%;
+            box-shadow: -20px 0 20px 6px rgba(255, 255, 255, 0.1);
+        }
+
+        .indexBlank-app-item:before {
+            width: 10%;
+            -webkit-animation: loader4 2s 0.5s linear infinite;
+            animation: loader4 2s 1s 0.5s linear infinite;
+            box-shadow: -20px 0 20px 6px rgba(255, 255, 255, 0.7);
+        }
+
+        .indexBlank-group-title:before,
+        .indexBlank-admin:before,
+        .indexBlank-app-item:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            height: 100%;
+            border-radius: 2px;
+            background: rgba(255, 255, 255, 0.7);
+            -webkit-filter: blur(8px);
+            filter: blur(8px);
+        }
+
+        @-webkit-keyframes loader4 {
+            0% {
+                left: 0;
+                box-shadow: -20px 0 20px 6px rgba(255, 255, 255, 1);
+            }
+
+            100% {
+                left: 100%;
+                box-shadow: -20px 0 20px 6px rgba(255, 255, 255, 1);
+            }
+        }
+
+        @keyframes loader4 {
+            0% {
+                left: 0;
+                box-shadow: -20px 0 20px 6px rgba(255, 255, 255, 1);
+            }
+
+            100% {
+                left: 100%;
+                box-shadow: -20px 0 20px 6px rgba(255, 255, 255, 1);
+            }
+        }
+
+
+        /* 引导页样式 */
+        #Guide {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        #Guide .layerCenter {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        #Guide .layerCenter .container {
+            display: none;
+            position: relative;
+        }
+
+        #Guide .layerCenter img {
+            width: 100%;
+            display: block;
+        }
+
+        #Guide .layerCenter .btn {
+            padding: 0.7rem 1.8rem;
+            font-size: 1.4rem;
+        }
+
+        #Guide .layerCenter .btnContainer {
+            position: absolute;
+            bottom: 0.2rem;
+            padding: 0 1rem;
+        }
+
+        #Guide .layerCenter .nextBtn {
+            background: #fdfdfd;
+            border-radius: 4px;
+        }
+
+        #Guide .layerCenter .container.one .btnContainer {
+            padding: 1.3rem 1.8rem;
+        }
+
+        #Guide .layerCenter .container.one .btnContainer .nextBtn {
+            display: inline-block;
+            font-family: ".PingFangSC-Regular";
+            font-size: 14px;
+            color: #4da9eb;
+            letter-spacing: 0px;
+            text-align: center;
+        }
+
+        #Guide .layerCenter .container.one .btnContainer .upBtn {
+            display: inline-block;
+            font-size: 12px;
+            color: #ffffff;
+            letter-spacing: 0;
+            text-align: center;
+        }
+
+        #Guide .layerCenter .container.clear .btnContainer {
+            width: 100%;
+            padding: 0;
+        }
+
+        #Guide .layerCenter .container.clear .btnContainer .experience {
+            padding: 1rem;
+            margin: 3.2rem auto 1rem;
+            text-align: center;
+            width: 6rem;
+            font-size: 14px;
+            color: #7d8790;
+            letter-spacing: 0px;
+        }
+
+        #Guide .layerCenter .container.clear .btnContainer .upBtn {
+            margin: 0 auto;
+            width: 20%;
+            font-size: 12px;
+            color: #ffffff;
+            letter-spacing: 0px;
+            text-align: center;
+        }
+
+        #Guide .tipsXt {
+            -webkit-animation: mymove 2s 1;
+            animation: mymove 2s 1;
+            height: 0;
+            -webkit-transition: height 2s;
+            transition: height 2s;
+        }
+
+        #Guide .guide-md {
+            -webkit-animation: animationGuide 1.5s ease infinite;
+            animation: animationGuide 1.5s ease infinite;
+        }
+
+        @keyframes mymove {
+            0% {
+                opacity: 0;
+            }
+
+            25% {
+                opacity: 0.25;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+
+            75% {
+                opacity: 0.75;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @-webkit-keyframes mymove
+
+        /*Safari and Chrome*/
+            {
+            0% {
+                opacity: 0;
+            }
+
+            25% {
+                opacity: 0.25;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+
+            75% {
+                opacity: 0.75;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes animationGuide {
+            0% {
+                -webkit-transform: scale(1);
+                transform: scale(1);
+                opacity: 0.95;
+            }
+
+            25% {
+                -webkit-transform: scale(1.5);
+                transform: scale(1.5);
+                opacity: 0.75;
+            }
+
+            50% {
+                -webkit-transform: scale(2);
+                transform: scale(2);
+                opacity: 0.5;
+            }
+
+            75% {
+                -webkit-transform: scale(2.5);
+                transform: scale(2.5);
+                opacity: 0.25;
+            }
+
+            100% {
+                -webkit-transform: scale(3);
+                transform: scale(3);
+                opacity: 0.05;
+            }
+        }
+
+        @-webkit-keyframes animationGuide
+
+        /*Safari and Chrome*/
+            {
+            0% {
+                -webkit-transform: scale(1);
+                transform: scale(1);
+                opacity: 0.95;
+            }
+
+            25% {
+                -webkit-transform: scale(1.5);
+                transform: scale(1.5);
+                opacity: 0.75;
+            }
+
+            50% {
+                -webkit-transform: scale(2);
+                transform: scale(2);
+                opacity: 0.5;
+            }
+
+            75% {
+                -webkit-transform: scale(2.5);
+                transform: scale(2.5);
+                opacity: 0.25;
+            }
+
+            100% {
+                -webkit-transform: scale(3);
+                transform: scale(3);
+                opacity: 0.05;
+            }
+        }
+
+        /* 全部应用 */
+        .allAppTitle {
+            padding: 0.36em 0;
+            font-size: 14px;
+
+        }
+
+        .allAppTitle span {
+            font-weight: bold
+        }
+
+
+        /* 管理员弹窗 */
+        #isFirstOpen {
+            position: absolute;
+            right: 0.8rem;
+            z-index: 9999;
+            width: 80%;
+            max-width: 39rem;
+        }
+
+        #isFirstOpen img {
+            width: 100%;
+        }
+
+
+        /* 管理员控制台 */
+        .admin-console-container {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .admin-console-container .admin-console-center {
+            width: 100%;
+            box-sizing: border-box;
+            background-color: #ffffff;
+            position: relative;
+        }
+
+        .admin-console-container .admin-console-title {
+            line-height: 2.2rem;
+            padding: 1.6rem 1.6rem 1.5rem 1.6rem;
+            overflow: hidden;
+        }
+
+        .admin-console-container .admin-console-title::before {
+            content: '';
+            display: block;
+            position: absolute;
+            height: 1px;
+            background-color: rgba(25, 31, 37, 0.12);
+            -webkit-transform: scaleY(0.5);
+            transform: scaleY(0.5);
+            top: 0px;
+            left: 1.6rem;
+            right: 1.6rem;
+            overflow: hidden;
+        }
+
+        .admin-console-container .admin-console-title .pure-g {
+            -webkit-align-content: space-between;
+            align-content: space-between;
+            -webkit-box-pack: justify;
+            -webkit-justify-content: space-between;
+            justify-content: space-between;
+        }
+
+        .admin-console-container .admin-console-title .admin-tools-title {
+            -webkit-box-flex: .5;
+            -webkit-flex: .5 0 auto;
+            flex: .5 0 auto;
+            font-size: 1.7rem;
+            font-weight: bold;
+            line-height: 2.2rem;
+            color: #191F25;
+            letter-spacing: normal;
+        }
+
+        .admin-console-container .admin-console-title .admin-tools-title span {
+            font-size: 12px;
+            font-size: 1.2rem;
+            color: rgba(25, 31, 37, 0.40);
+            letter-spacing: 0;
+            line-height: 1.6rem;
+            font-weight: normal;
+        }
+
+        .admin-console-container .admin-console-title .admin-tools-more {
+            -webkit-box-flex: 0;
+            -webkit-flex: 0 1 auto;
+            flex: 0 1 auto;
+            float: right;
+            text-align: right;
+            letter-spacing: normal;
+        }
+
+        .admin-console-container .admin-console-title .admin-tools-more span {
+            font-size: 1.3rem;
+            color: #3296FA;
+            letter-spacing: 0px;
+            line-height: 2.2rem;
+            display: inline-block;
+        }
+
+        @media screen and (max-width: 320px) {
+
+            /*小屏幕中需要隐去管理员可见，否则按钮会被挤掉*/
+            .admin-console-container .admin-console-title .admin-tools-title-hide-in-small {
+                display: none;
+            }
+
+            /*小屏幕的样式兼容*/
+            .admin-console-container .admin-console-title .admin-tools-more {
+                -webkit-box-flex: 1;
+                -webkit-flex: 1 1 auto;
+                flex: 1 1 auto;
+            }
+        }
+
+        .admin-console-container .admin-console-list {
+            width: 100%;
+            text-align: center;
+            padding-bottom: 1.6rem;
+        }
+
+        .admin-console-container .admin-console-list .icon {
+            width: 100%;
+            height: 24px;
+            margin: 0.8rem auto 0.3rem;
+        }
+
+        .admin-console-container .admin-console-list .icon .img {
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .admin-console-container .admin-console-list .title {
+            font-size: 1.3rem;
+            color: rgba(25, 31, 37, 0.56);
+            line-height: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .admin-console-container .admin-console-list .admin-item {
+            position: relative;
+        }
+
+        .admin-item .admin-tips {
+            position: absolute;
+            right: 0px;
+            top: 50px;
+            z-index: 99999;
+            width: 300px;
+        }
+
+        .admin-item .admin-tips img {
+            width: 100%;
+        }
+
+
+        /* 展开收起 */
+        .group-open-stuff {
+            text-align: right;
+        }
+
+        .group-open-stuff .open-btn {
+            font-size: 1.3rem;
+            color: #999999;
+            padding: 0 1.6rem 0 2rem;
+            line-height: 2.2rem;
+        }
+
+        /* banner */
+        .newBanner-container {
+            position: relative;
+            margin: 1.2rem 1.6rem 0.8rem 1.6rem;
+        }
+
+        .newBanner-container .banenr-center {
+            width: 100%;
+        }
+
+        .newBanner-container .banenr-center .banner-img {
+            width: 100%;
+            height: 0;
+            padding-bottom: 40%;
+            box-sizing: border-box;
+            background-size: 100% auto;
+            background-position: center center;
+            background-repeat: no-repeat;
+            border-radius: 0.6rem;
+        }
+
+        .newBanner-container .banenr-center .banner-change {
+            color: #FFFFFF;
+            opacity: 0.8;
+            font-size: 14px;
+            text-align: center;
+            position: absolute;
+            top: 65px;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+        }
+
+        .newBanner-container .org-container {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            height: 59px;
+        }
+
+        .newBanner-container .org-app-center {
+            position: absolute;
+            top: 16px;
+            right: 0px;
+            width: 75px;
+            height: 25px;
+            background: rgba(0, 0, 0, 0.30);
+            color: #ffffff;
+            font-size: 12px;
+            line-height: 25px;
+            border-top-left-radius: 12px;
+            ;
+            border-bottom-left-radius: 12px;
+            text-align: center;
+        }
+
+        .newBanner-container .org-container .org-center {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+        }
+
+        .org-container .org-center .org-img {
+            box-sizing: border-box;
+            width: 59px;
+            height: 59px;
+        }
+
+        .org-center .org-img img {
+            width: 100%;
+            height: 100%;
+            border-radius: 9px;
+        }
+
+        .org-container .org-center .org-info {
+            box-sizing: border-box;
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            flex: 1;
+            margin-left: 10px;
+        }
+
+        .org-center .org-info .org-name {
+            margin: 4px 0 0 0;
+            font-size: 19px;
+            color: #FFFFFF;
+            letter-spacing: 0;
+            line-height: 22px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.20);
+            font-weight: normal;
+            max-width: 12em;
+            overflow: hidden;
+            height: 22px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .org-center .org-info .org-icon {
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        .org-center .org-icon img {
+            float: left;
+            display: block;
+            height: 16px;
+            margin-right: 8px;
+        }
+
+        .org-center .org-icon img:last-child {
+            margin-right: 0;
+        }
+
+
+        .orgCenterAuthWrap,
+        .orgCenterIdxWrap,
+        .orgCenterRightsWrap {
+            display: inline-block;
+            border-radius: 8px;
+            position: relative;
+            margin-right: 4px;
+        }
+
+        .orgCenterAuthText,
+        .orgCenterRightsText,
+        .orgCenterIdxText {
+            padding: 0 6px 0 20px;
+            font-size: 10px;
+            height: 16px;
+            line-height: 18px;
+            color: #FFFFFF;
+        }
+
+
+        .orgCenterIdxWrap {
+            background: #38ADFF;
+        }
+
+        .orgCenterAuthImg {
+            position: absolute;
+            top: 2px;
+            left: 4px;
+            width: 12px;
+            height: 12px;
+            background: url('https://gw.alicdn.com/tfs/TB1gqVIRFXXXXXFXVXXXXXXXXXX-36-36.png') no-repeat center center;
+            background-size: 12px 12px;
+        }
+
+        .orgCenterRightsImg {
+            position: absolute;
+            top: 3px;
+            left: 2px;
+            width: 15px;
+            height: 9px;
+            background-size: 15px 9px;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+
+        .orgCenterIdxImg {
+            position: absolute;
+            top: 2px;
+            left: 5px;
+            width: 12px;
+            height: 12px;
+            background: url('https://gw.alicdn.com/tfs/TB1tJ4WRFXXXXXfXFXXXXXXXXXX-36-36.png') no-repeat center center;
+            background-size: 12px 12px;
+        }
+
+        .showRoomWrap {
+            position: fixed;
+            bottom: 20px;
+            right: 0px;
+            left: 0;
+            z-index: 10;
+        }
+
+        .showRoomImageWrap {
+            position: absolute;
+            top: 0px;
+            left: 10px;
+            width: 65px;
+            height: 65px;
+            background: url('https://gw.alicdn.com/tfs/TB1vK7YRpXXXXb3XFXXXXXXXXXX-195-195.png') no-repeat center center;
+            background-size: 65px 65px;
+        }
+
+        .showRoomInfoRightWrap {
+            background: #38ADFF;
+            box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.12);
+            border-radius: 6px;
+            font-size: 14px;
+            margin: 0 10px 0 80px;
+            padding: 8px 16px;
+        }
+
+        .showRoomText {
+            font-size: 14px;
+            color: #FFFFFF;
+            letter-spacing: 0;
+            line-height: 20px;
+        }
+
+        .showRoomBtnWrap {
+            text-align: right;
+            position: relative;
+        }
+
+        .showRoomLeftBtn {
+            opacity: 0.8;
+            font-size: 14px;
+            color: #FFFFFF;
+            letter-spacing: 0;
+            margin-right: 15px;
+            display: inline-block;
+        }
+
+        .showRoomRightBtn {
+            background: #38ADFF;
+            color: #FFFFFF;
+            border: 1px solid #FFFFFF;
+            border-radius: 3px;
+            font-size: 14px;
+            padding: 0 10px;
+            height: 23px;
+            display: inline-block;
+            line-height: 23px;
+            text-align: center;
+        }
+
+
+
+        /* 角色引导 */
+        .role-guide-root {
+            position: fixed;
+            left: 0;
+            top: 0;
+            background: #FFFFFF;
+            width: 100%;
+            height: 100%;
+        }
+
+        .role-guide-root .role-guide-title {
+            text-align: center;
+            margin: 30px auto 0;
+            padding: 0;
+            font-family: PingFangSC-Medium;
+            font-size: 18px;
+            color: #333333;
+            letter-spacing: 0;
+            line-height: 24px;
+        }
+
+        .role-guide-root .role-guide-text {
+            text-align: center;
+            padding: 0;
+            margin: 16px auto 0;
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+            color: #999999;
+            letter-spacing: 0;
+        }
+
+        .role-guide-root .role-guide-lits {
+            margin: 24px auto 0;
+        }
+
+        .role-guide-lits ul {
+            padding: 0 40px 0 40px;
+        }
+
+        .role-guide-root .role-guide-lits-content {
+            margin: 0;
+        }
+
+        .role-guide-root .lits-item {
+            background: #FFFFFF;
+            border: 1px solid #E6E6E6;
+            border-radius: 3px;
+            height: 38px;
+            text-align: center;
+            line-height: 38px;
+            font-family: PingFangSC-Regular;
+            font-size: 18px;
+            color: #38ADFF;
+            margin-bottom: 10px;
+        }
+
+        .role-guide-root .clear-btn {
+            display: block;
+            width: 18px;
+            height: 18px;
+            background-image: url("https://gw.alicdn.com/tfs/TB1kwCLSpXXXXXoXpXXXXXXXXXX-22-22.png");
+            background-position: center;
+            background-size: 10px 10px;
+            background-repeat: no-repeat;
+            position: absolute;
+            top: 10px;
+            right: 12px;
+        }
+
+
+        /** MeUsedGroups */
+        .meUsedGroups {
+            width: 100%;
+            background: #FFFFFF;
+            box-shadow: 0 0 0 0 #F1F1F1, 0 0 0 0 #F1F1F1;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .meUsedGroups::before {
+            content: '';
+            display: block;
+            position: absolute;
+            height: 1px;
+            background-color: rgba(25, 31, 37, 0.12);
+            -webkit-transform: scaleY(0.5);
+            transform: scaleY(0.5);
+            overflow: hidden;
+        }
+
+        .meUsedGroups::before {
+            top: 0px;
+            left: 1.6rem;
+            right: 1.6rem;
+        }
+
+        .meUsedGroups-title-content {
+            padding-left: 1.6rem;
+            line-height: 2.2rem;
+            overflow: hidden;
+        }
+
+        .meUsedGroups-title {
+            font-size: 17px;
+            font-weight: bold;
+            line-height: 2.2rem;
+            color: #191F25;
+            margin: 1.6rem 0 0.2rem;
+            float: left;
+        }
+
+        .meUsedGroups-title span {
+            font-family: PingFangSC-Regular;
+            font-size: 12px;
+            color: #999999;
+            letter-spacing: 0;
+        }
+
+        .meUsedGroups-right {
+            float: right;
+        }
+
+        .meUsedGroups-edit {
+            font-size: 1.3rem;
+            color: #3296FA;
+            letter-spacing: 0px;
+            line-height: 1.8rem;
+            padding: 1.8rem 1.6rem 0.4rem 0;
+        }
+
+        .app-list-content {
+            width: 100%;
+        }
+
+        .storeInfo .storeInfoBg {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            box-sizing: border-box;
+            background-repeat: no-repeat;
+        }
+
+        .meUsedGroups-placeholder {
+            width: 100%;
+            height: 0px;
+            margin-bottom: 10px;
+            ;
+        }
+
+        .appTypeBottom {
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.2);
+            text-align: center;
+            color: #FFF;
+            font-size: 0.8rem;
+            margin: 0;
+            padding: 0;
+            height: 1.3rem;
+            line-height: 1.3rem;
+            border-bottom-left-radius: 6px;
+            border-bottom-right-radius: 6px;
+        }
+    </style>
+    <style type="text/css">
+        body,
+        div,
+        h1,
+        p {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            font-size: 14px;
+            color: #333;
+            background-color: #eee;
+        }
+    </style>
+    <style type="text/css">
+        .app-container {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            overflow-y: scroll;
+        }
+
+        .banner-slider {
+            width: 100%;
+            height: 150px;
+            flex-direction: row;
+            background-color: white;
+            border-width: 1px;
+            border-color: #dadada;
+            margin-bottom: 17px
+        }
+
+        .banner {
+            width: 100%;
+            height: 150px;
+        }
+
+        .indicator {
+            width: 748px;
+            height: 280px;
+            position: absolute;
+            top: 120px;
+            item-color: gray;
+            item-selectedColor: black;
+            item-size: 10px;
+        }
+
+        .banner-image {
+            width: 100%;
+            height: 150px;
+        }
+
+        .index-admin {
+            width: 100%;
+            height: 44px;
+            background-color: #fff;
+            border-top-color: #e4e4e4;
+            border-top-style: solid;
+            border-top-width: 1px;
+            border-bottom-color: #e4e4e4;
+            border-bottom-style: solid;
+            border-bottom-width: 1px;
+        }
+
+        .admin {
+            position: relative;
+            padding-left: 12.5px;
+            padding-right: 12.5px;
+            height: 44px;
+        }
+
+        .admin-image {
+            width: 16.5px;
+            height: 16.5px;
+            position: absolute;
+            top: 12.5px;
+        }
+
+        .admin-hello {
+            font-size: 17px;
+            color: #999;
+            float: left;
+            padding-left: 26px;
+            padding-top: 10.5px;
+        }
+
+        .admin-edit {
+            font-size: 17px;
+            color: #38ADFF;
+            position: absolute;
+            right: 12px;
+            top: 10.5px;
+        }
+
+        .index-item {
+            position: relative;
+            width: 100%;
+            height: 80px;
+            margin-bottom: 17px;
+        }
+
+        .index-item-center {
+            position: relative;
+            height: 80px;
+            background-color: #fff;
+            overflow: hidden;
+        }
+
+        .index-item-con {
+            width: 100%;
+            height: 80px;
+            display: flex;
+            padding-top: 11px;
+            padding-bottom: 18px;
+            flex-direction: row;
+            justify-content: space-between;
+            border-bottom-color: #eee;
+            border-bottom-style: solid;
+            border-bottom-width: 1px;
+        }
+
+        .item {
+            flex: 1;
+            margin-right: 1px;
+        }
+
+        .item-right-line {
+            border-right-color: #eee;
+            border-right-style: solid;
+            border-right-width: 1px;
+        }
+
+        .item-number {
+            font-size: 24px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .item-text {
+            font-size: 13px;
+            color: #999;
+            margin-top: 4px;
+            padding-bottom: 4px;
+            text-align: center;
+        }
+
+        .index-userlist {
+            background-color: #fff;
+        }
+
+        .index-userlist-item {
+            position: relative;
+        }
+
+        .index-title {
+            position: relative;
+            height: 49px;
+        }
+
+        .index-text {
+            position: absolute;
+            font-size: 15px;
+            color: #323334;
+            left: 12px;
+            top: 16.5px;
+        }
+
+        .index-userlist-line {
+            background-color: rgba(228, 228, 228, 1);
+            height: 1px;
+            width: calc(100% - 11.5px);
+            position: absolute;
+            left: 11.5px;
+            bottom: 0px;
+        }
+
+        .index-all-applist {
+            margin-top: 16px;
+            background-color: #fff;
+            border-top-color: #e4e4e4;
+            border-top-width: 1px;
+            border-top-style: solid;
+        }
+
+        .applist-title {
+            width: 100%;
+            height: 49px;
+            position: relative;
+        }
+
+        .applist-text {
+            color: #999;
+            font-size: 17px;
+            position: absolute;
+            top: 16px;
+            left: 12px;
+        }
+
+        .add-manager {
+            width: 100%;
+            height: 44px;
+            background-color: #fff;
+            border-bottom-color: rgba(228, 228, 228, 1);
+            border-bottom-style: solid;
+            border-bottom-width: 1px;
+            border-top-color: rgba(228, 228, 228, 1);
+            border-top-style: solid;
+            border-top-width: 1px;
+            margin-bottom: 10px
+        }
+
+        .add-manager-container {
+            position: relative;
+            width: 100%;
+            height: 44px;
+        }
+
+        .add-manager-text {
+            color: #323334;
+            padding-left: 42px;
+            padding-top: 12px;
+            font-size: 17px;
+        }
+
+        .add-manager-add-icon {
+            width: 14px;
+            height: 14px;
+            position: absolute;
+            top: 15px;
+            left: 12px;
+        }
+
+        .add-manager-more-icon {
+            width: 14px;
+            height: 14px;
+            position: absolute;
+            top: 15px;
+            right: 12px;
+        }
+
+        .grid {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        .cell {
+            width: 25%;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .cell-image-container {
+            width: 50px;
+            height: 49px;
+            position: relative;
+            border-radius: 10px;
+            background-color: #f8f8f8;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+
+        .cell-text {
+            text-align: center;
+            color: #323334;
+            font-size: 13px;
+            margin-top: 12px;
+        }
+
+        .cell-mount {
+            color: #323334;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .cell-unit {
+            color: #999;
+            font-size: 10px;
+        }
+
+        .cell-tag {
+            text-align: center;
+            color: #999;
+            font-size: 10px;
+            margin-top: 4.5px;
+        }
+
+        .cell-app-type-container {
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, .2);
+            margin: 0;
+            padding: 0;
+            height: 13px;
+        }
+
+        .cell-app-type {
+            font-size: 8px;
+            color: #fff;
+            text-align: center;
+            line-height: 13px;
+        }
+
+        .cell-image {
+            width: 50px;
+            height: 49px;
+            border-radius: 10px;
+        }
+
+        .cell-image-container {
+            width: 50px;
+            height: 49px;
+            position: relative;
+            border-radius: 10px;
+            background-color: #f8f8f8;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+
+        .cell-image {
+            width: 50px;
+            height: 49px;
+            border-radius: 10px;
+        }
+
+        .cell-text {
+            text-align: center;
+            color: #323334;
+            font-size: 13px;
+            margin-top: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <section id="aya_msg"></section>
+    <div id="app-container">
+        <div class="app-container">
+            <div class="banner-slider">
+                <div class="banner">
+                    <img src="https://gw.alicdn.com/tps/TB1o8BqOpXXXXanXVXXXXXXXXXX-750-300.png" class="banner-image">
+                </div>
+            </div>
+            <div class="index-admin">
+                <div class="admin">
+                    <div class="admin-manager">
+                        <img src="" class="admin-image">
+                        <div class="admin-hello">
+
+                        </div>
+                    </div>
+                    <div class="admin-edit">设置工作台</div>
+                </div>
+            </div>
+            <div class="index-userlist">
+                <div class="index-userlist-item">
+                    <div class="index-title">
+                        <div class="index-text">我的应用</div>
+                    </div>
+                    <div id="microapps" class="grid">
+                        <div class="cell">
+                            <div class="cell-box">
+                                <div>
+                                    <div class="cell-image-container">
+                                        <a href="dingtalk://dingtalkclient/action/switchtab?index=2&name=work&scene=1&corpid=ding3b11247e3909339d35c2f4657eb6378f&agentid=213290791">
+                                            <img src="http://static.dingtalk.com/media/lALOcsYpu8zIzMg_200_200.png"
+                                                class="cell-image">
+                                        </a>
+                                    </div>
+                                    <div class="cell-text">考勤打卡2</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="index-userlist-line"></div>
+                </div>
+                <!--我的应用 end-->
+                <!-- <div class="index-userlist-item">
+                    <div class="index-title">
+                        <div class="index-text">经营数据</div>
+                    </div>
+                    <div class="grid">
+                        <div class="cell">
+                            <div class="cell-box">
+                                <div>
+                                    <div class="cell-image-container">
+                                        <a href="dingtalk://dingtalkclient/action/switchtab?index=2&name=work&scene=1&corpid=ding3b11247e3909339d35c2f4657eb6378f&agentid=213290791">
+                                            <img src="http://static.dingtalk.com/media/lALOcsYpu8zIzMg_200_200.png"
+                                                class="cell-image">
+                                        </a>
+                                    </div>
+                                    <div class="cell-text">考勤打卡2</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cell">
+                            <div class="cell-box">
+                                <div>
+                                    <div class="cell-image-container">
+                                        <a href="dingtalk://dingtalkclient/action/switchtab?index=2&name=work&scene=1&corpid=ding3b11247e3909339d35c2f4657eb6378f&agentid=214058278">
+                                            <img src="https://static.dingtalk.com/media/lALPDeC2tzmK5JDMgMyA_128_128.png"
+                                                class="cell-image">
+                                        </a>
+                                    </div>
+                                    <div class="cell-text">E应用OA</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cell">
+                            <div class="cell-box">
+                                <div>
+                                    <div class="cell-image-container">
+                                        <div class="cell-mount">0</div>
+                                        <div class="cell-unit"></div>
+                                        <div class="cell-app-type-container">
+                                            <div class="cell-app-type">智能报表</div>
+                                        </div>
+                                    </div>
+                                    <div class="cell-text">支付宝收入</div>
+                                    <div class="cell-tag">营业日报</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cell">
+                            <div class="cell-box">
+                                <div>
+                                    <div class="cell-image-container">
+                                        <div class="cell-mount">0</div>
+                                        <div class="cell-unit"></div>
+                                        <div class="cell-app-type-container">
+                                            <div class="cell-app-type">智能报表</div>
+                                        </div>
+                                    </div>
+                                    <div class="cell-text">日总营业额</div>
+                                    <div class="cell-tag">营业日报</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="index-userlist-line"></div>
+                </div>
+                <div class="index-userlist-item">
+                    <div class="index-title">
+                        <div class="index-text">门店运营</div>
+                    </div>
+                    <div class="grid">
+                        <div class="cell">
+                            <div class="cell-box">
+                                <div>
+                                    <div class="cell-image-container">
+                                        <img src="https://landray.dingtalkapps.com/alid/app/report/images/ico-png/25.png"
+                                            class="cell-image">
+                                        <div class="cell-app-type-container">
+                                            <div class="cell-app-type">日志</div>
+                                        </div>
+                                    </div>
+                                    <div class="cell-text">营业日报</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cell">
+                            <div class="cell-box">
+                                <div>
+                                    <div class="cell-image-container">
+                                        <img src="https://landray.dingtalkapps.com/alid/app/report/images/ico-png/24.png"
+                                            class="cell-image">
+                                        <div class="cell-app-type-container">
+                                            <div class="cell-app-type">日志</div>
+                                        </div>
+                                    </div>
+                                    <div class="cell-text">门店水电煤月报</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cell">
+                            <div class="cell-box">
+                                <div>
+                                    <div class="cell-image-container">
+                                        <img src="https://gw.alicdn.com/tps/TB1q5U5OXXXXXXPXVXXXXXXXXXX-102-102.png"
+                                            class="cell-image">
+                                        <div class="cell-app-type-container">
+                                            <div class="cell-app-type">审批</div>
+                                        </div>
+                                    </div>
+                                    <div class="cell-text">打折免单申请</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="index-userlist-line"></div>
+                </div>
+                <div class="index-userlist-item" style="display:none;">
+                    <div class="index-title">
+                        <div class="index-text">巡店督导</div>
+                    </div>
+                    <div class="grid">
+                        <div class="cell">
+                            <div class="cell-box">
+                                <div>
+                                    <div class="cell-image-container">
+                                        <img src="http://static.dingtalk.com/media/lALOcrvqOszIzMg_200_200.png" class="cell-image">
+                                    </div>
+                                    <div class="cell-text">签到</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cell">
+                            <div class="cell-box">
+                                <div>
+                                    <div class="cell-image-container">
+                                        <img src="https://landray.dingtalkapps.com/alid/app/report/images/ico-png/0.png"
+                                            class="cell-image">
+                                        <div class="cell-app-type-container">
+                                            <div class="cell-app-type">日志</div>
+                                        </div>
+                                    </div>
+                                    <div class="cell-text">巡检日报</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="index-userlist-line"></div>
+                </div>
+                <div class="index-userlist-item" style="display:none;">
+                    <div class="index-title">
+                        <div class="index-text">企划营销</div>
+                    </div>
+                    <div class="grid">
+                        <div class="cell">
+                            <div class="cell-box">
+                                <div>
+                                    <div class="cell-image-container">
+                                        <img src="https://gw.alicdn.com/tps/TB12R3NOXXXXXcwaXXXXXXXXXXX-102-102.png"
+                                            class="cell-image">
+                                        <div class="cell-app-type-container">
+                                            <div class="cell-app-type">审批</div>
+                                        </div>
+                                    </div>
+                                    <div class="cell-text">营销活动申请</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cell">
+                            <div class="cell-box">
+                                <div>
+                                    <div class="cell-image-container">
+                                        <img src="https://gw.alicdn.com/tps/TB1Pb4eOpXXXXcGXpXXXXXXXXXX-102-102.png"
+                                            class="cell-image">
+                                        <div class="cell-app-type-container">
+                                            <div class="cell-app-type">审批</div>
+                                        </div>
+                                    </div>
+                                    <div class="cell-text">宣传物料申请</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="index-userlist-line"></div>
+                </div>
+                <div class="index-userlist-item">
+                    <div class="index-title">
+                        <div class="index-text">人力资源</div>
+                    </div>
+                    <div class="grid">
+                        <div class="cell">
+                            <div class="cell-box">
+                                <div>
+                                    <div class="cell-image-container">
+                                        <a href="dingtalk://dingtalkclient/action/switchtab?index=2&name=work&scene=1&corpid=ding3b11247e3909339d35c2f4657eb6378f&agentid=213290791">
+                                            <img src="http://static.dingtalk.com/media/lALOcsYpu8zIzMg_200_200.png"
+                                                class="cell-image">
+                                        </a>
+                                    </div>
+                                    <div class="cell-text">考勤打卡2</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cell">
+                            <div class="cell-box">
+                                <div>
+                                    <div class="cell-image-container">
+                                        <img src="https://gw.alicdn.com/tps/TB1hcBoOpXXXXbPXXXXXXXXXXXX-102-102.png"
+                                            class="cell-image">
+                                        <div class="cell-app-type-container">
+                                            <div class="cell-app-type">审批</div>
+                                        </div>
+                                    </div>
+                                    <div class="cell-text">请假</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cell">
+                            <div class="cell-box">
+                                <div>
+                                    <div class="cell-image-container">
+                                        <img src="https://gw.alicdn.com/tps/TB1GCw.OXXXXXbOXFXXXXXXXXXX-102-102.png"
+                                            class="cell-image">
+                                        <div class="cell-app-type-container">
+                                            <div class="cell-app-type">审批</div>
+                                        </div>
+                                    </div>
+                                    <div class="cell-text">入职申请单</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cell">
+                            <div class="cell-box">
+                                <div>
+                                    <div class="cell-image-container">
+                                        <img src="https://gw.alicdn.com/tps/TB1ESwQOXXXXXbaaXXXXXXXXXXX-102-102.png"
+                                            class="cell-image">
+                                        <div class="cell-app-type-container">
+                                            <div class="cell-app-type">审批</div>
+                                        </div>
+                                    </div>
+                                    <div class="cell-text">离职申请单</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cell">
+                            <div class="cell-box">
+                                <div>
+                                    <div class="cell-image-container">
+                                        <img src="https://gw.alicdn.com/tps/TB1.vAMOXXXXXXmaFXXXXXXXXXX-102-102.png"
+                                            class="cell-image">
+                                        <div class="cell-app-type-container">
+                                            <div class="cell-app-type">审批</div>
+                                        </div>
+                                    </div>
+                                    <div class="cell-text">薪资调整申请</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cell">
+                            <div class="cell-box">
+                                <div>
+                                    <div class="cell-image-container">
+                                        <img src="https://gw.alicdn.com/tps/TB1UEoTOXXXXXbCaXXXXXXXXXXX-102-102.png"
+                                            class="cell-image">
+                                        <div class="cell-app-type-container">
+                                            <div class="cell-app-type">审批</div>
+                                        </div>
+                                    </div>
+                                    <div class="cell-text">调岗申请单</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+
+            <div class="add-manager">
+                <div class="add-manager-container">
+                    <img src="https://gw.alicdn.com/tps/TB1O.peOFXXXXbvXpXXXXXXXXXX-42-42.png" class="add-manager-add-icon">
+                    <div class="add-manager-text">添加/管理</div>
+                    <img src="https://gw.alicdn.com/tps/TB12pIZOpXXXXaxXVXXXXXXXXXX-16-28.jpg" class="add-manager-more-icon">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./asdfe.js" charset="utf-8"></script>
+</body>
+
+</html>
