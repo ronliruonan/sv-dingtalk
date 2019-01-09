@@ -18,10 +18,14 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 @RequestMapping(value = "/api/auth", produces = "application/json;charset=UTF-8")
 public class AuthApiController {
-    @Autowired
-    private AuthService authService;
+    private final AuthService authService;
 
-    @ApiOperation(value = "测试接口：获取钉钉配置；", notes = "不建议在生产环境使用")
+    @Autowired
+    public AuthApiController(AuthService authService1) {
+        this.authService = authService1;
+    }
+
+    @ApiOperation(value = "测试接口：获取钉钉配", notes = "不建议在生产环境使用")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "appkey", value = "appkey", required = true, paramType = "path", dataType = "String")
     })
@@ -58,9 +62,9 @@ public class AuthApiController {
     public JSONObject getConfig(@RequestHeader(name = "appkey") String appKey, HttpServletRequest request) {
         DingAccessToken token = authService.getAccessToken(appKey);
 
-        JSONObject config = authService.getJsApiConfig(appKey, request);
+//        JSONObject config = authService.getJsApiConfig(appKey, request);
 
-        return config;
+        return authService.getJsApiConfig(appKey, request);
     }
 
     @ApiOperation(value = "获取access token", notes = "应当根据appkey来获取")
@@ -68,7 +72,7 @@ public class AuthApiController {
             @ApiImplicitParam(name = "appkey", value = "appkey", required = true, paramType = "header", dataType = "String")
     })
     @GetMapping(value = "/access-token")
-    public JSONObject getAccessToken(@RequestHeader(name = "appkey") String appKey) throws ApiException {
+    public JSONObject getAccessToken(@RequestHeader(name = "appkey") String appKey) {
         JSONObject result = new JSONObject();
 
         try {
@@ -95,7 +99,7 @@ public class AuthApiController {
             @ApiImplicitParam(name = "appkey", value = "appkey", required = true, paramType = "header", dataType = "String")
     })
     @GetMapping(value = "/jsapi-ticket")
-    public JSONObject getJsapTicket(@RequestHeader(name = "appkey") String appKey) throws ApiException {
+    public JSONObject getJsapTicket(@RequestHeader(name = "appkey") String appKey) {
         DingAccessToken token = authService.getAccessToken(appKey);
 
         JSONObject result = new JSONObject();

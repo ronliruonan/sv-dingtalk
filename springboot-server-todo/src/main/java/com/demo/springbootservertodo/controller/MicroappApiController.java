@@ -15,12 +15,16 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(value = "/api/microapps", produces = "application/json;charset=UTF-8")
 public class MicroappApiController {
-    @Autowired
-    private AuthService authService;
-    @Autowired
-    private DingMicroappService microappService;
+    private final AuthService authService;
+    private final DingMicroappService microappService;
 
-    @ApiOperation(value = "获取用户范围内的应用")
+    @Autowired
+    public MicroappApiController(AuthService authService1, DingMicroappService dingMicroappService) {
+        this.authService = authService1;
+        this.microappService = dingMicroappService;
+    }
+
+    @ApiOperation(value = "获取用户范围内的 应用")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "appkey", value = "appkey", required = true, paramType = "header", dataType = "String"),
             @ApiImplicitParam(name = "userId", value = "ding用户账号", required = true, paramType = "path", dataType = "String")
@@ -32,8 +36,8 @@ public class MicroappApiController {
 
         TaobaoResponse response = microappService.getListByUserId(userId, accessToken.getAccess_token());
 
-        String result = response.getBody();
+//        String result = response.getBody();
 
-        return result;
+        return response.getBody();
     }
 }
