@@ -12,19 +12,18 @@ import com.dingtalk.api.response.OapiGetJsapiTicketResponse;
 import com.dingtalk.api.response.OapiGettokenResponse;
 import com.dingtalk.oapi.lib.aes.DingTalkJsApiSingnature;
 import com.taobao.api.ApiException;
-import com.taobao.api.TaobaoResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.Date;
 
 /**
  * DingAccessToken & jsticket 的获取封装
  */
 @Service
-//@Configuration
 public class AuthService {
     @Autowired
     DingAuthService dingAuthService;
@@ -48,21 +47,25 @@ public class AuthService {
     }
 
     // 获取js api config
-    public JSONObject getJsApiConfig(String appkey, HttpServletRequest request) {
+    public JSONObject getJsApiConfig(String appkey, HttpServletRequest request) throws UnsupportedEncodingException {
         String urlString = request.getRequestURL().toString();
         String queryString = request.getQueryString();
 
         String url;
         if (queryString != null) {
-//            queryStirngEncode = URLDecoder.decode(queryString);
             url = request.getParameter("href");
+            url = URLDecoder.decode(url, "UTF-8");
+
+            // 去除# hash值
+            int hashIndex = url.indexOf("#");
+            url = url.substring(0, hashIndex);
         } else {
             url = urlString;
         }
 
         long timeStamp = System.currentTimeMillis();
         String signedUrl = url;
-        String ticket = null;
+        String ticket;
         String nonceStr = null;
         String signatrue = null;
         String agentid = null;
@@ -87,7 +90,7 @@ public class AuthService {
         config.put("timeStamp", timeStamp);
         config.put("corpId", appkey);
         config.put("agentId", agentid);
-        config.put("errcode", 0);
+        config.put("errcode", 0L);
 
         return config;
     }
@@ -113,8 +116,8 @@ public class AuthService {
                     insertOrUpdateDingAccessToken(newToken);
 
                     // 刷新ticket 入库
-                    OapiGetJsapiTicketResponse ticketResponse =  dingAuthService.getJsapiTicket(tokenResponse.getAccessToken());
-                    if(ticketResponse.isSuccess()){
+                    OapiGetJsapiTicketResponse ticketResponse = dingAuthService.getJsapiTicket(tokenResponse.getAccessToken());
+                    if (ticketResponse.isSuccess()) {
                         DingJsApiTicket newTicket = new DingJsApiTicket();
                         newTicket.setApp_key(appkey);
                         newTicket.setJsapi_ticket(ticketResponse.getTicket());
@@ -134,7 +137,7 @@ public class AuthService {
         }
     }
 
-    public DingJsApiTicket getJsApiTicket(String appkey){
+    public DingJsApiTicket getJsApiTicket(String appkey) {
         return selectDingJsApiTicket(appkey);
     }
 
