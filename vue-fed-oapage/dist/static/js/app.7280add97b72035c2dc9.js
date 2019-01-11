@@ -91,7 +91,7 @@ function openLink(url, corpId) {
 
 "use strict";
 
-const OPENAPIHOST = 'http://192.168.1.104:3000';
+const OPENAPIHOST = 'http://joten90dev3000.vaiwan.com';
 /* harmony export (immutable) */ __webpack_exports__["a"] = OPENAPIHOST;
 
 const HASCONSOLE = typeof console !== undefined;
