@@ -1,17 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="icon" id="favicon" href="https://g.alicdn.com/dingding/web/0.2.6/img/oldIcon.ico" type="image/x-icon" />
+    <!-- <link rel="icon" href="<%= BASE_URL %>favicon.ico"> -->
     <title>vuecli-plateform</title>
-  </head>
-  <body>
+    <style>
+        body,
+        div,
+        h1,
+        p {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #eee;
+        }
+    </style>
+
+</head>
+
+<body>
     <noscript>
-      <strong>We're sorry but vuecli-plateform doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+        <strong>We're sorry but vuecli-plateform doesn't work properly without JavaScript enabled. Please enable it to
+            continue.</strong>
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
-  </body>
+
+    <script src="https://g.alicdn.com/??dingding/dingtalk-jsapi/2.3.0/dingtalk.open.js,dingding/promotion/0.5.0/js/lib/fastclick.js"
+        charset="utf-8"></script>
+    <script>
+        var ua = navigator.userAgent.toLowerCase();
+        var isDing = ua.indexOf('dingtalk') > -1;
+        var isAndroid = ua.indexOf('android') !== -1 || ua.indexOf('linux') > -1;
+        new FastClick(document.body);
+        if (isDing) {
+            dd.ready(function () {
+                dd.ui.webViewBounce.disable();
+            });
+        }
+    </script>
+</body>
+
 </html>
