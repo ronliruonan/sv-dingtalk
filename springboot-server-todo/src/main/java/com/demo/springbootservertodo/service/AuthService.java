@@ -101,31 +101,42 @@ public class AuthService {
         DingAccessToken existedToken = tokenMapper.getByAppKey(appkey);
 
         if (existedToken == null || existedToken.getAccess_token() == null || curTime - existedToken.getBegin_time().getTime() >= cacheTime) {
+            DingProperty dingProperty = selectDingProperty(appkey);
+
             DingAccessToken newToken = new DingAccessToken();
+            newToken.setApp_key(appkey);
+            newToken.setBegin_time(new Date(curTime));
+
+            DingJsApiTicket newTicket = new DingJsApiTicket();
+            newTicket.setApp_key(appkey);
+            newTicket.setBegin_time(new Date(curTime));
 
             try {
-                DingProperty dingProperty = selectDingProperty(appkey);
-
+                // 获取新token
                 OapiGettokenResponse tokenResponse = dingAuthService.getAccessToken(appkey, dingProperty.getApp_secret());
                 if (tokenResponse.isSuccess()) {
-                    // 更新token 入库
-                    newToken.setApp_key(appkey);
+                    // 成功获取新token
                     newToken.setAccess_token(tokenResponse.getAccessToken());
-                    newToken.setBegin_time(new Date(curTime));
 
-                    insertOrUpdateDingAccessToken(newToken);
-
-                    // 刷新ticket 入库
                     OapiGetJsapiTicketResponse ticketResponse = dingAuthService.getJsapiTicket(tokenResponse.getAccessToken());
                     if (ticketResponse.isSuccess()) {
-                        DingJsApiTicket newTicket = new DingJsApiTicket();
-                        newTicket.setApp_key(appkey);
+                        // 成功获取新ticket
                         newTicket.setJsapi_ticket(ticketResponse.getTicket());
-                        newTicket.setBegin_time(new Date(curTime));
-
-                        insertOrUpdateDingJsapiTicket(newTicket);
+                    }else{
+                        // 失败获取 新ticket
+                        newTicket.setJsapi_ticket(ticketResponse.getErrmsg());
                     }
+                }else{
+                    // 失败获取新token
+                    newToken.setAccess_token(tokenResponse.getErrmsg());
+                    newTicket.setJsapi_ticket("获取TokenError:" + tokenResponse.getErrmsg());
                 }
+
+                // 更新token 入库
+                insertOrUpdateDingAccessToken(newToken);
+                // 刷新ticket 入库
+                insertOrUpdateDingJsapiTicket(newTicket);
+
             } catch (Exception e) {
                 e.printStackTrace();
                 newToken = null;
