@@ -19,9 +19,9 @@
 </template>
 
 <script>
-import indexAppList from "@/views/index/index-applist.vue";
-import indexNotice from "@/components/index/index-notice.vue";
-import indexDispatch from "@/components/index/index-dispatch.vue";
+// import indexAppList from "@/views/index/index-applist.vue";
+// import indexNotice from "@/components/index/index-notice.vue";
+// import indexDispatch from "@/components/index/index-dispatch.vue";
 export default {
   name: "page-tab",
   props: {
@@ -29,9 +29,9 @@ export default {
     tabs: Array
   },
   components: {
-    indexAppList, //: () => import("@/views/index/index-applist.vue"),
-    indexNotice, //: () => import("@/components/index/index-notice.vue"),
-    indexDispatch //: () => import("@/components/index/index-dispatch.vue")
+    indexAppList: () => import("@/views/index/index-applist.vue"),
+    indexNotice: () => import("@/components/index/index-notice.vue"),
+    indexDispatch: () => import("@/components/index/index-dispatch.vue")
   },
   data: function() {
     return {

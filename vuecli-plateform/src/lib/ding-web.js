@@ -108,7 +108,7 @@ export function jsApiOAuth(Config, jsApiList) {
 }
 
 /**
- * [get UserId]
+ * [// 走免登流程]
  * @param {[type]} Config    [axios 配置对象]
  * @param {[type]} corpId    [Company corpId]
  * @return {[type]}          [Promise]

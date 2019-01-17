@@ -2,8 +2,6 @@
   <div class="home">
     <index-header :corp-id="corpId"></index-header>
     <page-tab :ding-user-id="dingUserId" :tabs="pageTabs"></page-tab>
-    <!-- <errmsg :errmsg="'错误信息'"></errmsg> -->
-    <!-- <index-admin :ding-user-id="dingUserId" :corp-id="corpId"></index-admin> -->
   </div>
 </template>
 
@@ -14,17 +12,13 @@ import logger from "../lib/logger.js";
 import dingWeb from "../lib/ding-web.js";
 
 import indexHeader from "./index/index-header.vue";
-// import indexAdmin from "./index/index-admin.vue";
-// import errmsg from "../components/grid.vue";
 import pageTab from "../components/page-tab.vue";
 
 export default {
   name: "home",
   components: {
     indexHeader,
-    // indexAdmin,
     pageTab
-    // errmsg
   },
   data: function() {
     return {
@@ -48,18 +42,15 @@ export default {
   },
   mounted: function() {
     this.corpId = parseCorpId(location.href, "corpId");
-
-    const signRequest = {
-      url: "/api/auth/jsapi-oauth",
-      params: { href: location.href }
-    };
-
+    // const signRequest = {
+    //   url: "/api/auth/jsapi-oauth",
+    //   params: { href: location.href }
+    // };
     // // js-api 权限校验
     // dingWeb
     //   .jsApiOAuth(signRequest, [])
     //   .then(response => {
     //     const data = response.data;
-
     //     if (data.errcode === 0) {
     //       // 走免登流程
     //       this.getUserId();
@@ -70,10 +61,12 @@ export default {
     //   .catch(error => {
     //     logger.error(`JS API 权限校验失败 error: ${JSON.stringify(error)}`);
     //   });
+
+    // 走免登流程
+    this.getUserId();
   },
   methods: {
     getUserId: function() {
-      // 根据钉钉临时授权code 获取钉钉userid
       dingWeb
         .getUserId({ url: "/api/users/auth" }, this.corpId)
         .then(response => {
@@ -97,6 +90,5 @@ export default {
 .home {
   width: 100%;
   height: 100%;
-  //   touch-action: none;
 }
 </style>

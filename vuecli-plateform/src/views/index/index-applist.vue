@@ -28,7 +28,7 @@ export default {
     logger.info("Component index-applist mounted");
 
     if (this.dingUserId) {
-      //   this.getMicroApps();
+      this.getMicroApps();
     }
   },
   methods: {
