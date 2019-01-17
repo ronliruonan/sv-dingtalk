@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# version adfg34g45h
+# version adf12524364786679h
 
 CACHE:
 index.html
@@ -14,4 +14,4 @@ NETWORK:
 *
 
 FALLBACK:
-*.html /404.html
+*.html ./404.html
