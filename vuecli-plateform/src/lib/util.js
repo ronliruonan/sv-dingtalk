@@ -23,7 +23,7 @@ export function openLink(url, corpId) {
   }
   if (isDingTalk) {
     // eslint-disable-next-line
-    dd.biz.uti.openLink({
+    dd.biz.util.openLink({
       url: url,
       onSuccess: function() {
         if (typeof corpId === "function") {

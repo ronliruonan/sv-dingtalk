@@ -1,0 +1,23 @@
+CACHE MANIFEST
+# version thi2340vdvdf34erd
+
+CACHE:
+index.html
+favicon.ico
+dingtalk.open-2.3.0.js
+fastclick.js
+app.9d5a58fb.js
+app.a40796a4.css
+chunk-6bf11a28.7ae6ba91.css
+chunk-6bf11a28.8219981c.js
+chunk-24ead2e8.7ae6ba91.css
+chunk-24ead2e8.c879dafb.js
+chunk-544f1cac.4d630073.css
+chunk-544f1cac.adb30d1e.js
+chunk-vendors.fdef1b38.js
+
+NETWORK:
+*
+
+FALLBACK:
+*.html /404.html

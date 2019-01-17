@@ -1,20 +1,22 @@
 <template>
-  <div class="cell-box" @click="microAppOpenLink(item,$event)">
+  <div class="cell-box" :class="{'cell-header':isHeader}" @click="microAppOpenLink(item,$event)">
     <div class="cell-image-container">
-      <img class="cell-image" :src="item.icon">
+      <img class="cell-image" :src="item.appIcon">
     </div>
-    <div class="cell-text">{{item.name}}</div>
+    <div class="cell-text" :class="{'is-special':item.isSpecial}">{{item.name}}</div>
   </div>
 </template>
 
 <script>
 import { openLink, parseCorpId } from "@/lib/util.js";
+import { DINGAPPKEY } from "../lib/env";
+import logger from "../lib/logger";
 
 let lock = true;
 
 export default {
   name: "singleApp",
-  props: ["item", "corpId"],
+  props: ["item", "corpId", "isHeader"],
   data: function() {
     return {};
   },
@@ -39,11 +41,11 @@ export default {
       // eslint-disable-next-line
       dd.biz.microApp.openApp({
         agentId: agentId,
-        appId: "dingxgyezybqss11gqi6",
+        appId: DINGAPPKEY,
         corpId: corpId,
         onSuccess: function() {},
         onFail: function(err) {
-          alert("打开应用失败：" + JSON.stringify(err));
+          logger.error(`打开应用失败: ${JSON.stringify(err)}`);
         }
       });
     }
@@ -61,6 +63,24 @@ export default {
   overflow: hidden;
   margin: 0 auto;
 }
+.cell-header {
+  .cell-image-container {
+    text-align: center;
+    padding-top: 4.5px;
+    box-sizing: border-box;
+    border-radius: 100%;
+  }
+
+  .cell-image {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 100% !important;
+  }
+
+  .cell-text {
+    color: #f6f6f6 !important;
+  }
+}
 .cell-image {
   width: 50px;
   height: 49px;
@@ -68,8 +88,11 @@ export default {
 }
 .cell-text {
   text-align: center;
-  color: #323334;
+  color: #191f25;
   font-size: 13px;
   margin-top: 12px;
+}
+.is-special.cell-text {
+  color: #f7b55e !important;
 }
 </style>
