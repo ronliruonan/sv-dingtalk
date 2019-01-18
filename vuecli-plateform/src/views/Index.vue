@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <index-header :corp-id="corpId"></index-header>
-    <page-tab :ding-user-id="dingUserId" :tabs="pageTabs"></page-tab>
+    <page-tab :dingUserId="dingUserId" :tabs="pageTabs"></page-tab>
   </div>
 </template>
 

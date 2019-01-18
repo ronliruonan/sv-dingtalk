@@ -5,7 +5,7 @@
 import imgTodo from "../assets/todo02.png";
 // 驾驶舱
 // import imgJiashi from "../assets/jiashicang.png";
-import imgDabing from "../assets/dabing.png";
+// import imgDabing from "../assets/dabing.png";
 // 打卡
 import imgDaka from "../assets/daka.png";
 // 审批
@@ -18,13 +18,15 @@ export function getMetaHeader() {
     {
       agentId: 0,
       appIcon: imgTodo,
-      url: "https://www.baidu.com",
+      url:
+        "http://192.168.1.104:8082/index.html?corpId=ding3b11247e3909339d35c2f4657eb6378f&_cache001__#/todo",
       name: "待办事宜"
     },
     {
-      agentId: 0,
-      appIcon: imgDabing,
-      url: "https://www.baidu.com",
+      agentId: 214052177,
+      //   appIcon: imgDabing,
+      appIcon:
+        "https://static.dingtalk.com/media/lALPDeC2t2Gu8MTMyMzI_200_200.png",
       name: "领导驾驶舱"
     },
     {

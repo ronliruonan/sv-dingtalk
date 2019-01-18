@@ -41,7 +41,7 @@ export default {
         .then(response => {
           const data = response.data;
           if (data.errcode === 0) {
-            this.appListMeta = data.appList;
+            this.appListMeta = data.appList.filter(a => a.name !== "企业主页");
           } else {
             logger.error(`获取microApps 失败：${data.errmsg}`);
           }

@@ -12,16 +12,15 @@
     <!-- <transition name="fade" mode="out-in"> -->
     <transition name="slide-fade">
       <keep-alive>
-        <component :is="componentName" :ding-user-id="dingUserId"></component>
+        <component :is="componentName" :dingUserId="dingUserId"></component>
       </keep-alive>
     </transition>
   </section>
 </template>
 
 <script>
-// import indexAppList from "@/views/index/index-applist.vue";
-// import indexNotice from "@/components/index/index-notice.vue";
-// import indexDispatch from "@/components/index/index-dispatch.vue";
+import indexAppList from "@/views/index/index-applist.vue";
+
 export default {
   name: "page-tab",
   props: {
@@ -29,9 +28,9 @@ export default {
     tabs: Array
   },
   components: {
-    indexAppList: () => import("@/views/index/index-applist.vue"),
-    indexNotice: () => import("@/components/index/index-notice.vue"),
-    indexDispatch: () => import("@/components/index/index-dispatch.vue")
+    indexAppList,
+    indexNotice: () => import("@/views/index/index-notice.vue"),
+    indexDispatch: () => import("@/views/index/index-dispatch.vue")
   },
   data: function() {
     return {

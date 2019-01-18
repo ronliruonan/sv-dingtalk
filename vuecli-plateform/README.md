@@ -16,6 +16,8 @@
 
 13. 通过异步组件，可以打包成为多个js、css文件
 
+14. jt-list组件、jt-artical组件，统一的scss字体颜色
+
 ## Project setup
 ```
 npm install

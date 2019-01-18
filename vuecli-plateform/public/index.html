@@ -9,7 +9,7 @@
     <meta name="format-detection" content="telephone=no">
     <!-- <link rel="icon" id="favicon" href="https://g.alicdn.com/dingding/web/0.2.6/img/oldIcon.ico" type="image/x-icon" /> -->
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title>vuecli-plateform</title>
+    <title>移动门户</title>
     <style>
         body,
         div,
@@ -18,8 +18,65 @@
             margin: 0;
             padding: 0;
         }
-    </style>
 
+        body {
+            background-color: #f6f6f6;
+        }
+    </style>
+    <style>
+        .dd-weak-toast-wrap {
+            position: fixed;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 100%;
+            outline: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dd-weak-toast-img {
+            background: url(https://gw.alicdn.com/tfs/TB19BSTk_tYBeNjy1XdXXXXyVXa-48-48.png) no-repeat;
+            width: 48px;
+            height: 48px;
+            margin: 0 auto;
+            -webkit-animation: roll 1500ms infinite cubic-bezier(0.445, 0.05, 0.55, 0.95);
+            animation: roll 1500ms infinite cubic-bezier(0.445, 0.05, 0.55, 0.95);
+        }
+
+        @keyframes roll {
+            0% {
+                transform: rotate(360deg)
+            }
+
+            100% {
+                transform: rotate(0deg)
+            }
+        }
+
+        @-webkit-keyframes roll {
+            0% {
+                transform: rotate(360deg)
+            }
+
+            100% {
+                transform: rotate(0deg)
+            }
+        }
+
+        @-moz-keyframes roll {
+            0% {
+                transform: rotate(360deg)
+            }
+
+            100% {
+                transform: rotate(0deg)
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -28,12 +85,20 @@
             We're sorry but it doesn't work properly without JavaScript enabled. Please enable it to continue.
         </strong>
     </noscript>
-    <div id="dingapp">loading...</div>
+    <div id="dingapp">
+        <div class="dd-weak-toast-wrap">
+            <div>
+                <div class="dd-weak-toast-img"></div>
+                <div style="font-size: 14px; color:rgba(25,31,37,0.40);">加载中...</div>
+            </div>
+        </div>
+    </div>
     <!-- built files will be auto injected -->
 
     <!-- <script src="https://g.alicdn.com/??dingding/dingtalk-jsapi/2.3.0/dingtalk.open.js,dingding/promotion/0.5.0/js/lib/fastclick.js"></script> -->
     <script charset="utf-8" src="<%= BASE_URL %>dingtalk.open-2.3.0.js"></script>
     <script charset="utf-8" src="<%= BASE_URL %>fastclick.js"></script>
+    <script charset="utf-8" src="<%= BASE_URL %>porper.js"></script>
     <script>
         var ua = navigator.userAgent.toLowerCase();
         var isDing = ua.indexOf('dingtalk') > -1;
