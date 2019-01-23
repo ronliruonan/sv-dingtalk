@@ -1,10 +1,12 @@
 package com.demo.springbootservertodo.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.demo.springbootservertodo.entity.DingAccessToken;
 import com.demo.springbootservertodo.service.AuthService;
 import com.demo.springbootservertodo.service.dingservice.DingMicroappService;
 import com.demo.springbootservertodo.util.TokenUtil;
+import com.dingtalk.api.response.OapiMicroappListByUseridResponse;
 import com.taobao.api.ApiException;
 import com.taobao.api.TaobaoResponse;
 import io.swagger.annotations.ApiImplicitParam;
@@ -12,6 +14,10 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 @CrossOrigin
 @RestController
@@ -44,8 +50,35 @@ public class MicroAppApiController {
         }
 
         TaobaoResponse response = microappService.getListByUserId(userId, accessToken.getAccess_token());
-//        String result = response.getBody();
-        return response.getBody();
+        JSONObject result = JSON.parseObject(response.getBody());
 
+        result.put("md5", md5(response.getBody()));
+        return result.toJSONString();
+
+    }
+
+    private String md5(String plaintxt) {
+        String md5code = null;
+        // 定义一个字节数组
+        byte[] secretBytes = null;
+        try {
+            // 生成一个MD5加密计算摘要
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            // 对字符串加密
+            md.update(plaintxt.getBytes());
+            // 获的加密后的数据
+            secretBytes = md.digest();
+
+            // 将加密后的数据转化为16进制数字
+            md5code = new BigInteger(1, secretBytes).toString(16);
+            // 如果生成数字未满32位，需要前面补0
+            for (int i = 0; i < 32 - md5code.length(); i++) {
+                md5code = "0" + md5code;
+            }
+        } catch (NoSuchAlgorithmException e) {
+            // do nothing
+        }
+
+        return md5code;
     }
 }

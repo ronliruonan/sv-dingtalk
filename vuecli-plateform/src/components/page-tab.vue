@@ -9,7 +9,6 @@
         @click="tabComponent(tab, index)"
       >{{tab.name}}</div>
     </div>
-    <!-- <transition name="fade" mode="out-in"> -->
     <transition name="slide-fade">
       <keep-alive>
         <component :is="componentName" :dingUserId="dingUserId"></component>
@@ -20,6 +19,8 @@
 
 <script>
 import indexAppList from "@/views/index/index-applist.vue";
+import indexNotice from "@/views/index/index-notice.vue";
+import indexDispatch from "@/views/index/index-dispatch.vue";
 
 export default {
   name: "page-tab",
@@ -29,8 +30,8 @@ export default {
   },
   components: {
     indexAppList,
-    indexNotice: () => import("@/views/index/index-notice.vue"),
-    indexDispatch: () => import("@/views/index/index-dispatch.vue")
+    indexNotice,
+    indexDispatch
   },
   data: function() {
     return {
