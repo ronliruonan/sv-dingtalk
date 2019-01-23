@@ -54,7 +54,6 @@ public class MicroAppApiController {
 
         result.put("md5", md5(response.getBody()));
         return result.toJSONString();
-
     }
 
     private String md5(String plaintxt) {
