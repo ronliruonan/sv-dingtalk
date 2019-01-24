@@ -35,8 +35,6 @@ export default {
   methods: {
     getMicroApps: function() {
       // 获取用户权限范围内的apps
-      if (!this.dingUserId) return;
-
       const localStr = localStorage.getItem("microapps"),
         localResult = JSON.parse(localStr);
 
@@ -47,6 +45,7 @@ export default {
         );
       }
 
+      if (!this.dingUserId) return;
       getMicroApps({
         url: "/api/microapps/user/" + this.dingUserId
       })

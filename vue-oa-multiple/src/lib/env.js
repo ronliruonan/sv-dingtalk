@@ -1,10 +1,10 @@
 /**
  * 环境变量
  */
-export const OPENAPIHOST       = "https://api.ayaron.work/ding"; // 
-export const PORTALAPIHOST     = 'https://api.ayaron.work/portal'; // http://192.168.1.90:8808
+export const OPENAPIHOST       = "https://api.ayaron.work/ding";
+export const PORTALAPIHOST     = 'https://api.ayaron.work/portal';
 export const HASCONSOLE        = typeof console !== undefined;
-export const DEFAULTDINGUSERID = process.env.NODE_ENV !== "production" ? 'xiangxiaoqiang001' : '';
+export const DEFAULTDINGUSERID = process.env.NODE_ENV === "production" ? '' : 'xiangxiaoqiang001';
 
 // export const DINGAPPKEY = "dingy2ovuvgbpwrzedqn";
 // export const DINGAGENTID = "214032587";

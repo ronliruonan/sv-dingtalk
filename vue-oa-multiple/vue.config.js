@@ -1,3 +1,5 @@
+const CompressionPlugin = require('compression-webpack-plugin')
+
 module.exports = {
     productionSourceMap: false,
     css: {
@@ -22,6 +24,19 @@ module.exports = {
         todo: 'src/modules/todo/todo.js',
         dispatch: 'src/modules/dispatch/dispatch.js',
         notice: 'src/modules/notice/notice.js',
-        article:'src/modules/article/article.js'
+        article: 'src/modules/article/article.js'
+    },
+    configureWebpack: () => {
+        if (process.env.NODE_ENV === 'production') {
+            return {
+                plugins: [
+                    new CompressionPlugin({
+                        test: /\.js$|\.html$|\.css/, // 匹配文件名
+                        threshold: 10240, // 超过10k的数据进行压缩
+                        deleteOriginalAssets: false // 是否删除源文件
+                    })
+                ]
+            }
+        }
     }
 }

@@ -1,0 +1,20 @@
+CACHE MANIFEST
+# v1 - 20190123Ron
+
+CACHE:
+favicon.ico
+/ayas/fastclick.js
+/ayas/dingtalk.open-2.3.0.js
+/ayas/TB19BSTk_tYBeNjy1XdXXXXyVXa-48-48.png
+/js/index.50fb2516.js
+/js/chunk-vendors.e04a5580.js
+/css/index.1dc3d552.css
+/img/shenpi.7e343c8b.png
+/img/daka.13c3e3d8.png
+
+
+NETWORK:
+*
+
+FALLBACK:
+*.html /404.html
