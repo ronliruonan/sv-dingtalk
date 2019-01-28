@@ -21,13 +21,13 @@ export function getMetaHeader() {
             agentId: 0,
             appIcon: imgTodo,
             url: newUrl('/todo.html'),
-            name: "待办事宜"
+            name: "待办事宜",
+            isMove: true,
+            bage: 20
         },
         {
             agentId: 0,
             url: 'https://www.baidu.com',
-            // agentId: 214052177,
-            // appIcon: imgDabing,
             appIcon:
                 "https://static.dingtalk.com/media/lALPDeC2t2Gu8MTMyMzI_200_200.png",
             name: "领导驾驶舱"
@@ -41,7 +41,8 @@ export function getMetaHeader() {
             agentId: 213290791,
             appIcon: imgDaka,
             name: "考勤打卡",
-            isSpecial: true
+            isSpecial: true,
+            isMove: true
         }
     ];
 }

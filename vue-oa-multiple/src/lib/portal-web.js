@@ -12,6 +12,7 @@ function request(Config, msg) {
         if (!Config) return;
     }
 
+    // Config.withCredentials = true;
     Config.url = PORTALAPIHOST + Config.url;
 
     return new Promise((resolve, reject) => {

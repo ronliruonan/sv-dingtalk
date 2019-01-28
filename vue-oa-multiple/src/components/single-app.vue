@@ -1,7 +1,8 @@
 <template>
   <div class="cell-box" :class="{'cell-header':isHeader}" @click="microAppOpenLink(item,$event)">
+    <i class="bage" v-if="item.bage">{{item.bage>99?'99+':item.bage}}</i>
     <div class="cell-image-container">
-      <img class="cell-image" :src="item.appIcon">
+      <img class="cell-image" :src="item.appIcon" :class="{'musice-move':item.isMove}">
     </div>
     <div class="cell-text" :class="{'is-special':item.isSpecial}">{{item.name}}</div>
   </div>
@@ -51,6 +52,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.cell-box {
+  position: relative;
+  .bage {
+    position: absolute;
+    right: 1px;
+    z-index: 1;
+    font-style: normal;
+    color: #fff;
+    background-color: red;
+    border-radius: 10px;
+    font-size: 12px;
+    padding: 1px 6px;
+  }
+}
 .cell-image-container {
   width: 50px;
   height: 49px;
@@ -83,6 +98,9 @@ export default {
   height: 49px;
   border-radius: 10px;
 }
+.cell-image.musice-move {
+  animation: music-move 0.8s 0.5s infinite alternate ease-in-out;
+}
 .cell-text {
   text-align: center;
   color: #191f25;
@@ -91,5 +109,19 @@ export default {
 }
 .is-special.cell-text {
   color: #f7b55e !important;
+}
+@keyframes music-move {
+  0% {
+    transform: rotate(0deg);
+  }
+  33% {
+    transform: rotate(-15deg);
+  }
+  66% {
+    transform: rotate(15deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
 </style>

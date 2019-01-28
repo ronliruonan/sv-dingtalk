@@ -10,11 +10,13 @@ import { parseCorpId } from "./util";
 
 axios.defaults.headers.common["appKey"] = DINGAPPKEY;
 
+
 function request(Config, msg) {
     if (process.env.NODE_ENV !== "production") {
         if (!Config) return;
     }
 
+    // Config.withCredentials = true;
     Config.url = OPENAPIHOST + Config.url;
 
     return new Promise((resolve, reject) => {
