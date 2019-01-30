@@ -17,6 +17,7 @@
 <script>
 import { getNoticeList } from "../../lib/portal-web.js";
 import JtList from "../../components/jt-list.vue";
+import logger from "../../lib/logger";
 
 export default {
   name: "notice-index",
@@ -31,7 +32,7 @@ export default {
         jtTime: "releaseTime"
       },
       pageNo: -1,
-      pageSize: 5,
+      pageSize: 10,
       searchTitle: ""
     };
   },
@@ -41,33 +42,32 @@ export default {
     }
   },
   created: function() {
-    const localDictStr = localStorage.getItem("columnplates"),
-      localDict = JSON.parse(localDictStr);
+    const localDictStr = localStorage.getItem("columnplates");
+    const localDict = JSON.parse(localDictStr);
     this.dict = Array.isArray(localDict) ? localDict : [];
   },
   mounted: function() {
-    this.pageNo = 0;
+    this.pageNo = 1;
   },
   methods: {
-    pageFunc: function() {
-      getNoticeList(this.searchTitle, {
-        pageNo: this.pageNo,
-        pageSize: this.pageSize
-      })
-        .then(response => {
-          const data = response.data;
-          if (data.success === true) {
-            this.items.push(...data.result.items.items);
-            this.hasMore = this.items.length < data.result.items.totalCount;
-
-            if (data.result.columnPlates) {
-              this.dict = data.result.columnPlates;
-            }
-          }
-        })
-        .catch(error => {
-          console.log(error);
+    pageFunc: async function() {
+      try {
+        const response = await getNoticeList(this.searchTitle, {
+          pageNo: this.pageNo,
+          pageSize: this.pageSize
         });
+        const data = response.data;
+
+        if (data.success !== true)
+          return logger.warn(JSON.stringify(data.error));
+
+        this.items.push(...data.result.items.items);
+        this.hasMore = this.items.length < data.result.items.totalCount;
+
+        if (data.result.columnPlates) this.dict = data.result.columnPlates;
+      } catch (e) {
+        logger.error(JSON.stringify(e));
+      }
     }
   }
 };

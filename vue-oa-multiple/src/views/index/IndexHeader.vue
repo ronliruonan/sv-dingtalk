@@ -6,8 +6,12 @@
 
 <script>
 import { getMetaHeader } from "../../lib/meta.js";
+import { getIndexTodoCount } from "../../lib/task-web.js";
+import { timeFun } from "../../lib/util.js";
+import logger from "../../lib/logger";
 
 import grid from "../../components/grid.vue";
+// import { setTimeout, setInterval } from "timers";
 
 export default {
   name: "index-header",
@@ -23,6 +27,24 @@ export default {
   created: function() {
     const data = getMetaHeader();
     this.headerMeta = data;
+    timeFun(this.getTotoCount, true, 1000 * 60);
+  },
+  methods: {
+    getTotoCount: async function() {
+      try {
+        const response = await getIndexTodoCount();
+        const data = response.data;
+        if (data.success !== true)
+          return logger.warn(JSON.stringify(data.error));
+
+        const todoApp = this.headerMeta[0];
+        const count = data.result.items.totalCount;
+        todoApp.bage = count;
+        todoApp.isMove = count > 0;
+      } catch (e) {
+        logger.error(JSON.stringify(e));
+      }
+    }
   }
 };
 </script>

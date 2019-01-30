@@ -2,6 +2,7 @@
   <section class="jt-list">
     <div class="list-item" v-for="(item, index) in items" :key="index" @click="jsItemOPen(item)">
       <p class="title">{{item.title}}</p>
+      <p class="content" v-if="item.content">{{item.content}}</p>
       <div class="other">
         <p class="other-left">
           <img class="other-icon" src="@/assets/pingtai2.png">
@@ -23,6 +24,7 @@ import {
   filterGetDict,
   filterDateFormate
 } from "../lib/util.js";
+import logger from "../lib/logger.js";
 
 export default {
   name: "jt-list",
@@ -52,7 +54,7 @@ export default {
   },
   filters: {
     findDict: (value, dict) => {
-      if (!value) return "";
+      if (!value) return "null";
       if (!dict) return value;
 
       return filterGetDict(value, dict);
@@ -67,17 +69,24 @@ export default {
   methods: {
     jsItemOPen: function(item) {
       if (this.itemOpen.newLink) {
+        if (item.mobileUrl) {
+          return openLink(item.mobileUrl);
+        }
+
         let { pathName, search } = this.itemOpen.newLink;
 
         search = templateFunc(search, item);
         const url = newUrl(pathName, search);
-        openLink(url);
-      } else if (this.itemOpen.curLink) {
-        this.$router.push({
+        return openLink(url);
+      }
+
+      if (this.itemOpen.curLink) {
+        return this.$router.push({
           name: this.itemOpen.curLink.pathName,
           query: { id: item.id, ip: "aya" }
         });
       }
+      logger.info("has nothing to do");
     },
     jsmore: function() {
       if (this.moreOpen) {

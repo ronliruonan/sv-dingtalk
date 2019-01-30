@@ -25,9 +25,9 @@ export default {
     },
     formateDate: function(value) {
       if (!value) return "";
-      const date = new Date(value);
 
-      return filterDateFormate(date, 'yyyy-MM-dd hh:mm');
+      const date = new Date(value);
+      return filterDateFormate(date, "yyyy-MM-dd hh:mm");
     }
   },
   data: function() {
@@ -42,29 +42,29 @@ export default {
     };
   },
   created: function() {
-    const localDictStr = localStorage.getItem("columnplates"),
-      localDict = JSON.parse(localDictStr);
+    const localDictStr = localStorage.getItem("columnplates");
+    const localDict = JSON.parse(localDictStr);
     this.dict = Array.isArray(localDict) ? localDict : [];
   },
   mounted: function() {
     const query = this.$route.query;
-
     const id = parseCorpId(location.search, "id");
 
     this.viewDetail(id || query.id);
   },
   methods: {
-    viewDetail: function(id = -1) {
-      viewArticle({ id: id })
-        .then(response => {
-          const data = response.data;
-          if (data.success === true) {
-            this.item = { ...this.item, ...data.result.item };
-          }
-        })
-        .catch(error => {
-          logger.error(JSON.stringify(error));
-        });
+    viewDetail: async function(id = -1) {
+      try {
+        const response = await viewArticle({ id: id });
+        const data = response.data;
+
+        if (data.success !== true)
+          return logger.warn(JSON.stringify(data.error));
+
+        this.item = { ...this.item, ...data.result.item };
+      } catch (e) {
+        logger.error(JSON.stringify(e));
+      }
     }
   }
 };

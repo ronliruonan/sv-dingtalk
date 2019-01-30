@@ -6,6 +6,9 @@ import axios from "axios";
 import { PORTALAPIHOST } from "./env";
 
 // axios.defaults.headers.common["appKey"] = DINGAPPKEY;
+axios.defaults.headers.common["Content-Type"] = 'application/json';
+axios.defaults.headers.common["Accept"] = 'application/json';
+axios.defaults.headers.common["Access-Control-Allow-Headers"] = 'Content-Type, X-XSRF-TOKEN';
 
 function request(Config, msg) {
     if (process.env.NODE_ENV !== "production") {
@@ -27,13 +30,10 @@ function request(Config, msg) {
 }
 
 /**
- * 获取待办个数
- * @param {*} Config 
+ * 首页 发文列表
+ * @param {Object} Config 请求配置 
  */
-export function getIndexTodoCount(Config) {
-    return request(Config, "getTodoCount request bad");
-}
-export function getIndexFawen(Config = {
+export async function getIndexFawen(Config = {
     method: 'post',
     url: '/api/services/portal/publicationannouncement/pageLoad',
     data: {
@@ -47,7 +47,7 @@ export function getIndexFawen(Config = {
 }) {
     return request(Config, "getIndexFawen request bad");
 }
-export function getIndexGonggao(Config = {
+export async function getIndexGonggao(Config = {
     method: 'post',
     url: '/api/services/portal/publicationannouncement/pageLoad',
     data: {
@@ -62,7 +62,7 @@ export function getIndexGonggao(Config = {
     return request(Config, "getIndexGonggao request bad");
 }
 
-export function viewArticle(data, Config = {
+export async function viewArticle(data, Config = {
     method: 'post',
     url: '/api/services/portal/publicationannouncement/getPublicationAnnouncementById',
     data: { id: -1 }
@@ -76,7 +76,7 @@ export function viewArticle(data, Config = {
  * @param {*} page 
  * @param {*} Config 
  */
-export function getNoticeList(title = '', page = {
+export async function getNoticeList(title = '', page = {
     pageNo: 0,
     pageSize: 10
 }, Config = {
@@ -93,7 +93,7 @@ export function getNoticeList(title = '', page = {
     return request(Config, "getNoticeList request bad");
 }
 
-export function getDispatchList(title = '', page = {
+export async function getDispatchList(title = '', page = {
     pageNo: 0,
     pageSize: 10
 }, Config = {

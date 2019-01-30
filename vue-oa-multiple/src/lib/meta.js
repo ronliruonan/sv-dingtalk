@@ -22,8 +22,8 @@ export function getMetaHeader() {
             appIcon: imgTodo,
             url: newUrl('/todo.html'),
             name: "待办事宜",
-            isMove: true,
-            bage: 20
+            isMove: false,
+            bage: 0
         },
         {
             agentId: 0,
@@ -46,7 +46,3 @@ export function getMetaHeader() {
         }
     ];
 }
-
-export default {
-    getMetaHeader
-};

@@ -47,6 +47,7 @@ export function openLink(url, corpId) {
 }
 
 export function newUrl(pathName, urlSearch = location.search, urlHash = location.hash) {
+    if (!pathName) return pathName;
     if (pathName.indexOf('/') < 0) {
         pathName = '/' + pathName;
     }
@@ -114,10 +115,21 @@ export function filterDateFormate(date = new Date('2019-01-21'), formate = 'yyyy
  * @param {Object} data 数据源
  */
 export function templateFunc(str, data) {
+    if (!str) return str;
     let computed = str.replace(/\{\{(\w+)\}\}/g, function (match, key) {
         return data[key];
     })
     return computed;
+}
+
+export function timeFun(fn, immediately = false, timeSpan = 1000 * 60 * 5) {
+    if (typeof fn !== 'function') return;
+    if (immediately) fn();
+
+    setTimeout(() => {
+        fn();
+        setTimeout(() => { timeFun(fn, true, timeSpan) }, timeSpan, fn, timeSpan);
+    }, timeSpan, fn, timeSpan);
 }
 
 export default {

@@ -1,6 +1,6 @@
 <template>
   <div class="cell-box" :class="{'cell-header':isHeader}" @click="microAppOpenLink(item,$event)">
-    <i class="bage" v-if="item.bage">{{item.bage>99?'99+':item.bage}}</i>
+    <i class="bage" v-if="item.bage">{{item.bage > 99 ? '99+' : item.bage}}</i>
     <div class="cell-image-container">
       <img class="cell-image" :src="item.appIcon" :class="{'musice-move':item.isMove}">
     </div>

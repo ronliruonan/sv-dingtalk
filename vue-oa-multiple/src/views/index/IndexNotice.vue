@@ -36,23 +36,26 @@ export default {
     };
   },
   mounted: function() {
-    getIndexGonggao()
-      .then(response => {
+    this.init();
+  },
+  methods: {
+    init: async function() {
+      try {
+        const response = await getIndexGonggao();
         const data = response.data;
-        if (data.success === true) {
-          this.items = data.result.items.items;
-          this.dict = data.result.columnPlates;
-          this.hasMore = this.items.length < data.result.items.totalCount;
+        if (data.success !== true)
+          return logger.warn(JSON.stringify(data.error));
 
-          // Article Api 么有字典项
-          localStorage.setItem("columnplates", JSON.stringify(this.dict));
-        } else {
-          logger.warn(JSON.stringify(data.error));
-        }
-      })
-      .catch(error => {
-        logger.error(JSON.stringify(error));
-      });
+        this.items = data.result.items.items;
+        this.dict = data.result.columnPlates;
+        this.hasMore = this.items.length < data.result.items.totalCount;
+
+        // Article Api 没有字典项，自己安装数据
+        localStorage.setItem("columnplates", JSON.stringify(this.dict));
+      } catch (e) {
+        logger.error(JSON.stringify(e));
+      }
+    }
   }
 };
 </script>
