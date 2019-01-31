@@ -1,0 +1,29 @@
+CACHE MANIFEST
+# v20190131 - 14：49 by RonLi
+
+CACHE:
+# 静态 图片资源
+favicon.ico
+/img/daka.13c3e3d8.png
+/img/shenpi.7e343c8b.png
+/ayas/TB19BSTk_tYBeNjy1XdXXXXyVXa-48-48.png
+
+# 静态 脚本资源
+/ayas/fastclick.js
+/ayas/dingtalk.open-2.3.0.js
+
+# 动态 脚本资源
+/js/index.e2a03132.js
+/js/chunk-vendors.f2f87a8b.js
+/js/chunk-common.99728e1d.js
+
+# 动态 样式资源
+/css/index.c5f67c1f.css
+/css/chunk-common.d82b7f03.css
+
+
+NETWORK:
+*
+
+FALLBACK:
+*.html /404.html
