@@ -60,7 +60,7 @@ export default {
     z-index: 1;
     font-style: normal;
     color: #fff;
-    background-color: red;
+    background-color: $colors-danger;
     border-radius: 10px;
     font-size: 12px;
     padding: 1px 6px;
@@ -71,7 +71,7 @@ export default {
   height: 49px;
   position: relative;
   border-radius: 10px;
-  background-color: #f8f8f8;
+  background-color: $bg-color-card;
   overflow: hidden;
   margin: 0 auto;
 }

@@ -75,6 +75,6 @@ export default {
   margin-top: 3px;
   padding: 5px 10px;
 
-  background-color: #fff;
+  background-color: $bg-color-card;
 }
 </style>

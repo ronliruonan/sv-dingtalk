@@ -7,7 +7,7 @@
 <script>
 import { getMetaHeader } from "../../lib/meta.js";
 import { getIndexTodoCount } from "../../lib/task-web.js";
-import { timeFun } from "../../lib/util.js";
+import { timerFun } from "../../lib/util.js";
 import logger from "../../lib/logger";
 
 import grid from "../../components/grid.vue";
@@ -27,7 +27,7 @@ export default {
   created: function() {
     const data = getMetaHeader();
     this.headerMeta = data;
-    timeFun(this.getTotoCount, true, 1000 * 60);
+    timerFun(this.getTotoCount, true, 1000 * 60);
   },
   methods: {
     getTotoCount: async function() {
@@ -54,8 +54,8 @@ export default {
   width: 100%;
   padding-top: 20px;
   flex-direction: row;
-  background-color: #3e3e3e;
+  background-color: $bg-color-header;
   border-width: 1px;
-  border-color: #dadada;
+  border-color: $bd-header-color;
 }
 </style>

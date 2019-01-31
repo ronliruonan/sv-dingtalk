@@ -78,19 +78,5 @@ export default {
 <style lang="scss" scoped>
 .index-all-applist {
   margin-top: 15px;
-
-  .applist-title {
-    width: 100%;
-    height: 49px;
-    position: relative;
-
-    .applist-text {
-      color: #999;
-      font-size: 17px;
-      position: absolute;
-      top: 16px;
-      left: 12px;
-    }
-  }
 }
 </style>

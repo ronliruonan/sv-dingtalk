@@ -3,7 +3,13 @@ const CompressionPlugin = require('compression-webpack-plugin')
 module.exports = {
     productionSourceMap: false,
     css: {
-        sourceMap: false
+        modules: false,
+        sourceMap: false,
+        loaderOptions: {
+            sass: {
+                data: `@import "@/theme/variables.scss";`
+            }
+        }
     },
     pages: {
         // notice: {

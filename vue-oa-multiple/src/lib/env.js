@@ -1,13 +1,15 @@
 /**
- * DING API地址
+ * DING API地址:
  */
 export const OPENAPIHOST = "https://www.ayaron.work/ding";
 /**
- * 门户 API地址 https://api.ayaron.work/portal http://192.168.1.90:8808
+ * 门户 API地址：
+ * https://api.ayaron.work/portal http://192.168.1.90:8808
  */
 export const PORTALAPIHOST = 'https://www.ayaron.work/portal';
 /**
- * 任务中心 API地址 http://192.168.1.90:8807/services/api
+ * 任务中心 API地址：
+ * http://192.168.1.90:8807/services/api 
  */
 export const TASKAPIHOST = 'https://www.ayaron.work/task/services/api';
 export const HASCONSOLE = typeof console !== undefined;

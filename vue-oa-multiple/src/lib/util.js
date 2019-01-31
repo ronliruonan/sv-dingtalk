@@ -122,13 +122,13 @@ export function templateFunc(str, data) {
     return computed;
 }
 
-export function timeFun(fn, immediately = false, timeSpan = 1000 * 60 * 5) {
+export function timerFun(fn, immediately = false, timeSpan = 1000 * 60 * 5) {
     if (typeof fn !== 'function') return;
     if (immediately) fn();
 
     setTimeout(() => {
         fn();
-        setTimeout(() => { timeFun(fn, true, timeSpan) }, timeSpan, fn, timeSpan);
+        setTimeout(() => { timerFun(fn, true, timeSpan) }, timeSpan, fn, timeSpan);
     }, timeSpan, fn, timeSpan);
 }
 

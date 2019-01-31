@@ -106,16 +106,19 @@ export default {
 
   .list-item {
     padding: 15px 15px 10px 15px;
-    border-bottom: 1px solid #efefef;
+    border-bottom: 1px solid $bd-header-color;
 
     .title {
-      color: #191f25;
+      color: $txt-color-h1;
+    }
+    .content{
+        color: $txt-color-h2;
     }
     .other {
       margin-top: 10px;
       font-size: 14px;
       display: flex;
-      color: #7a7d81;
+      color: $txt-color-h3;
     }
     .other-left {
       flex: 1;
@@ -135,7 +138,7 @@ export default {
     border-bottom: 1px solid #efefef;
     text-align: center;
     font-size: 13px;
-    color: #191f258c;
+    color: $txt-color-h1;
   }
 }
 </style>

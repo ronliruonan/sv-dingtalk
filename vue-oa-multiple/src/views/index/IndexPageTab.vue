@@ -55,25 +55,23 @@ export default {
 /* 可以设置不同的进入和离开动画 */
 /* 设置持续时间和动画函数 */
 .slide-fade-enter-active {
-  transition: all 1s ease;
+  transition: all 1s ease-in-out;
 }
 .slide-fade-leave-active {
-  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+  transition: all 0.8s ease-in;
 }
-.slide-fade-enter
-/* .slide-fade-leave-active for below version 2.1.8 */ {
-  //   transform: translateY(-10px);
+.slide-fade-enter {
+  transform: translateY(100px);
   opacity: 0;
 }
-.slide-fade-leave-to
-/* .slide-fade-leave-active for below version 2.1.8 */ {
-  transform: translateY(-60px);
+.slide-fade-leave-to {
+  transform: translateY(-150px);
   opacity: 0;
 }
 .page-tab {
   margin-top: 10px;
   box-sizing: border-box;
-  background-color: #fff;
+  background-color: $bg-color-card;
 
   .page-tab-title {
     display: flex;
@@ -83,12 +81,12 @@ export default {
       flex: 1;
       padding: 15px 0;
       font-size: 16px;
-      border-bottom: 1px #e6e6e7 solid;
+      border-bottom: 1px $bd-header-color solid;
     }
     .item.active {
-      color: #2599de;
+      color: $colors-primary;
       font-weight: 500;
-      border-bottom-color: #2599de;
+      border-bottom-color: $colors-primary;
       border-bottom-width: 2px;
     }
   }

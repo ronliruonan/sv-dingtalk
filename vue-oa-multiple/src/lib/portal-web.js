@@ -39,7 +39,7 @@ export async function getIndexFawen(Config = {
     data: {
         "page": {
             "pageNo": 1,
-            "pageSize": 6
+            "pageSize": 2
         },
         "publishType": "2",
         "status": "1"
@@ -53,7 +53,7 @@ export async function getIndexGonggao(Config = {
     data: {
         "page": {
             "pageNo": 1,
-            "pageSize": 6
+            "pageSize": 2
         },
         "publishType": "3",
         "status": "1"

@@ -1,0 +1,50 @@
+/* Created by RonLi
+ * 系统统一配置*/
+
+// 文字颜色
+// --------------------------------------
+// 通用一级标题颜色
+$txt-color-h1     : #191f25; 
+// 彩色背景下一级标题颜色
+$txt-color-h1-aya : rgba(25,31,37,.72); 
+// 通用二级标题颜色
+$txt-color-h2     : rgba(25,31,37,.56);
+// 通用三级标题颜色
+$txt-color-h3     : rgba(25,31,37,.40);
+// 通用四级标题颜色
+$txt-color-h4     : rgba(25,31,37,.28);
+// 通用文字白色
+$txt-color-white:( 
+    common  : #fff, // 通用白色
+    disable : rgba(255, 255, 255, 0.4) // 通用白色 未激活文字
+);
+// 通用文字深色 #2c3e50
+$txt-color-hei    : #2c3e50; 
+
+// 背景&分割线
+// ----------------------------------
+// 按钮边框颜色
+$bd-btn-color     : rgba(25,31,37,.12);
+// 顶部栏分割线
+$bd-header-color  : rgba(25,31,37,.12);
+// 底部栏分割线
+$bd-footer-color  : rgba(25,31,37,.12);
+// 通用一级分割线，用于不同类型区域块分割
+$bd-section1-color: rgba(25,31,37,.8);
+// 通用二级分割线，用于不同类型区域块分割
+$bd-section2-color: rgba(25,31,37,.4);
+// 通用页面背景色
+$bg-color-page    : #f6f6f6;
+// 通用卡片背景色
+$bg-color-card    : #fff;
+// 顶部背景色
+$bg-color-header  : #3e3e3e;
+
+// 辅助色
+// ------------------------------------
+$colors-primary  : #3296fa;
+$colors-danger   : #f25643;
+$colors-warning  : #ff943e;
+$colors-yellow   : #fee151;
+$colors-baji     : #476a95;
+$colors-sucess   : #15bc83;
