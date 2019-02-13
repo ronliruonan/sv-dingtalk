@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# v20190131 - 14：49 by RonLi
+# v20190213 - 15：49 by RonLi
 
 CACHE:
 # 静态 图片资源
@@ -13,13 +13,13 @@ favicon.ico
 /ayas/dingtalk.open-2.3.0.js
 
 # 动态 脚本资源
-/js/index.e2a03132.js
+/js/index.15dab121.js
 /js/chunk-vendors.f2f87a8b.js
-/js/chunk-common.99728e1d.js
+/js/chunk-common.3c69c8ad.js
 
 # 动态 样式资源
-/css/index.c5f67c1f.css
-/css/chunk-common.d82b7f03.css
+/css/index.424c94ad.css
+/css/chunk-common.09ed8e53.css
 
 
 NETWORK:
