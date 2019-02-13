@@ -20,7 +20,7 @@
 import jtList from "../../components/jt-list.vue";
 import { getIndexFawen } from "../../lib/portal-web.js";
 import logger from "../../lib/logger";
-import { pullToRefresh } from "../../lib/util";
+import { pullToRefresh, timerFun } from "../../lib/util";
 
 export default {
   name: "index-dispatch",
@@ -38,6 +38,8 @@ export default {
   },
   mounted: function() {
     this.init();
+
+    timerFun(this.init, false, 1000 * 60);
   },
   activated: function() {
     pullToRefresh(this.init);

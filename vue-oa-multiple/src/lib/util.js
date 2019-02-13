@@ -128,7 +128,7 @@ export function timerFun(fn, immediately = false, timeSpan = 1000 * 60 * 5) {
 
     setTimeout(() => {
         fn();
-        setTimeout(() => { timerFun(fn, true, timeSpan) }, timeSpan, fn, timeSpan);
+        setTimeout(() => { timerFun(fn, immediately, timeSpan) }, timeSpan, fn, timeSpan);
     }, timeSpan, fn, timeSpan);
 }
 
@@ -147,6 +147,8 @@ export function pullToRefresh(func = async function () { }) {
                 await func(true);
                 // eslint-disable-next-line
                 dd.ui.pullToRefresh.stop();
+            }, onFail: (err) => {
+                alert(JSON.stringify(err));
             }
         });
     }

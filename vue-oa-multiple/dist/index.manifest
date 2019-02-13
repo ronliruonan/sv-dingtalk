@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# v20190213 - 15：49 by RonLi
+# v201902121814 - by RonLi
 
 CACHE:
 # 静态 图片资源
@@ -15,7 +15,7 @@ favicon.ico
 # 动态 脚本资源
 /js/index.15dab121.js
 /js/chunk-vendors.f2f87a8b.js
-/js/chunk-common.3c69c8ad.js
+/js/chunk-common.2b46f8f5.js
 
 # 动态 样式资源
 /css/index.424c94ad.css
