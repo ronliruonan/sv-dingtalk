@@ -7,6 +7,7 @@
 <script>
 import logger from "../../lib/logger.js";
 import { getMicroApps } from "../../lib/ding-web.js";
+import { pullToRefresh } from "../../lib/util";
 
 import grid from "../../components/grid.vue";
 
@@ -16,27 +17,26 @@ export default {
     dingUserId: String,
     corpId: String
   },
-  components: {
-    grid
-  },
+  components: { grid },
   watch: {
     dingUserId: function() {
       this.getMicroApps();
     }
   },
   data: function() {
-    return {
-      appListMeta: []
-    };
+    return { appListMeta: [] };
   },
   created: function() {
-    this.getMicroApps();
+    this.init();
+  },
+  activated: function() {
+    pullToRefresh(this.init);
   },
   methods: {
-    getMicroApps: function() {
+    init: function(isRefresh = false, txt = "我的应用：刷新完成!") {
       // 获取用户权限范围内的apps
-      const localStr = localStorage.getItem("microapps"),
-        localResult = JSON.parse(localStr);
+      const localStr = localStorage.getItem("microapps");
+      const localResult = JSON.parse(localStr);
 
       // 率先localStorage渲染applist
       if (localResult) {
@@ -46,6 +46,7 @@ export default {
       }
 
       if (!this.dingUserId) return;
+
       getMicroApps({
         url: "/api/microapps/user/" + this.dingUserId
       })
@@ -63,7 +64,16 @@ export default {
 
             // eslint-disable-next-line
             dd.device.notification.toast({
+              icon: "success",
               text: "钉钉应用更新完成"
+            });
+          }
+
+          if (isRefresh) {
+            // eslint-disable-next-line
+            dd.device.notification.toast({
+              icon: "success",
+              text: txt
             });
           }
         })

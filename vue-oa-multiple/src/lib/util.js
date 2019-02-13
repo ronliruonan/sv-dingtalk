@@ -2,8 +2,6 @@
  * Created by Ron on 2019/1/13
  */
 
-let isDingTalk = /dingtalk/.test(navigator.userAgent.toLowerCase());
-
 /**
  * 查询查询串儿
  * @param {String} url ?a=b&c=d类似串儿
@@ -21,12 +19,14 @@ export function parseCorpId(url, param) {
 }
 
 export function openLink(url, corpId) {
+    const ENV = require('../lib/env');
+
     if (corpId && typeof corpId === "string") {
         if (url && url.indexOf("$CORPID$") !== -1) {
             url = url.replace(/\$CORPID\$/, corpId);
         }
     }
-    if (isDingTalk) {
+    if (ENV.ISDINGTALK) {
         // eslint-disable-next-line
         dd.biz.util.openLink({
             url: url,
@@ -130,6 +130,26 @@ export function timerFun(fn, immediately = false, timeSpan = 1000 * 60 * 5) {
         fn();
         setTimeout(() => { timerFun(fn, true, timeSpan) }, timeSpan, fn, timeSpan);
     }, timeSpan, fn, timeSpan);
+}
+
+export function pullToRefresh(func = async function () { }) {
+    const ENV = require('./env');
+
+    // eslint-disable-next-line
+    if (ENV.ISDINGTALK && dd) {
+        // eslint-disable-next-line
+        dd.ui.pullToRefresh.disable();
+        // eslint-disable-next-line
+        dd.ui.pullToRefresh.enable({
+            onSuccess: async () => {
+                if (typeof func !== 'function') return;
+
+                await func(true);
+                // eslint-disable-next-line
+                dd.ui.pullToRefresh.stop();
+            }
+        });
+    }
 }
 
 export default {

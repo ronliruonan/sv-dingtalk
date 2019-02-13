@@ -18,6 +18,7 @@
 import { getDispatchList } from "../../lib/portal-web.js";
 import JtList from "../../components/jt-list.vue";
 import logger from "../../lib/logger";
+import { pullToRefresh } from "../../lib/util";
 
 export default {
   name: "notice-index",
@@ -37,32 +38,54 @@ export default {
     };
   },
   watch: {
-    pageNo: function() {
-      this.pageFunc();
+    pageNo: function(v1) {
+      if (v1 === 1) return;
+
+      this.pageFunc(this.pageNo, this.pageSize);
     }
   },
   created: function() {
-    const localDictStr = localStorage.getItem("columnplates"),
-      localDict = JSON.parse(localDictStr);
+    const localDictStr = localStorage.getItem("columnplates");
+    const localDict = JSON.parse(localDictStr);
     this.dict = Array.isArray(localDict) ? localDict : [];
   },
   mounted: function() {
-    this.pageNo = 1;
+    this.init();
+
+    pullToRefresh(this.init);
   },
   methods: {
-    pageFunc: async function() {
+    init: async function(isRefresh = false, txt = "发文列表：刷新完成!") {
+      this.pageNo = 1;
+
+      await this.pageFunc(this.pageNo, this.pageSize, isRefresh);
+
+      if (isRefresh) {
+        // eslint-disable-next-line
+        dd.device.notification.toast({
+          icon: "success",
+          text: txt
+        });
+      }
+    },
+    pageFunc: async function(pageNo = 1, pageSize = 10, isRefresh = false) {
       try {
         const response = await getDispatchList(this.searchTitle, {
-          pageNo: this.pageNo,
-          pageSize: this.pageSize
+          pageNo: pageNo,
+          pageSize: pageSize
         });
         const data = response.data;
 
         if (data.success !== true)
           return logger.warn(JSON.stringify(data.error));
 
-        this.items.push(...data.result.items.items);
-        this.hasMore = this.items.length < data.result.items.totalCount;
+        const {
+          items: dataItems,
+          totalCount: dataTotalCount
+        } = data.result.items;
+
+        isRefresh ? (this.items = dataItems) : this.items.push(...dataItems);
+        this.hasMore = this.items.length < dataTotalCount;
 
         if (data.result.columnPlates) {
           this.dict = data.result.columnPlates;

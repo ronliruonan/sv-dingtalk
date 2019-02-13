@@ -5,7 +5,7 @@
       <span>来源: {{item.columnPlateId|findDict(dict)}}</span>
       <span style="float:right;">发布于: {{item.releaseTime| formateDate}}</span>
     </p>
-    <pre>{{item.content}}</pre>
+    <article v-html="item.content"></article>
   </section>
 </template>
 
@@ -51,6 +51,9 @@ export default {
     const id = parseCorpId(location.search, "id");
 
     this.viewDetail(id || query.id);
+
+    // eslint-disable-next-line
+    dd.ui.pullToRefresh.disable();
   },
   methods: {
     viewDetail: async function(id = -1) {
@@ -70,11 +73,58 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .article-detail {
-  margin-top: 3px;
+  margin-top: 1px;
   padding: 5px 10px;
+  height: 100%;
+  box-sizing: border-box;
 
   background-color: $bg-color-card;
+
+  article {
+    margin-top: 10px;
+    color: $txt-color-hei;
+    font-size: 16px;
+
+    h1 {
+      margin: 0;
+      padding: 0;
+      font-size: 1.6em;
+    }
+    h2 {
+      margin: 0;
+      padding: 0;
+      font-size: 1.4em;
+    }
+    h3 {
+      margin: 0;
+      padding: 0;
+      font-size: 1.2em;
+    }
+    h4 {
+      margin: 0;
+      padding: 0;
+      font-size: 1em;
+    }
+    h5 {
+      margin: 0;
+      padding: 0;
+      font-size: 0.8em;
+    }
+    h6 {
+      margin: 0;
+      padding: 0;
+      font-size: 0.6em;
+    }
+
+    p {
+      padding-top: 5px;
+      white-space: pre-wrap;
+    }
+    img {
+      max-width: 100%;
+    }
+  }
 }
 </style>

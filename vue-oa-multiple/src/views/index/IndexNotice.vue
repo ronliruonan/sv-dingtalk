@@ -20,6 +20,7 @@
 import jtList from "../../components/jt-list.vue";
 import { getIndexGonggao } from "../../lib/portal-web.js";
 import logger from "../../lib/logger";
+import { pullToRefresh } from "../../lib/util";
 
 export default {
   name: "index-notice",
@@ -38,8 +39,11 @@ export default {
   mounted: function() {
     this.init();
   },
+  activated: function() {
+    pullToRefresh(this.init);
+  },
   methods: {
-    init: async function() {
+    init: async function(isRefresh = false, txt = "公告信息：刷新完成!") {
       try {
         const response = await getIndexGonggao();
         const data = response.data;
@@ -52,6 +56,14 @@ export default {
 
         // Article Api 没有字典项，自己安装数据
         localStorage.setItem("columnplates", JSON.stringify(this.dict));
+
+        if (isRefresh) {
+          // eslint-disable-next-line
+          dd.device.notification.toast({
+            icon: "success",
+            text: txt
+          });
+        }
       } catch (e) {
         logger.error(JSON.stringify(e));
       }

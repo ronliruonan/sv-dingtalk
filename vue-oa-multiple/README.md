@@ -13,6 +13,14 @@ a 11. 【ok】将api.ayaron.work换成www.ayaron.work的配置减少dns解析
 a 12. 【??】Tab滑动手势
 a 13. 【ok】Tab切换的动画
 
+b 01. 【ok】Position:absolute 如果超出父position的区域，会被隐藏？不会的，因为有一个overflow:hidden;
+
+c 01. 移动端预览页面
+c 02. 移动端文章样式
+c 03. 移动端<script>脚本预防
+c 04. 【ok】Index页：发文信息、公告信息自动更新数据
+
+
 ## Project setup
 ```
 npm install

@@ -2,7 +2,7 @@
   <section class="jt-list">
     <div class="list-item" v-for="(item, index) in items" :key="index" @click="jsItemOPen(item)">
       <p class="title">{{item.title}}</p>
-      <p class="content" v-if="item.content">{{item.content}}</p>
+      <!-- <p class="content" v-if="item.content">{{item.content}}</p> -->
       <div class="other">
         <p class="other-left">
           <img class="other-icon" src="@/assets/pingtai2.png">

@@ -11,7 +11,6 @@ import { timerFun } from "../../lib/util.js";
 import logger from "../../lib/logger";
 
 import grid from "../../components/grid.vue";
-// import { setTimeout, setInterval } from "timers";
 
 export default {
   name: "index-header",
