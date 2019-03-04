@@ -1,10 +1,10 @@
 ﻿# vue-oa-multiple
-- a 01. 【ok】md5 localstorage，提供用户体验 
+- a 01. 【ok】*** md5 localstorage，提供用户体验，为了提高离线应用的使用 ***
 - a 02. 【??】全局color
 - a 03. 【no】公告发文有些重复 
 - a 04. 【ok】文章的发文人没有字典，自己想办法 
 - a 05. 【--】缺一个admin的加号在applist展示中
-- a 06. 【ok】.gz 文件拦截 (验证办法，把原始js删掉，只留.gz文件)节省服务器性能
+- a 06. 【ok】*** .gz 文件拦截 (验证办法，把原始js删掉，只留.gz文件)节省服务器性能 ***
 - a 07. 【??】axois 全局拦截
 - a 08. 【ok】离线缓存   preload 不要用 【ok】
 - a 09. 【ok】离线缓存后，为何应用列表不出数据，都已经存在localStorage了 【ok】
@@ -117,14 +117,6 @@ debounced_version.cancel();
 
 
 
- 
-
-
-
-
-
-
-
 
 ## axios的使用，
 1. 全局配置headers，配置默认请求参数
@@ -132,3 +124,6 @@ debounced_version.cancel();
 
 ## Object.assign
 为什么要使用 Object.assign, 使用Object 点语法不行吗？二者有啥区别
+
+
+## 离线缓存的旧方式，psa的新方式？
