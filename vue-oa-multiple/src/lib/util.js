@@ -46,6 +46,13 @@ export function openLink(url, corpId) {
     }
 }
 
+/**
+ * Url生成，Index在钉钉打开的时候，发文公告直接打开一个新窗口
+ * 在列表 公告/ 发文 单独页面中，直接利用vue的spa打开发文/公告详细信息
+ * @param {String} pathName 请求路径
+ * @param {String} urlSearch 
+ * @param {String} urlHash 
+ */
 export function newUrl(pathName, urlSearch = location.search, urlHash = location.hash) {
     if (!pathName) return pathName;
     if (pathName.indexOf('/') < 0) {

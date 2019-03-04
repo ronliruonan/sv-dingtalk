@@ -10,7 +10,7 @@
     }"
     :has-more="hasMore"
     :jt-options="jtListOptions"
-    @page-more="pageNo += 1"
+    @page-more="pageNo = pageNo + 1"
   ></jt-list>
 </template>
 

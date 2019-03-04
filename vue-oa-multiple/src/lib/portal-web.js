@@ -30,7 +30,7 @@ function request(Config, msg) {
 }
 
 /**
- * 首页 发文列表
+ * Index首页-发文列表请求 
  * @param {Object} Config 请求配置 
  */
 export async function getIndexFawen(Config = {
@@ -41,12 +41,16 @@ export async function getIndexFawen(Config = {
             "pageNo": 1,
             "pageSize": 4
         },
-        "publishType": "2",
-        "status": "1"
+        "publishType": 3,
+        "status": 1
     }
 }) {
     return request(Config, "getIndexFawen request bad");
 }
+/**
+ * Index首页-公告列表请求
+ * @param {Object} Config 请求配置
+ */
 export async function getIndexGonggao(Config = {
     method: 'post',
     url: '/api/services/portal/publicationannouncement/pageLoad',
@@ -55,13 +59,18 @@ export async function getIndexGonggao(Config = {
             "pageNo": 1,
             "pageSize": 4
         },
-        "publishType": "3",
-        "status": "1"
+        "publishType": 2,
+        "status": 1
     }
 }) {
     return request(Config, "getIndexGonggao request bad");
 }
 
+/**
+ * 查询 文章
+ * @param {Object} data 额外数据
+ * @param {Object} Config 基础请求配置
+ */
 export async function viewArticle(data, Config = {
     method: 'post',
     url: '/api/services/portal/publicationannouncement/getPublicationAnnouncementById',
@@ -72,9 +81,10 @@ export async function viewArticle(data, Config = {
 }
 
 /**
- *  可以用一个配置
- * @param {*} page 
- * @param {*} Config 
+ * 公告列表 请求
+ * @param {String} title 标题
+ * @param {Object} page 页面配置
+ * @param {Object} Config 请求配置
  */
 export async function getNoticeList(title = '', page = {
     pageNo: 0,
@@ -83,7 +93,7 @@ export async function getNoticeList(title = '', page = {
     method: 'post',
     url: '/api/services/portal/publicationannouncement/getPublicationAnnouncement',
     data: {
-        publishType: 3,
+        publishType: 2,
         status: 1
     }
 }) {
@@ -93,6 +103,12 @@ export async function getNoticeList(title = '', page = {
     return request(Config, "getNoticeList request bad");
 }
 
+/**
+ * 发文列表请求
+ * @param {String} title 标题
+ * @param {Object} page 页面配置
+ * @param {Object} Config 请求配置
+ */
 export async function getDispatchList(title = '', page = {
     pageNo: 0,
     pageSize: 10
@@ -100,7 +116,7 @@ export async function getDispatchList(title = '', page = {
     method: 'post',
     url: '/api/services/portal/publicationannouncement/getPublicationAnnouncement',
     data: {
-        publishType: 2,
+        publishType: 3,
         status: 1
     }
 }) {
