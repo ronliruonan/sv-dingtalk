@@ -133,10 +133,15 @@ export function timerFun(fn, immediately = false, timeSpan = 1000 * 60 * 5) {
     if (typeof fn !== 'function') return;
     if (immediately) fn();
 
-    setTimeout(() => {
+    let timerId = -1;
+    timerId = setTimeout(() => {
         fn();
-        setTimeout(() => { timerFun(fn, immediately, timeSpan) }, timeSpan, fn, timeSpan);
+        setTimeout(() => {
+            timerFun(fn, immediately, timeSpan)
+        }, timeSpan, fn, timeSpan);
     }, timeSpan, fn, timeSpan);
+
+    return timerId;
 }
 
 export function pullToRefresh(func = async function () { }) {

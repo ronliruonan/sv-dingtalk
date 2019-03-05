@@ -20,13 +20,14 @@ export default {
   },
   data: function() {
     return {
-      headerMeta: []
+      headerMeta: [],
+      timerId: -1
     };
   },
   created: function() {
     const data = getMetaHeader();
     this.headerMeta = data;
-    timerFun(this.getTotoCount, true, 1000 * 60);
+    this.timerId = timerFun(this.getTotoCount, true, 1000 * 60);
   },
   methods: {
     getTotoCount: async function() {
@@ -41,6 +42,10 @@ export default {
         todoApp.bage = count;
         todoApp.isMove = count > 0;
       } catch (e) {
+        if (e.errcode === 100) {
+          clearTimeout(this.timerId);
+        }
+
         logger.error(JSON.stringify(e));
       }
     }

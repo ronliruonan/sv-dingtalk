@@ -136,3 +136,6 @@ debounced_version.cancel();
 
 
 ## 离线缓存的旧方式，psa的新方式？
+
+
+两个事儿：Service Worker  Node中间件：例如将请求合并

@@ -33,7 +33,8 @@ export default {
       jtListOptions: {
         jtFrom: "columnPlateId",
         jtTime: "releaseTime"
-      }
+      },
+      timerId: -1
     };
   },
   mounted: function() {
@@ -67,6 +68,10 @@ export default {
           });
         }
       } catch (e) {
+        if (e.errcode === 100) {
+          clearTimeout(this.timerId);
+        }
+
         logger.error(JSON.stringify(e));
       }
     }
