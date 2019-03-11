@@ -1,5 +1,6 @@
 CACHE MANIFEST
-# v201902131847 by RonLi
+# test flush appcache
+# Update at 2019/03/11 by Ron Li kun le
 
 CACHE:
 # 静态 图片资源
@@ -13,13 +14,13 @@ favicon.ico
 /ayas/dingtalk.open-2.3.0.js
 
 # 动态 脚本资源
-/js/index.9f7d2af5.js
+/js/index.d4de6f08.js
 /js/chunk-vendors.f2f87a8b.js
-/js/chunk-common.574e6ac8.js
+/js/chunk-common.67373154.js
 
 # 动态 样式资源
-/css/index.424c94ad.css
-/css/chunk-common.09ed8e53.css
+/css/index.a937e692.css
+/css/chunk-common.5d6c1315.css
 
 
 NETWORK:

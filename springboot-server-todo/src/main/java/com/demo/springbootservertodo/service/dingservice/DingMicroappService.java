@@ -6,6 +6,7 @@ import com.dingtalk.api.request.OapiMicroappListByUseridRequest;
 import com.dingtalk.api.response.OapiMicroappListByUseridResponse;
 import com.taobao.api.ApiException;
 import org.springframework.stereotype.Service;
+//import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 服务端API - 应用管理
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
  * 2018-12-30
  */
 @Service
+//@Transactional
 public class DingMicroappService {
 
     /**

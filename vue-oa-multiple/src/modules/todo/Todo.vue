@@ -8,7 +8,14 @@
       :has-more="hasMore"
       :jt-options="jtListOptions"
       @page-more="pageNo += 1"
-    ></jt-list>
+    >
+      <slot-msg
+        v-if="apiError.isAvailable"
+        :msgType="'error'"
+        :msg="apiError.msg"
+        :msgDetail="apiError.detail"
+      ></slot-msg>
+    </jt-list>
   </section>
 </template>
 
@@ -19,7 +26,7 @@ import JtList from "@/components/jt-list.vue";
 
 export default {
   name: "todo",
-  components: { JtList },
+  components: { JtList, SlotMsg: () => import("@/components/slot-msg.vue") },
   data: function() {
     return {
       items: [],
@@ -29,7 +36,12 @@ export default {
         jtTime: "createTime"
       },
       pageNo: -1,
-      pageSize: 10
+      pageSize: 10,
+      apiError: {
+        isAvailable: false,
+        msg: "网络请求异常",
+        detail: null
+      }
     };
   },
   watch: {
@@ -54,7 +66,13 @@ export default {
           }
         })
         .catch(error => {
-          console.log(error);
+          this.apiError = {
+            ...this.apiError,
+            ...{
+              isAvailable: true,
+              detail: JSON.stringify(error)
+            }
+          };
         });
     }
   }

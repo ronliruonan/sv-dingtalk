@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.demo.springbootservertodo.entity.DingAccessToken;
 import com.demo.springbootservertodo.entity.DingJsApiTicket;
 import com.demo.springbootservertodo.entity.DingProperty;
-import com.demo.springbootservertodo.service.AuthService;
+import com.demo.springbootservertodo.service.authService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -17,14 +17,15 @@ import java.io.UnsupportedEncodingException;
 @CrossOrigin
 @RestController
 @RequestMapping(value = "/api/auth", produces = "application/json;charset=UTF-8")
-public class AuthApiController {
-    private final AuthService authService;
+public class authApiController {
+    private final authService authService;
 
     @Autowired
-    public AuthApiController(AuthService authService1) {
+    public authApiController(authService authService1) {
         this.authService = authService1;
     }
 
+//    public authApiController(){}
 
     @ApiOperation(value = "测试接口：获取钉钉配", notes = "不建议在生产环境使用")
     @ApiImplicitParams({

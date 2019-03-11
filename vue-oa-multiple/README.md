@@ -23,11 +23,17 @@
 # 上线需要
 1. ***HTTPS协议，及ssl证书 .crt .key文件***
 2. ***Nginx***
-   - ***启用gzip***
-   - ***配置Https协议 及 接口代理配置***
-   - ***编码格式***
-   - ***端口***
-
+   - *** 启用gzip ***
+   - *** 配置Https协议 及 接口代理配置 ***
+   - *** 编码格式 ***
+   - *** 端口 ***
+   - *** mime type ***
+# 发布准备
+1. *** env.js 完成基本的接口配置 ***
+2. *** index.manifest 重新修正 ***
+3. *** index.html中的preload的属性配置要干掉 ***
+4. *** 配置数据库的钉钉配置 ***
+5. *** 配置 meta.js中的agentId ***
 
 ## Project setup
 ```
@@ -44,23 +50,9 @@ npm run serve
 npm run build
 ```
 
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Run your unit tests
-```
-npm run test:unit
-```
-
 ## 技术要点：
 
+### 0. 插槽的使用组件
 ### 1. Webpack 打包（vue.config.js）
 1.    采用Compression-webpack-plugin 超过10k的压缩为 .gzip文件
 2.    ProductionSourceMap: false 是否生成 .map文件

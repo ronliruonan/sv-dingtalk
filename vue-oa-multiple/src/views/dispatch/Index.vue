@@ -11,7 +11,14 @@
     :has-more="hasMore"
     :jt-options="jtListOptions"
     @page-more="pageNo = pageNo + 1"
-  ></jt-list>
+  >
+    <slot-msg
+      v-if="apiError.isAvailable"
+      :msgType="'error'"
+      :msg="apiError.msg"
+      :msgDetail="apiError.detail"
+    ></slot-msg>
+  </jt-list>
 </template>
 
 <script>
@@ -22,7 +29,7 @@ import { pullToRefresh } from "../../lib/util";
 
 export default {
   name: "notice-index",
-  components: { JtList },
+  components: { JtList, SlotMsg: () => import("@/components/slot-msg.vue") },
   data: function() {
     return {
       items: [],
@@ -34,7 +41,12 @@ export default {
       },
       pageNo: -1,
       pageSize: 10,
-      searchTitle: ""
+      searchTitle: "",
+      apiError: {
+        isAvailable: false,
+        msg: "网络请求异常",
+        detail: null
+      }
     };
   },
   watch: {
@@ -91,7 +103,13 @@ export default {
           this.dict = data.result.columnPlates;
         }
       } catch (e) {
-        logger.error(JSON.stringify(e));
+        this.apiError = {
+          ...this.apiError,
+          ...{
+            isAvailable: true,
+            detail: JSON.stringify(e)
+          }
+        };
       }
     }
   }

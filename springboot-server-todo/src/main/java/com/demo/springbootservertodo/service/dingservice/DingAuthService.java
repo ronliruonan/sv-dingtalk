@@ -7,8 +7,10 @@ import com.dingtalk.api.response.OapiGetJsapiTicketResponse;
 import com.dingtalk.api.response.OapiGettokenResponse;
 import com.taobao.api.ApiException;
 import org.springframework.stereotype.Service;
+//import org.springframework.transaction.annotation.Transactional;
 
 @Service
+//@Transactional
 public class DingAuthService {
     /**
      * 获取access token

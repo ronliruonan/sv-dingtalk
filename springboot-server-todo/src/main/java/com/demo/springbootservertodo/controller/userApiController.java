@@ -2,7 +2,7 @@ package com.demo.springbootservertodo.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.demo.springbootservertodo.entity.DingAccessToken;
-import com.demo.springbootservertodo.service.AuthService;
+import com.demo.springbootservertodo.service.authService;
 import com.demo.springbootservertodo.service.dingservice.DingUserService;
 import com.taobao.api.ApiException;
 import com.taobao.api.TaobaoResponse;
@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 @RestController
 @RequestMapping(value = "/api/users", produces = "application/json;charset=UTF-8")
-public class UserApiController {
+public class userApiController {
 
     private final DingUserService dingUserService;
 
-    private final AuthService authService;
+    private final authService authService;
 
     @Autowired
-    public UserApiController(AuthService authService1, DingUserService dingUserService1) {
+    public userApiController(authService authService1, DingUserService dingUserService1) {
         this.authService = authService1;
         this.dingUserService = dingUserService1;
     }

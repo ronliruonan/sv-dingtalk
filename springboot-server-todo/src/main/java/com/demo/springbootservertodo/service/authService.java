@@ -14,6 +14,7 @@ import com.dingtalk.oapi.lib.aes.DingTalkJsApiSingnature;
 import com.taobao.api.ApiException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+//import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
@@ -24,7 +25,8 @@ import java.util.Date;
  * DingAccessToken & jsticket 的获取封装
  */
 @Service
-public class AuthService {
+//@Transactional
+public class authService {
     @Autowired
     DingAuthService dingAuthService;
 

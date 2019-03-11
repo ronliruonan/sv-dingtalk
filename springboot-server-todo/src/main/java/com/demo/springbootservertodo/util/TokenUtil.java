@@ -2,19 +2,21 @@ package com.demo.springbootservertodo.util;
 
 import com.alibaba.fastjson.JSONObject;
 import com.demo.springbootservertodo.entity.DingAccessToken;
-import com.demo.springbootservertodo.service.AuthService;
+import com.demo.springbootservertodo.service.authService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+//import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
+//@Transactional
 public class TokenUtil {
     @Autowired
-    private static AuthService authService;
+    private static authService authService;
 
 //    @Autowired
 //    public void setAuthService(AuthService authService1) {
-//        this.authService = authService1;
+//        this.AuthService = authService1;
 //    }
 
     public static JSONObject CheckAccessToken(String appKey) {

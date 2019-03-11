@@ -1,5 +1,6 @@
 <template>
   <section class="jt-list">
+    <slot></slot>
     <div class="list-item" v-for="(item, index) in items" :key="index" @click="jsItemOPen(item)">
       <p class="title">{{item.title}}</p>
       <!-- <p class="content" v-if="item.content">{{item.content}}</p> -->
@@ -111,8 +112,8 @@ export default {
     .title {
       color: $txt-color-h1;
     }
-    .content{
-        color: $txt-color-h2;
+    .content {
+      color: $txt-color-h2;
     }
     .other {
       margin-top: 10px;

@@ -22,9 +22,9 @@ export const DEFAULTDINGUSERID = process.env.NODE_ENV === "production" ? 'xiangx
 // export const DINGAPPKEY = "dingy2ovuvgbpwrzedqn";
 // export const DINGAGENTID = "214032587";
 
-// 这是Tab吗？
-export const DINGAPPKEY = "dingxgyezybqss11gqi6";
-export const DINGAGENTID = "213833119";
+// 配置项？
+export const DINGAPPKEY = "ding0k7bsqokaosdzwya";
+export const DINGAGENTID = "237991893";
 
 /**
  * 是否为钉钉环境

@@ -3,10 +3,8 @@ package com.demo.springbootservertodo.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.demo.springbootservertodo.entity.DingAccessToken;
-import com.demo.springbootservertodo.service.AuthService;
+import com.demo.springbootservertodo.service.authService;
 import com.demo.springbootservertodo.service.dingservice.DingMicroappService;
-import com.demo.springbootservertodo.util.TokenUtil;
-import com.dingtalk.api.response.OapiMicroappListByUseridResponse;
 import com.taobao.api.ApiException;
 import com.taobao.api.TaobaoResponse;
 import io.swagger.annotations.ApiImplicitParam;
@@ -22,12 +20,12 @@ import java.security.NoSuchAlgorithmException;
 @CrossOrigin
 @RestController
 @RequestMapping(value = "/api/microapps", produces = "application/json;charset=UTF-8")
-public class MicroAppApiController {
-    private final AuthService authService;
+public class microAppApiController {
+    private final authService authService;
     private final DingMicroappService microappService;
 
     @Autowired
-    public MicroAppApiController(AuthService authService1, DingMicroappService dingMicroappService) {
+    public microAppApiController(authService authService1, DingMicroappService dingMicroappService) {
         this.authService = authService1;
         this.microappService = dingMicroappService;
     }
