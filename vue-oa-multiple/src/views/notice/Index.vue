@@ -23,13 +23,16 @@
 
 <script>
 import { getNoticeList } from "../../lib/portal-web.js";
+
 import JtList from "../../components/jt-list.vue";
+import slotMsg from "../../components/slot-msg.vue";
+
 import logger from "../../lib/logger";
 import { pullToRefresh } from "../../lib/util";
 
 export default {
   name: "notice-index",
-  components: { JtList, SlotMsg: () => import("@/components/slot-msg.vue") },
+  components: { JtList, slotMsg },
   data: function() {
     return {
       items: [],
@@ -44,7 +47,7 @@ export default {
       searchTitle: "",
       apiError: {
         isAvailable: false,
-        msg: "网络请求异常",
+        msg: "网络请求异常，请稍后重试",
         detail: null
       }
     };

@@ -23,10 +23,11 @@
 import { getTodoList } from "../../lib/task-web.js";
 
 import JtList from "@/components/jt-list.vue";
+import slotMsg from "../../components/slot-msg.vue";
 
 export default {
   name: "todo",
-  components: { JtList, SlotMsg: () => import("@/components/slot-msg.vue") },
+  components: { JtList, slotMsg },
   data: function() {
     return {
       items: [],
@@ -39,7 +40,7 @@ export default {
       pageSize: 10,
       apiError: {
         isAvailable: false,
-        msg: "网络请求异常",
+        msg: "网络请求异常，请稍后重试",
         detail: null
       }
     };

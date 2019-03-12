@@ -134,13 +134,13 @@ export function timerFun(fn, immediately = false, timeSpan = 1000 * 60 * 5) {
     if (immediately) fn();
 
     let timerId = -1;
-    timerId = setTimeout(() => {
+    timerId = setInterval(() => {
         fn();
-        setTimeout(() => {
-            timerFun(fn, immediately, timeSpan)
-        }, timeSpan, fn, timeSpan);
+        // setTimeout(() => {
+        //     timerFun(fn, immediately, timeSpan)
+        // }, timeSpan, fn, timeSpan);
     }, timeSpan, fn, timeSpan);
-
+    
     return timerId;
 }
 

@@ -25,13 +25,15 @@
 <script>
 // @ is an alias to /src
 import jtList from "../../components/jt-list.vue";
+import slotMsg from "../../components/slot-msg.vue";
+
 import { getIndexGonggao } from "../../lib/portal-web.js";
 import logger from "../../lib/logger";
 import { pullToRefresh, timerFun } from "../../lib/util";
 
 export default {
   name: "index-notice",
-  components: { jtList, SlotMsg: () => import("@/components/slot-msg.vue") },
+  components: { jtList, slotMsg },
   data: function() {
     return {
       items: [],
@@ -43,7 +45,7 @@ export default {
       },
       apiError: {
         isAvailable: false,
-        msg: "网络请求异常",
+        msg: "网络请求异常，请稍后重试",
         detail: null
       },
       timerId: -1
@@ -52,7 +54,7 @@ export default {
   mounted: function() {
     this.init();
 
-    timerFun(this.init, false, 1000 * 60);
+    this.timerId = timerFun(this.init, false, 1000 * 60);
   },
   activated: function() {
     pullToRefresh(this.init);
@@ -80,10 +82,6 @@ export default {
           });
         }
       } catch (e) {
-        // if (e.errcode === 100) {
-        clearTimeout(this.timerId);
-        // }
-
         this.apiError = {
           ...this.apiError,
           ...{
@@ -91,6 +89,10 @@ export default {
             detail: JSON.stringify(e)
           }
         };
+
+        if (this.timerId !== -1) {
+          clearInterval(this.timerId);
+        }
       }
     }
   }
