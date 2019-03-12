@@ -15,4 +15,4 @@
 3. setTimeout的http请求失败后，clear方案漏洞，改为了setInterval方式
 
 ### 03/12/2019
-1. Node中间件：请求合并
+1. Node中间件：请求合并【未完成】
