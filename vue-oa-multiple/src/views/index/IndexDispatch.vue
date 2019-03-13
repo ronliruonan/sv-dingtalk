@@ -74,6 +74,8 @@ export default {
         // Article Api 没有字典项，自己安装
         localStorage.setItem("columnplates", JSON.stringify(this.dict));
 
+        this.apiError.isAvailable = false;
+
         if (isRefresh) {
           // eslint-disable-next-line
           dd.device.notification.toast({

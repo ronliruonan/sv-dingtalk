@@ -64,6 +64,8 @@ export default {
           if (data.success === true) {
             this.items.push(...data.result.items.items);
             this.hasMore = this.items.length < data.result.items.totalCount;
+
+            this.apiError.isAvailable = false;
           }
         })
         .catch(error => {

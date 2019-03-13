@@ -101,6 +101,8 @@ export default {
         isRefresh ? (this.items = dataItems) : this.items.push(...dataItems);
         this.hasMore = this.items.length < dataTotalCount;
 
+        this.apiError.isAvailable = false;
+
         if (data.result.columnPlates) this.dict = data.result.columnPlates;
       } catch (e) {
         this.apiError = {
