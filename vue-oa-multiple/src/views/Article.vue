@@ -1,33 +1,71 @@
 <template>
   <section class="article-detail">
-    <h3 style="margin-top:10px; text-align: center;">{{item.title}}</h3>
-    <p style="font-size:14px; color:#999;">
-      <span>来源: {{item.columnPlateId|findDict(dict)}}</span>
-      <span style="float:right;">发布于: {{item.releaseTime| formateDate}}</span>
-    </p>
-    <article v-html="item.content"></article>
+    <h3 style="margin:5px 0 .8em 0; text-align: center;">{{item.title}}</h3>
+    <section style="font-size:14px; color:#999;padding-bottom:.5em;">
+      <span>栏目: {{item.columnPlateName}}</span>
+      <span style="float:right;">浏览: {{item.broweCount}}次</span>
+    </section>
+    <section style="font-size:14px; color:#999;padding-bottom:.4em;">
+      <span>日期: {{item.releaseTime | formateDate}}</span>
+      <span style="float:right;">{{item.publishingDepartment}}</span>
+    </section>
+
+    <article v-html="item.content" style="border-top:1px solid #f25643;padding-top:10px;"></article>
+
+    <section
+      style="font-size:14px;margin:1em -10px 0 -10px;padding:1em 10px;background-color:#f6f6f6;"
+    >
+      <p>
+        <strong>发布范围：</strong>
+        <br>
+        <i
+          class="bage"
+          v-for="(itemScope,index) in releaseScopes"
+          :key="index"
+        >{{itemScope.publishingDepartment}}</i>
+      </p>
+      <p style="margin-top:1em;">
+        <strong>附件：</strong>
+        <template v-if="item.files && item.files.length">
+          <br>
+          <a
+            style="display:block;padding:2px 1em;"
+            v-for="(file, index) in item.files"
+            :key="index"
+            :href="file.fileUrl"
+          >{{file.fileName}}</a>
+        </template>
+        <template v-else>
+          <span>无</span>
+        </template>
+      </p>
+    </section>
   </section>
 </template>
 
 <script>
-import { parseCorpId, filterGetDict, filterDateFormate } from "../lib/util.js";
+import {
+  parseCorpId,
+  // filterGetDict,
+  filterDateFormate
+} from "../lib/util.js";
 import { viewArticle } from "../lib/portal-web.js";
 import logger from "../lib/logger.js";
 
 export default {
   name: "article-detail",
   filters: {
-    findDict: (value, dict) => {
-      if (!value) return "";
-      if (!dict) return value;
+    // findDict: (value, dict) => {
+    //   if (!value) return "";
+    //   if (!dict) return value;
 
-      return filterGetDict(value, dict);
-    },
+    //   return filterGetDict(value, dict);
+    // },
     formateDate: function(value) {
       if (!value) return "";
 
       const date = new Date(value);
-      return filterDateFormate(date, "yyyy-MM-dd hh:mm");
+      return filterDateFormate(date, "yyyy-MM-dd");
     }
   },
   data: function() {
@@ -36,16 +74,18 @@ export default {
         title: "",
         content: "",
         releaseTime: "",
-        columnPlateId: ""
+        columnPlateId: "",
+        columnPlateName: ""
       },
-      dict: []
+      releaseScopes: []
+      //   dict: []
     };
   },
-  created: function() {
-    const localDictStr = localStorage.getItem("columnplates");
-    const localDict = JSON.parse(localDictStr);
-    this.dict = Array.isArray(localDict) ? localDict : [];
-  },
+  //   created: function() {
+  //     // const localDictStr = localStorage.getItem("columnplates");
+  //     // const localDict = JSON.parse(localDictStr);
+  //     // this.dict = Array.isArray(localDict) ? localDict : [];
+  //   },
   mounted: function() {
     const query = this.$route.query;
     const id = parseCorpId(location.search, "id");
@@ -65,6 +105,10 @@ export default {
           return logger.warn(JSON.stringify(data.error));
 
         this.item = { ...this.item, ...data.result.item };
+        this.releaseScopes = [
+          ...this.releaseScopes,
+          ...data.result.releaseScopes
+        ];
       } catch (e) {
         logger.error(JSON.stringify(e));
       }
@@ -76,14 +120,24 @@ export default {
 <style lang="scss">
 .article-detail {
   margin-top: 1px;
-  padding: 5px 10px;
+  padding: 5px 10px 0 10px;
   height: 100%;
   box-sizing: border-box;
 
   background-color: $bg-color-card;
 
+  .bage {
+    display: inline-block;
+    margin: 2px;
+    padding: 1px 10px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    font-style: normal;
+    background-color: rgba(206, 206, 206, 0.4); //$bg-color-bage;
+  }
+
   article {
-    margin-top: 10px;
+    // margin-top: 10px;
     color: $txt-color-hei;
     font-size: 16px;
 

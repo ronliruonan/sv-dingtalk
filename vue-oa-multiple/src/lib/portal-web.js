@@ -74,7 +74,7 @@ export async function getIndexGonggao(Config = {
 export async function viewArticle(data, Config = {
     method: 'post',
     url: '/api/services/portal/publicationannouncement/getPublicationAnnouncementById',
-    data: { id: -1 }
+    data: { id: -1, type: 'view' }
 }) {
     Config.data = { ...Config.data, ...data }
     return request(Config, 'viewArticl request bad');

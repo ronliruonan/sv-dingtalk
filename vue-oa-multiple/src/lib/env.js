@@ -1,18 +1,18 @@
 /**
  * DING API地址:
+ * 服务端地址：https://www.ayaron.work
  */
-export const OPENAPIHOST = "https://www.ayaron.work/ding";
+export const OPENAPIHOST = "http://192.168.1.90:9043/ding";
 /**
  * 门户 API地址：
- * NGINX地址：https://api.ayaron.work/portal
  * 内网地址：http://192.168.1.90:8808
  */
-export const PORTALAPIHOST = 'https://www.ayaron.work/portal';
+export const PORTALAPIHOST = 'http://192.168.1.90:9043/portal';
 /**
  * 任务中心 API地址：
  * 内网地址：http://192.168.1.90:8807/services/api 
  */
-export const TASKAPIHOST = 'https://www.ayaron.work/task/services/api';
+export const TASKAPIHOST = 'http://192.168.1.90:9043/task/services/api';
 export const HASCONSOLE = typeof console !== undefined;
 /**
  * 默认账号

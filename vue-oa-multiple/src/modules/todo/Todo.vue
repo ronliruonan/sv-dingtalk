@@ -25,10 +25,13 @@ import { getTodoList } from "../../lib/task-web.js";
 import JtList from "@/components/jt-list.vue";
 import slotMsg from "../../components/slot-msg.vue";
 
+import { pullToRefresh } from "../../lib/util";
+import logger from "../../lib/logger.js";
+
 export default {
   name: "todo",
   components: { JtList, slotMsg },
-  data: function() {
+  data() {
     return {
       items: [],
       hasMore: false,
@@ -46,37 +49,80 @@ export default {
     };
   },
   watch: {
-    pageNo: function() {
-      this.pageFunc();
+    pageNo: function(v1) {
+      if (v1 === 1) return;
+      this.pageFunc(this.pageNo, this.pageSize);
     }
   },
   mounted: function() {
-    this.pageNo = 1;
+    this.init();
+
+    pullToRefresh(this.init);
   },
   methods: {
-    pageFunc: function() {
-      getTodoList(null, {
-        pageNo: this.pageNo,
-        pageSize: this.pageSize
-      })
-        .then(response => {
-          const data = response.data;
-          if (data.success === true) {
-            this.items.push(...data.result.items.items);
-            this.hasMore = this.items.length < data.result.items.totalCount;
+    async init(isRefresh = false, txt = "待办列表：刷新完成") {
+      this.pageNo = 1;
 
-            this.apiError.isAvailable = false;
-          }
-        })
-        .catch(error => {
-          this.apiError = {
-            ...this.apiError,
-            ...{
-              isAvailable: true,
-              detail: JSON.stringify(error)
-            }
-          };
+      await this.pageFunc(this.pageNo, this.pageSize, isRefresh);
+      if (isRefresh) {
+        // eslint-disable-next-line
+        dd.device.notification.toast({
+          icon: "success",
+          text: txt
         });
+      }
+    },
+    async pageFunc(pageNo = 1, pageSize = 0, isRefresh = false) {
+      try {
+        const response = await getTodoList(null, {
+            pageNo: pageNo,
+            pageSize: pageSize
+          }),
+          data = response.data;
+
+        if (data.success !== true)
+          return logger.warn(JSON.stringify(data.error));
+
+        const {
+          items: dataItems,
+          totalCount: dataTotalCount
+        } = data.result.items;
+
+        isRefresh ? (this.items = dataItems) : this.items.push(...dataItems);
+        this.hasMore = this.items.length < dataTotalCount;
+
+        this.apiError.isAvailable = false;
+      } catch (error) {
+        this.apiError = {
+          ...this.apiError,
+          ...{
+            isAvailable: true,
+            detail: JSON.stringify(error)
+          }
+        };
+      }
+      //   getTodoList(null, {
+      //     pageNo: this.pageNo,
+      //     pageSize: this.pageSize
+      //   })
+      //     .then(response => {
+      //       const data = response.data;
+      //       if (data.success === true) {
+      //         this.items.push(...data.result.items.items);
+      //         this.hasMore = this.items.length < data.result.items.totalCount;
+
+      //         this.apiError.isAvailable = false;
+      //       }
+      //     })
+      //     .catch(error => {
+      //       this.apiError = {
+      //         ...this.apiError,
+      //         ...{
+      //           isAvailable: true,
+      //           detail: JSON.stringify(error)
+      //         }
+      //       };
+      //     });
     }
   }
 };

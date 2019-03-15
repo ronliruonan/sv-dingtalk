@@ -23,6 +23,7 @@
 
 <script>
 import { getDispatchList } from "../../lib/portal-web.js";
+
 import JtList from "../../components/jt-list.vue";
 import slotMsg from "../../components/slot-msg.vue";
 
@@ -54,7 +55,6 @@ export default {
   watch: {
     pageNo: function(v1) {
       if (v1 === 1) return;
-
       this.pageFunc(this.pageNo, this.pageSize);
     }
   },
@@ -103,9 +103,7 @@ export default {
 
         this.apiError.isAvailable = false;
 
-        if (data.result.columnPlates) {
-          this.dict = data.result.columnPlates;
-        }
+        if (data.result.columnPlates) this.dict = data.result.columnPlates;
       } catch (e) {
         this.apiError = {
           ...this.apiError,
