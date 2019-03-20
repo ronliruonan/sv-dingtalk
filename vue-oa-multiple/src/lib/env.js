@@ -1,31 +1,34 @@
 /**
- * DING API地址:
- * 服务端地址：https://www.ayaron.work
- * Online, https://
+ * Baidu：https://www.ayaron.work
+ * Online, https://cwe.cwewater.com
+ * Develop, http://192.168.1.90:9043
  */
-export const OPENAPIHOST = "http://192.168.1.90:9043/ding";
+const DOMAIN = process.env.NODE_ENV === "production" ? '' : 'http://192.168.1.90:9043';
+/**
+ * DING API地址:
+ */
+export const OPENAPIHOST = `${DOMAIN}/ding`;
 /**
  * 门户 API地址：
- * 内网地址：http://192.168.1.90:8808
  */
-export const PORTALAPIHOST = 'http://192.168.1.90:9043/portal';
+export const PORTALAPIHOST = `${DOMAIN}/portal`;
 /**
  * 任务中心 API地址：
- * 内网地址：http://192.168.1.90:8807/services/api 
  */
-export const TASKAPIHOST = 'http://192.168.1.90:9043/task/services/api';
+export const TASKAPIHOST = `${DOMAIN}/task/services/api`;
 export const HASCONSOLE = typeof console !== undefined;
 /**
  * 默认账号
  */
-export const DEFAULTDINGUSERID = process.env.NODE_ENV === "production" ? 'xiangxiaoqiang001' : 'xiangxiaoqiang001';
+export const DEFAULTDINGUSERID = process.env.NODE_ENV === "production" ? 'xiangxiaoqiang001' : '';
 
-// export const DINGAPPKEY = "dingy2ovuvgbpwrzedqn";
-// export const DINGAGENTID = "214032587";
+// 【小人头】微应用
+export const DINGAPPKEY = "dingi9cybqwiiw8iknte";
+export const DINGAGENTID = "245346547";
 
 // 配置项？
-export const DINGAPPKEY = "ding0k7bsqokaosdzwya";
-export const DINGAGENTID = "237991893";
+// export const DINGAPPKEY = "ding0k7bsqokaosdzwya";
+// export const DINGAGENTID = "237991893";
 
 /**
  * 是否为钉钉环境

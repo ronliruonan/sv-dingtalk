@@ -36,20 +36,13 @@
 5. *** 配置 meta.js中的agentId ***
 6. *** DingTalkApiJar ***
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
+## 检查步骤
+1. Dingtalk-SSO：检查Jar包是否部署成功，通过内网的swagger-ui.html来进行判断
+2. CWE-Portal：配置Nginx：gzip、接口代理、编码格式、端口（暂时不考虑AppCache）
+3. CWE-Portal：在门户配置nginx，为了不产生跨域
+4. 修改env.js为Online环境
+5. 数据库里面要配置 
+6. 钉钉配置时候别忘记添加CorpId在Url上
 
 ## 技术要点：
 
