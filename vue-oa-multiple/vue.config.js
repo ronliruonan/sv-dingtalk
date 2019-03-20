@@ -30,6 +30,7 @@ module.exports = {
         todo: 'src/modules/todo/todo.js',
         dispatch: 'src/modules/dispatch/dispatch.js',
         notice: 'src/modules/notice/notice.js',
+        news: 'src/modules/news/news.js',
         article: 'src/modules/article/article.js'
     },
     configureWebpack: () => {

@@ -34,6 +34,7 @@
 3. *** index.html中的preload的属性配置要干掉 ***
 4. *** 配置数据库的钉钉配置 ***
 5. *** 配置 meta.js中的agentId ***
+6. *** DingTalkApiJar ***
 
 ## Project setup
 ```

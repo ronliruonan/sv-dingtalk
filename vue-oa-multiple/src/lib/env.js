@@ -1,6 +1,7 @@
 /**
  * DING API地址:
  * 服务端地址：https://www.ayaron.work
+ * Online, https://
  */
 export const OPENAPIHOST = "http://192.168.1.90:9043/ding";
 /**

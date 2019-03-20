@@ -39,7 +39,7 @@ export default {
       dict: [],
       hasMore: false,
       jtListOptions: {
-        jtFrom: "columnPlateId",
+        jtFrom: "columnPlateName",
         jtTime: "releaseTime"
       },
       pageNo: -1,

@@ -5,7 +5,10 @@
     :item-open="{
         newLink: false,
         curLink: {
-            name:'article'
+            name:'article',
+            query: {
+                isNews: '1'
+            }
         }
     }"
     :has-more="hasMore"
@@ -22,7 +25,7 @@
 </template>
 
 <script>
-import { getDispatchList } from "../../lib/portal-web.js";
+import { getNewsList } from "../../lib/portal-web.js";
 
 import JtList from "../../components/jt-list.vue";
 import slotMsg from "../../components/slot-msg.vue";
@@ -31,7 +34,7 @@ import logger from "../../lib/logger";
 import { pullToRefresh } from "../../lib/util";
 
 export default {
-  name: "notice-index",
+  name: "news-index",
   components: { JtList, slotMsg },
   data: function() {
     return {
@@ -69,7 +72,7 @@ export default {
     pullToRefresh(this.init);
   },
   methods: {
-    init: async function(isRefresh = false, txt = "发文列表：刷新完成!") {
+    init: async function(isRefresh = false, txt = "新闻列表：刷新完成!") {
       this.pageNo = 1;
 
       await this.pageFunc(this.pageNo, this.pageSize, isRefresh);
@@ -84,7 +87,7 @@ export default {
     },
     pageFunc: async function(pageNo = 1, pageSize = 10, isRefresh = false) {
       try {
-        const response = await getDispatchList(this.searchTitle, {
+        const response = await getNewsList(this.searchTitle, {
           pageNo: pageNo,
           pageSize: pageSize
         });

@@ -5,11 +5,11 @@
     :item-open="{
         newLink: {
             pathName:'article.html',
-            search:'?id={{id}}'
+            search:'?id={{id}}&isNews=1'
         },
         curLink: false
     }"
-    :more-open="'notice.html'"
+    :more-open="'news.html'"
     :has-more="hasMore"
     :jt-options="jtListOptions"
   >
@@ -27,12 +27,12 @@
 import jtList from "../../components/jt-list.vue";
 import slotMsg from "../../components/slot-msg.vue";
 
-import { getIndexGonggao } from "../../lib/portal-web.js";
+import { getIndexNews } from "../../lib/portal-web.js";
 import logger from "../../lib/logger";
 import { pullToRefresh, timerFun } from "../../lib/util";
 
 export default {
-  name: "index-notice",
+  name: "index-news",
   components: { jtList, slotMsg },
   data: function() {
     return {
@@ -40,7 +40,7 @@ export default {
       dict: [],
       hasMore: false,
       jtListOptions: {
-        jtFrom: "columnPlateId",
+        jtFrom: "columnPlateName",
         jtTime: "releaseTime"
       },
       apiError: {
@@ -60,9 +60,9 @@ export default {
     pullToRefresh(this.init);
   },
   methods: {
-    init: async function(isRefresh = false, txt = "公告信息：刷新完成!") {
+    init: async function(isRefresh = false, txt = "新闻信息：刷新完成!") {
       try {
-        const response = await getIndexGonggao();
+        const response = await getIndexNews();
         const data = response.data;
         if (data.success !== true)
           return logger.warn(JSON.stringify(data.error));

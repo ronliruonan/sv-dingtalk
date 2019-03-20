@@ -19,7 +19,8 @@
 
 <script>
 import IndexAppList from "@/views/index/IndexAppList.vue";
-import IndexNotice from "@/views/index/IndexNotice.vue";
+// import IndexNotice from "@/views/index/IndexNotice.vue";
+import IndexNews from "@/views/index/IndexNews.vue";
 import IndexDispatch from "@/views/index/IndexDispatch.vue";
 
 export default {
@@ -30,7 +31,8 @@ export default {
   },
   components: {
     IndexAppList,
-    IndexNotice,
+    // IndexNotice,
+    IndexNews,
     IndexDispatch
   },
   data: function() {

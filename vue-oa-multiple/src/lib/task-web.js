@@ -25,14 +25,14 @@ function request(Config, msg) {
 }
 
 /**
- * 获取待办个数
+ * 获取待办个数 
  * @param {*} Config 
  */
 export async function getIndexTodoCount(Config = {
     method: 'post',
     url: '/getuntasks',
     data: {
-        userId: 'jim'
+        userCode:'jim'
     }
 }) {
     return request(Config, "getTodoCount request bad");
@@ -45,7 +45,7 @@ export async function getTodoList(keyword = '', page = {
     method: 'post',
     url: '/getuntasks',
     data: {
-        userId: 'jim'
+        userCode:'jim'
     }
 }) {
     Object.assign(Config.data, { keyword: keyword });

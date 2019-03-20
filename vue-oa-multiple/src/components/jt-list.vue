@@ -80,14 +80,13 @@ export default {
         const url = newUrl(pathName, search);
         return openLink(url);
       }
-
       if (this.itemOpen.curLink) {
-        return this.$router.push({
-          name: this.itemOpen.curLink.pathName,
-          query: { id: item.id, ip: "aya" }
-        });
+        let params = Object.assign({}, this.itemOpen.curLink);
+
+        params.query = { ...params.query, ...{ id: item.id } };
+        return this.$router.push(params);
       }
-      logger.info("has nothing to do");
+      logger.info("The component 'js-list' has nothing to do");
     },
     jsmore: function() {
       if (this.moreOpen) {

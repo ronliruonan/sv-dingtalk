@@ -89,16 +89,17 @@ export default {
   mounted: function() {
     const query = this.$route.query;
     const id = parseCorpId(location.search, "id");
+    const isNews = parseCorpId(location.search, "isNews");
 
-    this.viewDetail(id || query.id);
+    this.viewDetail(id || query.id, isNews || query.isNews);
 
     // eslint-disable-next-line
     dd.ui.pullToRefresh.disable();
   },
   methods: {
-    viewDetail: async function(id = -1) {
+    viewDetail: async function(id = -1, isNews = false) {
       try {
-        const response = await viewArticle({ id: id });
+        const response = await viewArticle({ id: id, isNews: isNews });
         const data = response.data;
 
         if (data.success !== true)

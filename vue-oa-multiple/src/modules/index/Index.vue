@@ -27,7 +27,7 @@ export default {
       pageTabs: [
         { name: "我的应用", componentName: "IndexAppList" },
         { name: "发文信息", componentName: "IndexDispatch" },
-        { name: "公告信息", componentName: "IndexNotice" }
+        { name: "新闻信息", componentName: "IndexNews" }
       ],
       meta: {
         dingUserInfo: {

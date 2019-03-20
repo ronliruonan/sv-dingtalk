@@ -54,7 +54,7 @@ export default {
   mounted: function() {
     this.init();
 
-    this.timerId = timerFun(this.init, false, 1000 * 60);
+    this.timerId = timerFun(this.init, false, 1000 * 60 * 5);
   },
   activated: function() {
     pullToRefresh(this.init);

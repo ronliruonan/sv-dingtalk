@@ -65,6 +65,22 @@ export async function getIndexGonggao(Config = {
 }) {
     return request(Config, "getIndexGonggao request bad");
 }
+/**
+ * Index首页-公告列表请求
+ * @param {Object} Config 请求配置
+ */
+export async function getIndexNews(Config = {
+    method: 'post',
+    url: '/api/services/portal/newscollege/pageLoad',
+    data: {
+        "page": {
+            "pageNo": 1,
+            "pageSize": 4
+        }
+    }
+}) {
+    return request(Config, "getIndexNews request bad");
+}
 
 /**
  * 查询 文章
@@ -76,6 +92,9 @@ export async function viewArticle(data, Config = {
     url: '/api/services/portal/publicationannouncement/getPublicationAnnouncementById',
     data: { id: -1, type: 'view' }
 }) {
+    if (data && data.isNews && data.isNews === '1') {
+        Config.url = '/api/services/portal/newscollege/getNewsCollegeById'
+    }
     Config.data = { ...Config.data, ...data }
     return request(Config, 'viewArticl request bad');
 }
@@ -101,6 +120,25 @@ export async function getNoticeList(title = '', page = {
     Object.assign(Config.data, { page: page });
 
     return request(Config, "getNoticeList request bad");
+}
+/**
+ * 新闻列表 请求
+ * @param {String} title 标题
+ * @param {Object} page 页面配置
+ * @param {Object} Config 请求配置
+ */
+export async function getNewsList(title = '', page = {
+    pageNo: 0,
+    pageSize: 10
+}, Config = {
+    method: 'post',
+    url: '/api/services/portal/newscollege/getNewsCollege',
+    data: {}
+}) {
+    Object.assign(Config.data, { title: title });
+    Object.assign(Config.data, { page: page });
+
+    return request(Config, "getNewsList request bad");
 }
 
 /**

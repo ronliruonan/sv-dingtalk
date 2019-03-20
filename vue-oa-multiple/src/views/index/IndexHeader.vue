@@ -27,7 +27,7 @@ export default {
   created: function() {
     const data = getMetaHeader();
     this.headerMeta = data;
-    this.timerId = timerFun(this.getTotoCount, true, 1000 * 20);
+    this.timerId = timerFun(this.getTotoCount, true, 1000 * 60 * 5);
   },
   methods: {
     getTotoCount: async function() {
@@ -37,7 +37,7 @@ export default {
         if (data.success !== true)
           return logger.warn(JSON.stringify(data.error));
 
-        const todoApp = this.headerMeta[0];
+        const todoApp = this.headerMeta[1];
         const count = data.result.items.totalCount;
         todoApp.bage = count;
         todoApp.isMove = count > 0;
