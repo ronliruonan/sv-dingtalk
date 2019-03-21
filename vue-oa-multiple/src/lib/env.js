@@ -22,9 +22,13 @@ export const HASCONSOLE = typeof console !== undefined;
  */
 export const DEFAULTDINGUSERID = process.env.NODE_ENV === "production" ? 'xiangxiaoqiang001' : '';
 
-// 【小人头】微应用
-export const DINGAPPKEY = "dingi9cybqwiiw8iknte";
-export const DINGAGENTID = "245346547";
+// // 【小人头】微应用
+// export const DINGAPPKEY = "dingxgyezybqss11gqi6";
+// export const DINGAGENTID = "213833119";
+
+// 【水丫】
+export const DINGAPPKEY = "dingvgevt7x4ft14mky6";
+export const DINGAGENTID = "245814357";
 
 // 配置项？
 // export const DINGAPPKEY = "ding0k7bsqokaosdzwya";
