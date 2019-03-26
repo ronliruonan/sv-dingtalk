@@ -58,4 +58,3 @@
     - 参考连接：https://blog.csdn.net/chenyao1994/article/details/80783135
 2. 移动Vue的AppCache刷新缓存, 暂时使用修改缓存清单的方式，利用浏览器的机制进行更新缓存
 3. setTimeout的http请求失败后，clear方案漏洞，改为了setInterval方式
-
