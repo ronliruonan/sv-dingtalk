@@ -56,8 +56,6 @@ export default {
     };
   },
   mounted: function() {
-    logger.info("Component index-admin mounted");
-
     if (this.dingUserId) {
       this.getUserInfo();
     }

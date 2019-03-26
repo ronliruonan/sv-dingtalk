@@ -50,6 +50,8 @@ export default {
           const data = response.data;
           if (data.errcode === 0) {
             this.dingUserId = data.userid;
+            logger.info(`当前钉钉userid  ：${this.dingUserId }`);
+
           } else {
             logger.error(`获取钉钉userid error：${data.errmsg}`);
           }

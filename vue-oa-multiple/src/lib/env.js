@@ -20,19 +20,19 @@ export const HASCONSOLE = typeof console !== undefined;
 /**
  * 默认账号
  */
-export const DEFAULTDINGUSERID = process.env.NODE_ENV === "production" ? 'xiangxiaoqiang001' : '';
+export let DEFAULTDINGUSERID = process.env.NODE_ENV === "production" ? '' : '';
 
 // // 【小人头】微应用
 // export const DINGAPPKEY = "dingxgyezybqss11gqi6";
 // export const DINGAGENTID = "213833119";
 
-// 【水丫】
-export const DINGAPPKEY = "dingvgevt7x4ft14mky6";
-export const DINGAGENTID = "245814357";
+// // 【水丫】
+// export const DINGAPPKEY = "dingvgevt7x4ft14mky6";
+// export const DINGAGENTID = "245814357";
 
-// 配置项？
-// export const DINGAPPKEY = "ding0k7bsqokaosdzwya";
-// export const DINGAGENTID = "237991893";
+// 【本地】
+export const DINGAPPKEY = "dingy2ovuvgbpwrzedqn";
+export const DINGAGENTID = "214032587";
 
 /**
  * 是否为钉钉环境

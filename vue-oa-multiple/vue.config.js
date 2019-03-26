@@ -1,4 +1,6 @@
 const CompressionPlugin = require('compression-webpack-plugin')
+// const path = require('path')
+// const SkeletonWebpackPlugin = require('vue-skeleton-webpack-plugin')
 
 module.exports = {
     productionSourceMap: false,
@@ -41,7 +43,17 @@ module.exports = {
                         test: /\.js$|\.html$|\.css/, // 匹配文件名
                         threshold: 10240, // 超过10k的数据进行压缩
                         deleteOriginalAssets: false // 是否删除源文件
-                    })
+                    }),
+                    // // Skeleton
+                    // new SkeletonWebpackPlugin({
+                    //     webapckConfig: {
+                    //         entry: {
+                    //             app: path.join(__dirname, './src/skeleton.js')
+                    //         },
+                    //         minimize: true,
+                    //         quiet: true,
+                    //     }
+                    // }),
                 ]
             }
         }

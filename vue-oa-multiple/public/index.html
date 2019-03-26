@@ -22,60 +22,6 @@
             background-color: #f6f6f6;
         }
     </style>
-    <style>
-        .dd-weak-toast-wrap {
-            position: fixed;
-            overflow: hidden;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            height: 100%;
-            outline: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .dd-weak-toast-img {
-            background: url("<%= BASE_URL %>ayas/TB19BSTk_tYBeNjy1XdXXXXyVXa-48-48.png") no-repeat;
-            width: 48px;
-            height: 48px;
-            margin: 0 auto;
-            -webkit-animation: roll 1500ms infinite cubic-bezier(0.445, 0.05, 0.55, 0.95);
-            animation: roll 1500ms infinite cubic-bezier(0.445, 0.05, 0.55, 0.95);
-        }
-
-        @keyframes roll {
-            0% {
-                transform: rotate(360deg)
-            }
-
-            100% {
-                transform: rotate(0deg)
-            }
-        }
-
-        @-webkit-keyframes roll {
-            0% {
-                transform: rotate(360deg)
-            }
-
-            100% {
-                transform: rotate(0deg)
-            }
-        }
-
-        @-moz-keyframes roll {
-            0% {
-                transform: rotate(360deg)
-            }
-
-            100% {
-                transform: rotate(0deg)
-            }
-        }
-    </style>
 </head>
 
 <body>
@@ -85,12 +31,104 @@
         </strong>
     </noscript>
     <div id="app">
-        <div class="dd-weak-toast-wrap">
-            <div>
-                <div class="dd-weak-toast-img"></div>
-                <div style="font-size: 14px; color:rgba(25,31,37,0.40);">加载中...</div>
+        <!--低能版SkeletonScreen-->
+        <!-- 我来组成头部 -->
+        <style>
+            .header {
+                display: flex;
+            }
+
+            .header_block {
+                flex: 1;
+                margin: 20px 10px;
+                box-sizing: border-box;
+            }
+
+            .header_block-head {
+                height: 66px;
+                border-radius: 5px;
+                background-color: rgba(226, 226, 226, 0.753);
+            }
+
+            .header_block-title {
+                margin-top: 10px;
+                height: 16px;
+                border-radius: 5px;
+                background-color: rgba(224, 224, 224, 0.753);
+            }
+        </style>
+        <section class="header">
+            <div class="header_block">
+                <div class="header_block-head"></div>
+                <p class="header_block-title">
+                </p>
             </div>
+            <div class="header_block">
+                <div class="header_block-head"></div>
+                <p class="header_block-title">
+                </p>
+            </div>
+            <div class="header_block">
+                <div class="header_block-head"></div>
+                <p class="header_block-title">
+                </p>
+            </div>
+            <div class="header_block">
+                <div class="header_block-head"></div>
+                <p class="header_block-title">
+                </p>
+            </div>
+        </section>
+        <!-- 我来组成胸部 -->
+        <style>
+            .chest {
+                display: flex;
+            }
+
+            .chest_block {
+                flex: 1;
+                margin: 2px;
+                height: 32px;
+                border-radius: 5px;
+                background-color: rgba(230, 230, 230, 0.753);
+            }
+        </style>
+        <section class="chest">
+            <div class="chest_block"> </div>
+            <div class="chest_block"> </div>
+            <div class="chest_block"> </div>
+        </section>
+        <!-- 我来组成肚子 -->
+        <style>
+            .belly {
+                margin-top: 20px;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            }
+
+            .belly_block {
+                margin: 5px;
+                padding: 40px;
+                border-radius: 10px;
+                box-sizing: border-box;
+                background-color: rgba(238, 237, 237, 0.753);
+            }
+        </style>
+        <div class="belly">
+            <div class="belly_block"> </div>
+            <div class="belly_block"> </div>
+            <div class="belly_block"> </div>
+            <div class="belly_block"> </div>
+            <div class="belly_block"> </div>
+            <div class="belly_block"> </div>
+            <div class="belly_block"> </div>
+            <div class="belly_block"> </div>
+            <div class="belly_block"> </div>
+            <div class="belly_block"> </div>
+            <div class="belly_block"> </div>
+            <div class="belly_block"> </div>
         </div>
+        <!-- END SKELETON SCREEN -->
     </div>
     <script charset="utf-8" src="<%= BASE_URL %>ayas/dingtalk.open-2.3.0.js"></script>
     <script charset="utf-8" src="<%= BASE_URL %>ayas/fastclick.js"></script>
