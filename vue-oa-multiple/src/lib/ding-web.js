@@ -1,15 +1,11 @@
 /**
  * Created by Ron on 2019-1-14
  */
-
 import axios from "axios";
 import { authCode } from "./shared";
 import logger from "./logger";
 import { DINGAPPKEY, DINGAGENTID, OPENAPIHOST } from "./env";
 import { parseCorpId } from "./util";
-
-axios.defaults.headers.common["appKey"] = DINGAPPKEY;
-
 
 function request(Config, msg) {
     if (process.env.NODE_ENV !== "production") {
@@ -18,6 +14,12 @@ function request(Config, msg) {
 
     // Config.withCredentials = true;
     Config.url = OPENAPIHOST + Config.url;
+
+    Config.headers = { 'appKey': DINGAPPKEY };
+    // axios.defaults.headers.common["appKey"] = DINGAPPKEY;
+    // axios.defaults.headers.common["Content-Type"] = 'application/json';
+    // axios.defaults.headers.common["Accept"] = 'application/json';
+    // axios.defaults.headers.common["Access-Control-Allow-Headers"] = 'Content-Type, X-XSRF-TOKEN';
 
     return new Promise((resolve, reject) => {
         axios(Config)
@@ -115,7 +117,7 @@ export function jsApiOAuth(Config, jsApiList) {
  * @param {[type]} corpId    [Company corpId]
  * @return {[type]}          [Promise]
  */
-export function getUserId(Config, corpId) {
+export async function getUserId(Config, corpId) {
     if (process.env.NODE_ENV !== "production") {
         if (!Config || typeof Config === "string") {
             logger.error("必须传入axios配置对象");

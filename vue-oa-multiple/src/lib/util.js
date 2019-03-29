@@ -58,6 +58,10 @@ export function newUrl(pathName, urlSearch = location.search, urlHash = location
     if (pathName.indexOf('/') < 0) {
         pathName = '/' + pathName;
     }
+    if (urlSearch && urlSearch.toLowerCase().indexOf('corpid') < 0) {
+        const corpId = parseCorpId(location.href, "corpId");
+        urlSearch = `${urlSearch}&corpId=${corpId}`;
+    }
     const path = pathName + urlSearch + urlHash;
 
     return location.origin ? location.origin + path : `${location.protocol}//${location.host}${path}`;
@@ -140,7 +144,7 @@ export function timerFun(fn, immediately = false, timeSpan = 1000 * 60 * 5) {
         //     timerFun(fn, immediately, timeSpan)
         // }, timeSpan, fn, timeSpan);
     }, timeSpan, fn, timeSpan);
-    
+
     return timerId;
 }
 

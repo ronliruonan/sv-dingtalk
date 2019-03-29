@@ -3,11 +3,15 @@
  * Online, https://cwe.cwewater.com
  * Develop, http://192.168.1.90:9043
  */
-const DOMAIN = process.env.NODE_ENV === "production" ? '' : 'http://192.168.1.90:9043';
+const DOMAIN = process.env.NODE_ENV === "production" ? '' : 'https://cwe.cwewater.com';
 /**
  * DING API地址:
  */
 export const OPENAPIHOST = `${DOMAIN}/ding`;
+/**
+ * 
+ */
+export const SSOHOST = `${DOMAIN}/jwt`;
 /**
  * 门户 API地址：
  */
@@ -20,7 +24,7 @@ export const HASCONSOLE = typeof console !== undefined;
 /**
  * 默认账号
  */
-export let DEFAULTDINGUSERID = process.env.NODE_ENV === "production" ? '' : '';
+export let DEFAULTDINGUSERID = process.env.NODE_ENV === "production" ? '' : 'xiangxiaoqiang001';
 
 // // 【小人头】微应用
 // export const DINGAPPKEY = "dingxgyezybqss11gqi6";

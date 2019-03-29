@@ -57,17 +57,17 @@ export default {
 /* 可以设置不同的进入和离开动画 */
 /* 设置持续时间和动画函数 */
 .slide-fade-enter-active {
-  transition: all 1.2s ease-in-out;
+  transition: all 1.3s ease-in;
 }
 .slide-fade-leave-active {
-  transition: all 0.8s ease-in;
+  transition: all 0.6s ease-in;
 }
 .slide-fade-enter {
-  transform: translateY(100px);
+  transform: translateY(178px);
   opacity: 0;
 }
 .slide-fade-leave-to {
-  transform: translateY(-150px);
+  transform: translateY(-43px);
   opacity: 0;
 }
 .page-tab {

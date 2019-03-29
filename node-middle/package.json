@@ -1,0 +1,19 @@
+{
+  "name": "middle",
+  "version": "1.0.0",
+  "description": "JWT Decode",
+  "main": "index.js",
+  "scripts": {
+    "start":"node index.js"
+  },
+  "author": "Ronan",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "jsonwebtoken": "^8.5.1",
+    "koa": "^2.7.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0",
+    "koa2-cors": "^2.0.6"
+  }
+}
