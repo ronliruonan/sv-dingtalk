@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html >
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="format-detection" content="telephone=no">
@@ -21,60 +22,6 @@
             background-color: #f6f6f6;
         }
     </style>
-    <style>
-        .dd-weak-toast-wrap {
-            position: fixed;
-            overflow: hidden;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            height: 100%;
-            outline: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .dd-weak-toast-img {
-            background: url("<%= BASE_URL %>ayas/TB19BSTk_tYBeNjy1XdXXXXyVXa-48-48.png") no-repeat;
-            width: 48px;
-            height: 48px;
-            margin: 0 auto;
-            -webkit-animation: roll 1500ms infinite cubic-bezier(0.445, 0.05, 0.55, 0.95);
-            animation: roll 1500ms infinite cubic-bezier(0.445, 0.05, 0.55, 0.95);
-        }
-
-        @keyframes roll {
-            0% {
-                transform: rotate(360deg)
-            }
-
-            100% {
-                transform: rotate(0deg)
-            }
-        }
-
-        @-webkit-keyframes roll {
-            0% {
-                transform: rotate(360deg)
-            }
-
-            100% {
-                transform: rotate(0deg)
-            }
-        }
-
-        @-moz-keyframes roll {
-            0% {
-                transform: rotate(360deg)
-            }
-
-            100% {
-                transform: rotate(0deg)
-            }
-        }
-    </style>
 </head>
 
 <body>
@@ -84,12 +31,87 @@
         </strong>
     </noscript>
     <div id="dispatch">
-        <div class="dd-weak-toast-wrap">
-            <div>
-                <div class="dd-weak-toast-img"></div>
-                <div style="font-size: 14px; color:rgba(25,31,37,0.40);">加载中...</div>
+        <!--低能版SkeletonScreen-->
+        <!-- 我来组成胸部 -->
+        <style>
+            .chest {
+                padding: 5px;
+            }
+
+            .chest_block {
+                position: relative;
+                margin: 10px 5px 10px 5px;
+                padding: 10px 10px;
+                box-sizing: border-box;
+                border-radius: 5px;
+                background-color: rgba(235, 235, 235, 0.753);
+            }
+
+            [class^='chest_block-'] {
+                border-radius: 5px;
+                background-color: rgba(251, 250, 250, 0.722);
+            }
+
+            .chest_block-title {
+                padding: 10px;
+                margin-bottom: 30px;
+            }
+
+            .chest_block-origin {
+                position: absolute;
+                bottom: .4em;
+                width: 7em;
+                height: .8em;
+                display: inline-block;
+            }
+
+            .chest_block-time {
+                position: absolute;
+                right: 20px;
+                bottom: .4em;
+                width: 5em;
+                height: .8em;
+                display: inline-block;
+            }
+        </style>
+        <section class="chest">
+            <div class="chest_block">
+                <p class="chest_block-title"></p>
+                <span class="chest_block-origin"></span>
+                <span class="chest_block-time"></span>
             </div>
-        </div>
+            <div class="chest_block">
+                <p class="chest_block-title"></p>
+                <span class="chest_block-origin"></span>
+                <span class="chest_block-time"></span>
+            </div>
+            <div class="chest_block">
+                <p class="chest_block-title"></p>
+                <span class="chest_block-origin"></span>
+                <span class="chest_block-time"></span>
+            </div>
+            <div class="chest_block">
+                <p class="chest_block-title"></p>
+                <span class="chest_block-origin"></span>
+                <span class="chest_block-time"></span>
+            </div>
+            <div class="chest_block">
+                <p class="chest_block-title"></p>
+                <span class="chest_block-origin"></span>
+                <span class="chest_block-time"></span>
+            </div>
+            <div class="chest_block">
+                <p class="chest_block-title"></p>
+                <span class="chest_block-origin"></span>
+                <span class="chest_block-time"></span>
+            </div>
+            <div class="chest_block">
+                <p class="chest_block-title"></p>
+                <span class="chest_block-origin"></span>
+                <span class="chest_block-time"></span>
+            </div>
+        </section>
+        <!-- END SKELETON SCREEN -->
     </div>
     <script charset="utf-8" src="<%= BASE_URL %>ayas/dingtalk.open-2.3.0.js"></script>
     <script charset="utf-8" src="<%= BASE_URL %>ayas/fastclick.js"></script>

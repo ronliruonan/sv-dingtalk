@@ -22,6 +22,11 @@ const logger = {
         if (!HASCONSOLE) return;
         // eslint-disable-next-line
         console.info("[INFO]:", msg);
+        // eslint-disable-next-line
+        dd.device.notification.toast({
+            icon: 'success',
+            text: "[INFO]:" + msg
+        });
     },
     error: msg => {
         if (!HASCONSOLE) return;

@@ -1,37 +1,15 @@
 /**
  * Created by Ron on 2019-1-14
  */
-
-import axios from "axios";
+import baseRequest from './base-request'
 import { PORTALAPIHOST } from "./env";
 
-// axios.defaults.headers.common["appKey"] = DINGAPPKEY;
-axios.defaults.headers.common["Content-Type"] = 'application/json';
-axios.defaults.headers.common["Accept"] = 'application/json';
-axios.defaults.headers.common["Access-Control-Allow-Headers"] = 'Content-Type, X-XSRF-TOKEN';
-
 function request(Config, msg) {
-    if (process.env.NODE_ENV !== "production") {
-        if (!Config) return;
-    }
-
-    // Config.withCredentials = true;
-    Config.url = PORTALAPIHOST + Config.url;
-
-    return new Promise((resolve, reject) => {
-        axios(Config)
-            .then(response => {
-                resolve(response);
-            })
-            .catch(error => {
-                reject({ errcode: 100, errmsg: msg, error: error });
-            });
-    });
+    return baseRequest(PORTALAPIHOST, Config, msg);
 }
 
 /**
  * Index首页-发文列表请求 
- * @param {Object} Config 请求配置 
  */
 export async function getIndexFawen(Config = {
     method: 'post',
@@ -49,7 +27,6 @@ export async function getIndexFawen(Config = {
 }
 /**
  * Index首页-公告列表请求
- * @param {Object} Config 请求配置
  */
 export async function getIndexGonggao(Config = {
     method: 'post',
@@ -67,7 +44,6 @@ export async function getIndexGonggao(Config = {
 }
 /**
  * Index首页-公告列表请求
- * @param {Object} Config 请求配置
  */
 export async function getIndexNews(Config = {
     method: 'post',

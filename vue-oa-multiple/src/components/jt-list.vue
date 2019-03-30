@@ -69,6 +69,7 @@ export default {
   },
   methods: {
     jsItemOPen: function(item) {
+      // 在新窗口查看
       if (this.itemOpen.newLink) {
         if (item.mobileUrl) {
           return openLink(item.mobileUrl);
@@ -78,8 +79,11 @@ export default {
 
         search = templateFunc(search, item);
         const url = newUrl(pathName, search);
+
         return openLink(url);
       }
+
+      // 在当前VueRouter查看
       if (this.itemOpen.curLink) {
         let params = Object.assign({}, this.itemOpen.curLink);
 
@@ -90,9 +94,11 @@ export default {
     },
     jsmore: function() {
       if (this.moreOpen) {
+        // 在新窗口查看
         const url = newUrl(this.moreOpen);
         openLink(url);
       } else {
+        // 在当前VueRouter查看
         this.$emit("page-more");
       }
     }

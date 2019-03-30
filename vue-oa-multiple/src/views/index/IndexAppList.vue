@@ -20,7 +20,7 @@ export default {
   components: { grid },
   watch: {
     dingUserId: function() {
-      this.getMicroApps();
+      this.init();
     }
   },
   data: function() {

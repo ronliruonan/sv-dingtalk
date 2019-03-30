@@ -3,11 +3,15 @@
  * Online, https://cwe.cwewater.com
  * Develop, http://192.168.1.90:9043
  */
-const DOMAIN = process.env.NODE_ENV === "production" ? '' : 'http://192.168.1.90:9043';
+const DOMAIN = process.env.NODE_ENV === "production" ? '' : 'https://cwe.cwewater.com';
 /**
  * DING API地址:
  */
 export const OPENAPIHOST = `${DOMAIN}/ding`;
+/**
+ * 
+ */
+export const SSOHOST = `${DOMAIN}/jwt`;
 /**
  * 门户 API地址：
  */
@@ -20,19 +24,19 @@ export const HASCONSOLE = typeof console !== undefined;
 /**
  * 默认账号
  */
-export const DEFAULTDINGUSERID = process.env.NODE_ENV === "production" ? 'xiangxiaoqiang001' : '';
+export let DEFAULTDINGUSERID = process.env.NODE_ENV === "production" ? '' : 'xiangxiaoqiang001';
 
 // // 【小人头】微应用
 // export const DINGAPPKEY = "dingxgyezybqss11gqi6";
 // export const DINGAGENTID = "213833119";
 
-// 【水丫】
-export const DINGAPPKEY = "dingvgevt7x4ft14mky6";
-export const DINGAGENTID = "245814357";
+// // 【水丫】
+// export const DINGAPPKEY = "dingvgevt7x4ft14mky6";
+// export const DINGAGENTID = "245814357";
 
-// 配置项？
-// export const DINGAPPKEY = "ding0k7bsqokaosdzwya";
-// export const DINGAGENTID = "237991893";
+// 【本地】
+export const DINGAPPKEY = "dingy2ovuvgbpwrzedqn";
+export const DINGAGENTID = "214032587";
 
 /**
  * 是否为钉钉环境
