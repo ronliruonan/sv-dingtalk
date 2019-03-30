@@ -2,7 +2,10 @@ import axios from "axios";
 import { sso_ding, SetJsonWebToken } from './sso-web'
 import logger from "./logger";
 
-async function checkJwt() {
+/**
+ * 检车本地id_token
+ */
+export async function checkJwt() {
     let id_token = sessionStorage.getItem('id_token');
 
     // 1. 本地id_token有效
@@ -35,6 +38,12 @@ async function checkJwt() {
     }
 }
 
+/**
+ * 请求基础方法
+ * @param {String} HOST 主ApiPath
+ * @param {Object} Config 请求配置
+ * @param {any} msg 消息
+ */
 export default async function (HOST, Config, msg) {
     if (process.env.NODE_ENV !== "production") {
         if (!Config) return;
