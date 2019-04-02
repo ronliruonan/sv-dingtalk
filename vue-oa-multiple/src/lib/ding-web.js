@@ -86,7 +86,7 @@ export function jsApiOAuth(Config, jsApiList) {
                 if (data.errcode === 0) {
                     const config = {
                         agentId: DINGAGENTID,
-                        corpId: parseCorpId(location.href, "corpId"),
+                        corpId: parseCorpId(location.search, "corpId"),
                         timeStamp: data.timeStamp || "",
                         nonceStr: data.nonceStr || "",
                         signature: data.signature || "",

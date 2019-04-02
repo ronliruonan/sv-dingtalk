@@ -1,9 +1,10 @@
 CACHE MANIFEST
-# Update at 2019/03/11 by Ron Li
+# Update at 2019/04/02 by Ron Li
 
 CACHE:
 # 静态 图片资源
 favicon.ico
+/img/dabing.8c68ec5d.png
 /img/daka.13c3e3d8.png
 /img/shenpi.7e343c8b.png
 /ayas/TB19BSTk_tYBeNjy1XdXXXXyVXa-48-48.png
@@ -13,13 +14,13 @@ favicon.ico
 /ayas/dingtalk.open-2.3.0.js
 
 # 动态 脚本资源
-/js/index.e2a03132.js
-/js/chunk-vendors.f2f87a8b.js
-/js/chunk-common.99728e1d.js
+/js/index.59dd07a5.js
+/js/chunk-vendors.a0750efe.js
+/js/chunk-common.370e8662.js
 
 # 动态 样式资源
-/css/index.c5f67c1f.css
-/css/chunk-common.d82b7f03.css
+/css/index.64767a19.css
+/css/chunk-common.87991275.css
 
 
 NETWORK:

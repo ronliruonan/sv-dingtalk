@@ -57,11 +57,11 @@ export async function SetJsonWebToken(dingUserId) {
 export function sso_ding() {
     return new Promise(async (resolve, reject) => {
         try {
-            if (process.env.NODE_ENV !== 'production') {
-                const env = require('./env')
-                resolve(env.DEFAULTDINGUSERID);
+            if (location.search.includes('JtVDUID')) {
+                resolve(parseCorpId(location.search, 'JtVDUID'));
             }
-            const corpId = parseCorpId(location.href, "corpId");
+
+            const corpId = parseCorpId(location.search, "corpId");
             const getUserIdRequest = { url: "/api/users/auth" };
             const getUserIdResponse = await getUserId(getUserIdRequest, corpId);
             const data = getUserIdResponse.data;

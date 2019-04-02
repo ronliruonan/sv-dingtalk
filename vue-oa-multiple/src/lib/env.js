@@ -1,3 +1,21 @@
+
+/**
+ * 默认账号
+ */
+// export let DEFAULTDINGUSERID = process.env.NODE_ENV === "production" ? '' : 'xiangxiaoqiang001';
+
+// // 【小人头】微应用
+// export const DINGAPPKEY = "dingxgyezybqss11gqi6";
+// export const DINGAGENTID = "213833119";
+
+// // 【水丫】
+// export const DINGAPPKEY = "dingvgevt7x4ft14mky6";
+// export const DINGAGENTID = "245814357";
+
+// 【本地】
+export const DINGAPPKEY = "dingy2ovuvgbpwrzedqn";
+export const DINGAGENTID = "214032587";
+
 /**
  * Baidu：https://www.ayaron.work
  * Online, https://cwe.cwewater.com
@@ -21,22 +39,6 @@ export const PORTALAPIHOST = `${DOMAIN}/portal`;
  */
 export const TASKAPIHOST = `${DOMAIN}/task/services/api`;
 export const HASCONSOLE = typeof console !== undefined;
-/**
- * 默认账号
- */
-export let DEFAULTDINGUSERID = process.env.NODE_ENV === "production" ? '' : 'xiangxiaoqiang001';
-
-// // 【小人头】微应用
-// export const DINGAPPKEY = "dingxgyezybqss11gqi6";
-// export const DINGAGENTID = "213833119";
-
-// // 【水丫】
-// export const DINGAPPKEY = "dingvgevt7x4ft14mky6";
-// export const DINGAGENTID = "245814357";
-
-// 【本地】
-export const DINGAPPKEY = "dingy2ovuvgbpwrzedqn";
-export const DINGAGENTID = "214032587";
 
 /**
  * 是否为钉钉环境

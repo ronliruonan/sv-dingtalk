@@ -40,7 +40,7 @@ export default {
   },
   created: async function() {
     try {
-      this.corpId = parseCorpId(location.href, "corpId");
+      this.corpId = parseCorpId(location.search, "corpId");
       const dingUserId = await sso_ding();
       this.dingUserId = dingUserId;
     } catch (error) {

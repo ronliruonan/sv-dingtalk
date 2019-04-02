@@ -22,8 +22,7 @@ export function getMetaHeader() {
             appIcon: imgApprove,
             name: "流程追踪",
             url: 'https://www.baidu.com',//newUrl('/todo.html'),
-            isMove: false,
-            bage: 0
+            isMove: false
         },
         {
             agentId: 0,

@@ -59,7 +59,7 @@ export function newUrl(pathName, urlSearch = location.search, urlHash = location
         pathName = '/' + pathName;
     }
     if (urlSearch && urlSearch.toLowerCase().indexOf('corpid') < 0) {
-        const corpId = parseCorpId(location.href, "corpId");
+        const corpId = parseCorpId(location.search, "corpId");
         urlSearch = `${urlSearch}&corpId=${corpId}`;
     }
     const path = pathName + urlSearch + urlHash;
