@@ -84,12 +84,12 @@ export default {
   //     // const localDict = JSON.parse(localDictStr);
   //     // this.dict = Array.isArray(localDict) ? localDict : [];
   //   },
-  mounted: function() {
+  async created() {
     const query = this.$route.query;
     const id = parseCorpId(location.search, "id");
     const isNews = parseCorpId(location.search, "isNews");
 
-    this.viewDetail(id || query.id, isNews || query.isNews);
+    await this.viewDetail(id || query.id, isNews || query.isNews);
 
     // eslint-disable-next-line
     dd.ui.pullToRefresh.disable();

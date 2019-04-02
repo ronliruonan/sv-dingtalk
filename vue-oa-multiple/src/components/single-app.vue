@@ -64,7 +64,7 @@ export default {
   .bage {
     position: absolute;
     top: 0;
-    right: -20px;
+    right: -15px;
     z-index: 1;
     font-style: normal;
     color: #fff;
