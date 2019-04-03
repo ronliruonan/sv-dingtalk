@@ -15,9 +15,10 @@ import imgApprove from "../assets/shenpi.png";
 // sm
 // import imgSm from "../assets/wori.png";
 
-export function getMetaHeader() {
+export function getStaticHeaders() {
     return [
         {
+            alias:'laoda',
             agentId: 0,
             appIcon: imgApprove,
             name: "流程追踪",
@@ -25,6 +26,7 @@ export function getMetaHeader() {
             isMove: false
         },
         {
+            alias:'lao2',
             agentId: 0,
             appIcon: imgTodo,
             url: newUrl('/todo.html'),
@@ -33,12 +35,14 @@ export function getMetaHeader() {
             bage: 0
         },
         {
+            alias:'lao3',
             agentId: 0,
             url: 'https://www.baidu.com',
             appIcon: imgDabing,// "https://static.dingtalk.com/media/lALPDeC2t2Gu8MTMyMzI_200_200.png",
             name: "管理驾驶舱"
         },
         {
+            alias:'lao3',
             agentId: 213290791,
             appIcon: imgDaka,
             name: "考勤打卡",

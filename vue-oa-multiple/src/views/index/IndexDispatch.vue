@@ -30,7 +30,6 @@ import { getIndexFawen } from "../../lib/portal-web.js";
 import logger from "../../lib/logger";
 import { pullToRefresh, timerFun } from "../../lib/util";
 
-
 export default {
   name: "index-dispatch",
   components: { jtList, slotMsg },
@@ -64,8 +63,7 @@ export default {
       try {
         const response = await getIndexFawen();
         const data = response.data;
-        if (data.success !== true)
-          return logger.warn(JSON.stringify(data.error));
+        if (data.success !== true) return logger.warn(data.error);
 
         this.items = data.result.items.items;
         this.dict = data.result.columnPlates;

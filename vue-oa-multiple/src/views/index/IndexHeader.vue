@@ -5,11 +5,11 @@
 </template>
 
 <script>
-import { getMetaHeader } from "../../lib/meta.js";
+import { getStaticHeaders } from "../../lib/meta.js";
 import { getIndexTodoCount } from "../../lib/task-web.js";
 import { timerFun } from "../../lib/util.js";
 import logger from "../../lib/logger";
-
+import EventBus from "../../lib/pub-sub.js";
 import grid from "../../components/grid.vue";
 
 export default {
@@ -24,20 +24,22 @@ export default {
       timerId: -1
     };
   },
-  created: function() {
-    const data = getMetaHeader();
-    this.headerMeta = data;
-    this.timerId = timerFun(this.getTotoCount, true, 1000 * 60 * 5);
+  created() {
+    this.headerMeta = getStaticHeaders();
+
+    EventBus.$once("DUID", function(data) {
+      console.log("SUB");
+      this.timerId = timerFun(this.getTotoCount, true, 1000 * 60 * 5);
+    });
   },
   methods: {
-    getTotoCount: async function() {
+    async getTotoCount() {
       try {
         const response = await getIndexTodoCount();
         const data = response.data;
-        if (data.success !== true)
-          return logger.warn(JSON.stringify(data.error));
+        if (data.success !== true) return logger.warn(data.error);
 
-        const todoApp = this.headerMeta[1];
+        const todoApp = this.headerMeta.find(item => item["alias"] === "lao2");
         const count = data.result.items.totalCount;
         todoApp.bage = count;
         todoApp.isMove = count > 0;

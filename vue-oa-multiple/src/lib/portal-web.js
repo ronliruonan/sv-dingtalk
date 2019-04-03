@@ -1,11 +1,11 @@
 /**
  * Created by Ron on 2019-1-14
  */
-import baseRequest from './base-request'
+import baseRequestDef from './base-request'
 import { PORTALAPIHOST } from "./env";
 
 function request(Config, msg) {
-    return baseRequest(PORTALAPIHOST, Config, msg);
+    return baseRequestDef(PORTALAPIHOST, Config, msg);
 }
 
 /**

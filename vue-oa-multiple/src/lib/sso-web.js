@@ -57,8 +57,8 @@ export async function SetJsonWebToken(dingUserId) {
 export function sso_ding() {
     return new Promise(async (resolve, reject) => {
         try {
-            if (location.search.includes('JtVDUID')) {
-                resolve(parseCorpId(location.search, 'JtVDUID'));
+            if (location.search.includes('JtvDUID')) {
+                resolve(parseCorpId(location.search, 'JtvDUID'));
             }
 
             const corpId = parseCorpId(location.search, "corpId");

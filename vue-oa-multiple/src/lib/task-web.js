@@ -1,26 +1,31 @@
 import { TASKAPIHOST } from "./env";
-
-const baseRequest = require('./base-request');
+import baseRequestDef, { checkJwt } from './base-request'
+// const baseRequest = require('./base-request');
 
 async function request(Config, msg) {
-    await baseRequest.checkJwt();
+    await checkJwt();
 
     const user_info = getUserInfo();
     if (!user_info) throw { 'errcode': 404, 'errmsg': '没找到UserInfo' };
 
-    const user_code = user_info.user_code;
+    const { user_code: userCode } = user_info;
 
-    Object.assign(Config.data, { userCode: user_code });
+    Object.assign(Config.data, { userCode: userCode });
 
-    return baseRequest.default(TASKAPIHOST, Config, msg);
+    return baseRequestDef(TASKAPIHOST, Config, msg);
 }
 
 function getUserInfo() {
     const user_info = sessionStorage.getItem('user_info');
-    if (user_info && user_info.indexOf('user_code') > -1)
-        return (JSON.parse(user_info));
 
-    return false;
+    // 易读性不如if
+    // const available = user_info && user_info.includes('user_code');
+    // return available ? JSON.parse(user_info) : false;
+
+    if (!user_info) return false;
+    if (!user_info.includes('user_code')) return false;
+
+    return JSON.parse(user_info);
 }
 
 

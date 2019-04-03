@@ -30,6 +30,9 @@ const logger = {
     },
     error: msg => {
         if (!HASCONSOLE) return;
+        if (typeof msg !== 'string')
+            msg = JSON.stringify(msg);
+        
         // eslint-disable-next-line
         console.error("[ERROR]:", msg);
         // eslint-disable-next-line
