@@ -171,11 +171,11 @@ export function pullToRefresh(func = async function () { }) {
 }
 
 export default {
-    parseCorpId: parseCorpId,
-    openLink: openLink,
-    newUrl: newUrl,
-    filterGetDict: filterGetDict,
-    filterJSON: filterJSON,
-    filterDateFormate: filterDateFormate,
-    templateFunc: templateFunc
+    parseCorpId,
+    openLink,
+    newUrl,
+    filterGetDict,
+    filterJSON,
+    filterDateFormate,
+    templateFunc
 };
