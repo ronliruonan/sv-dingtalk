@@ -2,7 +2,7 @@
   <div class="cell-box" :class="{'cell-header':isHeader}" @click="microAppOpenLink(item,$event)">
     <div class="cell-image-container">
       <img class="cell-image" :src="item.appIcon" :class="{'musice-move':item.isMove}">
-      <i class="bage" v-if="item.bage > -1">{{item.bage > 99 ? '99+' : item.bage}}</i>
+      <i class="bage" v-if="item.bage > 0">{{item.bage > 99 ? '99+' : item.bage}}</i>
     </div>
     <div class="cell-text" :class="{'is-special':item.isSpecial}">{{item.name}}</div>
   </div>

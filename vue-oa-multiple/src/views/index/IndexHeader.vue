@@ -26,9 +26,10 @@ export default {
   },
   created() {
     this.headerMeta = getStaticHeaders();
+    const __this = this;
 
     EventBus.$once("DUID", function() {
-      this.timerId = timerFun(this.getTotoCount, true, 1000 * 60 * 5);
+      __this.timerId = timerFun(__this.getTotoCount, true, 1000 * 60 * 5);
     });
   },
   methods: {
@@ -41,7 +42,7 @@ export default {
         const todoApp = this.headerMeta.find(item => item["alias"] === "lao2");
         const count = data.result.items.totalCount;
         todoApp.bage = count;
-        todoApp.isMove = count > 0;
+        todoApp.isMove = count > -1;
       } catch (e) {
         if (this.timerId !== -1) {
           clearInterval(this.timerId);
