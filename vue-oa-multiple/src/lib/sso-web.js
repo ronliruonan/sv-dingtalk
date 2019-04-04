@@ -57,24 +57,35 @@ export async function SetJsonWebToken(dingUserId) {
 export function sso_ding() {
     return new Promise(async (resolve, reject) => {
         try {
+            let ding_userid = null;
+
+            // 是否模拟登录
             if (location.search.includes('JtvDUID')) {
-                resolve(parseCorpId(location.search, 'JtvDUID'));
+                ding_userid = parseCorpId(location.search, 'JtvDUID');
+                sessionStorage.setItem('ding_userid', ding_userid);
+                return resolve(ding_userid);
             }
 
+            // 钉钉登录
             const corpId = parseCorpId(location.search, "corpId");
             const getUserIdRequest = { url: "/api/users/auth" };
             const getUserIdResponse = await getUserId(getUserIdRequest, corpId);
-            const data = getUserIdResponse.data;
+            const { data } = getUserIdResponse;
 
-            if (data.errcode !== 0) {
-                logger.error(`GET DingUserId Err：${data.errmsg}`);
-                reject(data);
+            if (data.errcode === 0) {
+                ding_userid = data.userid;
+                sessionStorage.setItem('ding_userid', ding_userid);
+
+                // debugging
+                logger.info(`${ding_userid}`);
+                return resolve(ding_userid);
             }
 
-            const dingUserId = data.userid;
-
-            logger.info(`${dingUserId}`);
-            resolve(dingUserId);
+            if (data.errcode !== 0) {
+                sessionStorage.setItem('ding_userid', ding_userid);
+                logger.error(`GET DingUserId Err：${data.errmsg}`);
+                return reject(data);
+            }
         } catch (err) {
             reject(err);
         }

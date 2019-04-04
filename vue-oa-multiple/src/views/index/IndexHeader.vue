@@ -27,8 +27,7 @@ export default {
   created() {
     this.headerMeta = getStaticHeaders();
 
-    EventBus.$once("DUID", function(data) {
-      console.log("SUB");
+    EventBus.$once("DUID", function() {
       this.timerId = timerFun(this.getTotoCount, true, 1000 * 60 * 5);
     });
   },

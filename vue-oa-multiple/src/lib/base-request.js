@@ -6,30 +6,27 @@ import logger from "./logger";
  * 检车本地id_token
  */
 export async function checkJwt() {
-    let id_token = sessionStorage.getItem('id_token');
-
-    // 1. 本地id_token有效
-    if (id_token) {
-        axios.defaults.headers.common["Authorization"] = `Bearer ${id_token}`;
-        return true;
-    }
-
-    // 2. 请求id_token
     try {
-        let dingUserId = await sso_ding();
+        // axios.defaults.headers.common["Authorization"]
+        let { defaults: { headers: { common: axcommon } } } = axios;
+
+        // 1. 本地id_token有效
+        let id_token = sessionStorage.getItem('id_token');
+        if (id_token) return axcommon["Authorization"] = `Bearer ${id_token}`;
+
+        // 2. 准备请求id_token
+        let ding_userid = sessionStorage.getItem('ding_userid');
+        if (!ding_userid) ding_userid = await sso_ding();
 
         // 2.1. DingUserId无效
-        if (!dingUserId) {
-            axios.defaults.headers.common["Authorization"] = `Bearer unavailable DingUserId`;
-            return false;
-        }
+        if (!ding_userid) return axcommon["Authorization"] = `Bearer unavailable DingUId`;
 
         // 2.2. 获取id_token
-        await SetJsonWebToken(dingUserId);
+        await SetJsonWebToken(ding_userid);
 
         id_token = sessionStorage.getItem('id_token');
 
-        axios.defaults.headers.common["Authorization"] = `Bearer ${id_token}`;
+        axcommon["Authorization"] = `Bearer ${id_token}`;
 
         return id_token ? true : false;
     } catch (error) {
