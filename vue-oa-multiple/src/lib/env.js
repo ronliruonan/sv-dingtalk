@@ -1,6 +1,6 @@
 // 【本地】
-export const DINGAPPKEY = "dingvgevt7x4ft14mky6";
-export const DINGAGENTID = "214032587";
+export const DINGAPPKEY = "钉钉AppKey";
+export const DINGAGENTID = "钉钉AgentId";
 
 /**
  * Develop, http://192.168.1.90:9043
