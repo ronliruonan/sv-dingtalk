@@ -4,7 +4,7 @@
     // OPENAPIHOST = 'http://192.168.1.104:8080';
     OPENAPIHOST = 'http://joten90dev3000.vaiwan.com:8081';
 
-    var DINGAPPKEY = 'dingxgyezybqss11gqi6';
+    var DINGAPPKEY = '钉钉Appkey';
 
     var isDingtalk = /DingTalk/.test(navigator.userAgent);
     var proper = {};
@@ -192,7 +192,7 @@
                         response.appList.forEach((value) => {
                             nb.push(`<div class="cell"><div class="cell-box"><div>
                                         <div class="cell-image-container">
-                                            <a href="dingtalk://dingtalkclient/action/switchtab?index=2&name=work&scene=1&corpid=ding3b11247e3909339d35c2f4657eb6378f&agentid=${value.agentId}">
+                                            <a href="dingtalk://dingtalkclient/action/switchtab?index=2&name=work&scene=1&corpid=钉钉&agentid=${value.agentId}">
                                                 <img src="${value.appIcon}" class="cell-image" />
                                             </a>
                                         </div>
@@ -227,7 +227,7 @@
             const url = 'https://h5.dingtalk.com/industry_versatility/get.html?dd_progress=false&corpId=$CORPID$',
                 originalUrl = location.href,
                 corpId = parseCorpId(originalUrl, 'corpId'),
-                testUrl = 'https://h5.dingtalk.com/industry_versatility/get.html?dd_web_timestamp=1546051369005&dd_progress=false&corpId=ding3b11247e3909339d35c2f4657eb6378f';
+                testUrl = 'https://h5.dingtalk.com/industry_versatility/get.html?dd_web_timestamp=1546051369005&dd_progress=false&corpId=钉钉';
 
             openLink(url, corpId);
         });
@@ -245,10 +245,10 @@
             success: function (response) {
                 if (response.errcode === 0) {
                     const config = {
-                        agentId: response.agentId || '213833119',
+                        agentId: response.agentId || '钉钉',
                         // corpId: response.corpId || '',
                         // corpId: DINGAPPKEY,
-                        corpId: 'ding3b11247e3909339d35c2f4657eb6378f',
+                        corpId: '钉钉corpId',
                         timeStamp: response.timeStamp || '',
                         nonceStr: response.nonceStr || '',
                         signature: response.signature || '',

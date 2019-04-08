@@ -6,7 +6,7 @@ import axios from 'axios';
 import logger from './logger';
 import { authCode, isObject, msgLog } from './shared';
 
-axios.defaults.headers.common['appkey'] = 'dingxgyezybqss11gqi6';
+axios.defaults.headers.common['appkey'] = '钉钉Appkey';
 // axios.interceptors.request.use(function (config) {
 //     // alert('统一标配');
 //     // msgLog(config.url);
@@ -82,9 +82,9 @@ export function jsApiOAuth(Config, jsApiList) {
             if (data.errcode === 0) {
                 const config = {
                     // agentId: data.agentId || '',
-                    agentId: '213833119',
+                    agentId: '钉钉',
                     // corpId: data.corpId || '',
-                    corpId: 'ding3b11247e3909339d35c2f4657eb6378f',
+                    corpId: '钉钉corpid',
                     timeStamp: data.timeStamp || '',
                     nonceStr: data.nonceStr || '',
                     signature: data.signature || '',

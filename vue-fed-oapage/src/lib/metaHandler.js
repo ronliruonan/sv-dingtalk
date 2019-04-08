@@ -17,10 +17,10 @@ function homeHeaderModelHandler(meta, corpId) {
     _meta.isAdminOrBoos = (isAdmin || boss);
     _meta.isHomeHeaderModel = true;
 
-    _meta.attendanceUrl = 'https://attend.dingtalk.com/attend/index.html?dd_web_timestamp='+(new Date().getTime())+'&showmenu=false&dd_share=false&corpId=ding68942498a5cd785e35c2f4657eb6378f&swfrom=work_homepage#stat';
-    _meta.myTasksUrl = 'https://aflow.dingtalk.com/dingtalk/mobile/homepage.htm?corpid=ding68942498a5cd785e35c2f4657eb6378f&showmenu=false&dd_share=false&swfrom=work_homepage#upcoming';
-    _meta.checkinsUrl = 'https://attendance.dingtalk.com/attendance/mobile/mapAttendance.html?corpid=ding68942498a5cd785e35c2f4657eb6378f&showmenu=false&dd_progress=false&dd_share=false&swfrom=work_homepage&to_page=footprint';
-    _meta.notReadReportUrl = 'https://landray.dingtalkapps.com/alid/app/report/received_new.html?corpid=ding68942498a5cd785e35c2f4657eb6378f&ismy=2&dd_share=false&readType=1&swfrom=work_homepage';
+    _meta.attendanceUrl = 'https://attend.dingtalk.com/attend/index.html?dd_web_timestamp='+(new Date().getTime())+'&showmenu=false&dd_share=false&corpId=钉钉&swfrom=work_homepage#stat';
+    _meta.myTasksUrl = 'https://aflow.dingtalk.com/dingtalk/mobile/homepage.htm?corpid=钉钉&showmenu=false&dd_share=false&swfrom=work_homepage#upcoming';
+    _meta.checkinsUrl = 'https://attendance.dingtalk.com/attendance/mobile/mapAttendance.html?corpid=钉钉&showmenu=false&dd_progress=false&dd_share=false&swfrom=work_homepage&to_page=footprint';
+    _meta.notReadReportUrl = 'https://landray.dingtalkapps.com/alid/app/report/received_new.html?corpid=钉钉&ismy=2&dd_share=false&readType=1&swfrom=work_homepage';
     return _meta;
 }
 
