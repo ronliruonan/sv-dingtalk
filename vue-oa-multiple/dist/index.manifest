@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# Update at 2019/04/04 by Ronan
+# Update at 2019/04/08 by Ronan
 
 CACHE:
 # 静态 图片资源
@@ -16,7 +16,7 @@ favicon.ico
 # 动态 脚本资源
 /js/index.127b10a7.js
 /js/chunk-vendors.a0750efe.js
-/js/chunk-common.df8854cf.js
+/js/chunk-common.72219296.js
 
 # 动态 样式资源
 /css/index.34358813.css

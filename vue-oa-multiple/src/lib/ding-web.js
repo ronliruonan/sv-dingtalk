@@ -1,5 +1,5 @@
 /**
- * Created by Ron on 2019-1-14
+ * Created by Ronan on 2019-1-14
  */
 import axios from "axios";
 import { authCode } from "./shared";
