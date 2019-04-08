@@ -1,7 +1,11 @@
 .DS_Store
 node_modules
-#/dist
+/dist
 package-lock.json
+
+# config
+env.dev.js
+env.pro.js
 
 
 # local env files

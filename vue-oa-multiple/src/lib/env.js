@@ -1,17 +1,21 @@
 // 【本地】
-export const DINGAPPKEY = "钉钉AppKey";
-export const DINGAGENTID = "钉钉AgentId";
-
+const ENVCONFIG = process.env.NODE_ENV === "production" ? require('./env.pro') : require('./env.dev')
 /**
- * Develop, http://192.168.1.90:9043
+ * 钉钉AppKey
  */
-const DOMAIN = process.env.NODE_ENV === "production" ? '' : '';
+export const DINGAPPKEY = ENVCONFIG.DINGAPPKEY;
+/**
+ * 钉钉AgentId
+ */
+export const DINGAGENTID = ENVCONFIG.DINGAGENTID;
+
+const DOMAIN = ENVCONFIG.DOMAIN;
 /**
  * DING API地址:
  */
 export const OPENAPIHOST = `${DOMAIN}/ding`;
 /**
- * 
+ * SSO host
  */
 export const SSOHOST = `${DOMAIN}/jwt`;
 /**
