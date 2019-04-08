@@ -33,7 +33,7 @@
 2. *** index.manifest 重新修正 ***
 3. *** index.html中的preload的属性配置要干掉 ***
 4. *** 配置数据库的钉钉配置 ***
-5. *** 配置 meta.js中的agentId ***
+5. *** 配置 meta.js中的agentId ***  evn.js
 6. *** DingTalkApiJar ***
 
 ## 检查步骤

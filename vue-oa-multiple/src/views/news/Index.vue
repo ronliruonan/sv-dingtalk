@@ -93,8 +93,7 @@ export default {
         });
         const data = response.data;
 
-        if (data.success !== true)
-          return logger.warn(JSON.stringify(data.error));
+        if (data.success !== true) return logger.warn(data.error);
 
         const {
           items: dataItems,

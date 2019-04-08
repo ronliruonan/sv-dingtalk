@@ -100,8 +100,7 @@ export default {
         const response = await viewArticle({ id: id, isNews: isNews });
         const data = response.data;
 
-        if (data.success !== true)
-          return logger.warn(JSON.stringify(data.error));
+        if (data.success !== true) return logger.warn(data.error);
 
         this.item = { ...this.item, ...data.result.item };
         this.releaseScopes = [

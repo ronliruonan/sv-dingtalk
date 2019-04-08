@@ -8,6 +8,7 @@
 <script>
 import { parseCorpId } from "../../lib/util.js";
 import { sso_ding } from "../../lib/sso-web.js";
+import EventBus from "../../lib/pub-sub.js";
 
 import IndexHeader from "../../views/index/IndexHeader.vue";
 import IndexPageTab from "../../views/index/IndexPageTab.vue";
@@ -38,11 +39,13 @@ export default {
       }
     };
   },
-  created: async function() {
+  async created() {
     try {
       this.corpId = parseCorpId(location.search, "corpId");
       const dingUserId = await sso_ding();
       this.dingUserId = dingUserId;
+      
+      EventBus.$emit("DUID", dingUserId);
     } catch (error) {
       logger.error(JSON.stringify(error));
     }

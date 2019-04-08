@@ -17,7 +17,7 @@ async function getJWT(dingUserId) {
     if (!dingUserId) return new ResponseJSON(null, 400, '无效的DINGUSERID');
 
     try {
-        const baseUrl = 'http://dm.cwewater.com:7000/openid-connect-server-webapp/getDingToken';
+        const baseUrl = 'http://192.168.112.61:7000/openid-connect-server-webapp/getDingToken';
         const requestData = {
             method: 'get',
             url: `${baseUrl}/${dingUserId}`
