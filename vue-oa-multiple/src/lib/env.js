@@ -1,4 +1,4 @@
-// 【本地】
+// 对应的配置信息文件
 const ENVCONFIG = process.env.NODE_ENV === "production" ? require('./env.pro') : require('./env.dev')
 /**
  * 钉钉AppKey
