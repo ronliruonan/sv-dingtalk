@@ -124,14 +124,14 @@ public class authService {
                     if (ticketResponse.isSuccess()) {
                         // 成功获取新ticket
                         newTicket.setJsapi_ticket(ticketResponse.getTicket());
-                    }else{
+                    } else {
                         // 失败获取 新ticket
-                        newTicket.setJsapi_ticket(ticketResponse.getErrmsg());
+                        newTicket.setSv_log(ticketResponse.getErrmsg());
                     }
-                }else{
+                } else {
                     // 失败获取新token
-                    newToken.setAccess_token(tokenResponse.getErrmsg());
-                    newTicket.setJsapi_ticket("获取TokenError:" + tokenResponse.getErrmsg());
+                    newToken.setSv_log(tokenResponse.getErrmsg());
+                    newTicket.setSv_log("更新Token异常: " + tokenResponse.getErrmsg());
                 }
 
                 // 更新token 入库
@@ -140,8 +140,14 @@ public class authService {
                 insertOrUpdateDingJsapiTicket(newTicket);
 
             } catch (Exception e) {
-                e.printStackTrace();
-                newToken = null;
+
+                newToken.setSv_log("更新Token异常：" + e.getMessage());
+                newTicket.setSv_log("更新Token异常：" + e.getMessage());
+
+                insertOrUpdateDingAccessToken(newToken);
+                insertOrUpdateDingJsapiTicket(newTicket);
+
+                return null;
             }
 
             return newToken;

@@ -13,9 +13,9 @@ public interface DingJsApiTicketMapper {
     @Select("select * from ding_jsapi_ticket where app_key=#{appkey}")
     DingJsApiTicket getByAppKey(String appkey);
 
-    @Insert({"insert into ding_jsapi_ticket(app_key,jsapi_ticket,begin_time) values(#{app_key},#{jsapi_ticket},#{begin_time})"})
+    @Insert({"insert into ding_jsapi_ticket(app_key,jsapi_ticket,begin_time,sv_log) values(#{app_key},#{jsapi_ticket},#{begin_time},#{sv_log})"})
     void insert(DingJsApiTicket jsApiTicket);
 
-    @Update({"update ding_jsapi_ticket set jsapi_ticket=#{jsapi_ticket}, begin_time=#{begin_time} where app_key=#{app_key}"})
+    @Update({"update ding_jsapi_ticket set jsapi_ticket=#{jsapi_ticket}, begin_time=#{begin_time}, sv_log=#{sv_log} where app_key=#{app_key}"})
     void update(DingJsApiTicket jsApiTicket);
 }

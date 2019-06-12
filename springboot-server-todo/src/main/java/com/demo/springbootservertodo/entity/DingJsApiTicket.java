@@ -7,6 +7,20 @@ public class DingJsApiTicket {
     private String jsapi_ticket;
     private Date begin_time;
 
+    public DingJsApiTicket() {
+        this.sv_log = "正常";
+    }
+
+    public String getSv_log() {
+        return sv_log;
+    }
+
+    public void setSv_log(String sv_log) {
+        this.sv_log = sv_log;
+    }
+
+    private String sv_log;
+
     public String getApp_key() {
         return app_key;
     }
