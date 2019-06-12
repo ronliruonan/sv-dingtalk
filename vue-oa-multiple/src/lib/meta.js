@@ -43,7 +43,7 @@ export function getStaticHeaders() {
         },
         {
             alias:'lao3',
-            agentId: 213290791,
+            agentId: 90103837,
             appIcon: imgDaka,
             name: "考勤打卡",
             isSpecial: true,
